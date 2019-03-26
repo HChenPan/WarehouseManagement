@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.LogsMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Logs">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+        <result column="FLAGID" jdbcType="VARCHAR" property="flagid"/>
+        <result column="IPADDRESS" jdbcType="VARCHAR" property="ipaddress"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="OLDCONTENT" jdbcType="VARCHAR" property="oldcontent"/>
+        <result column="OPTCONTENT" jdbcType="VARCHAR" property="optcontent"/>
+        <result column="PARAMS" jdbcType="VARCHAR" property="params"/>
+        <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WM_LOGS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hchenpan.pojo.Logs">
+    insert into WM_LOGS (ID, CREATORID, CREATOR, 
+      CREATETIME, UPDATERID, UPDATER, 
+      UPDATETIME, DESCRIPTION, FLAGID, 
+      IPADDRESS, NAME, OLDCONTENT, 
+      OPTCONTENT, PARAMS, REALNAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{creatorid,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updaterid,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{flagid,jdbcType=VARCHAR}, 
+      #{ipaddress,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{oldcontent,jdbcType=VARCHAR}, 
+      #{optcontent,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}
+      )
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="com.hchenpan.pojo.Logs">
+    update WM_LOGS
+    set CREATORID = #{creatorid,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=VARCHAR},
+      UPDATERID = #{updaterid,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      FLAGID = #{flagid,jdbcType=VARCHAR},
+      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      OLDCONTENT = #{oldcontent,jdbcType=VARCHAR},
+      OPTCONTENT = #{optcontent,jdbcType=VARCHAR},
+      PARAMS = #{params,jdbcType=VARCHAR},
+      REALNAME = #{realname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, DESCRIPTION, 
+    FLAGID, IPADDRESS, NAME, OLDCONTENT, OPTCONTENT, PARAMS, REALNAME
+    from WM_LOGS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, DESCRIPTION, 
+    FLAGID, IPADDRESS, NAME, OLDCONTENT, OPTCONTENT, PARAMS, REALNAME
+    from WM_LOGS
+    order by updateTime desc,updater asc
+  </select>
+</mapper>

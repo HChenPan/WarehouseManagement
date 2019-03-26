@@ -5,9 +5,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.google.gson.Gson;
 import com.hchenpan.exception.CustomException;
 import com.hchenpan.util.RedisPage;
 import com.hchenpan.util.StringUtil;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
@@ -17,10 +19,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Project : WarehouseManagement
@@ -130,5 +131,65 @@ public class BaseController {
         json.put("total", page.getTotal());
         json.put("rows", page.getRecords());
         return toJson(json);
+    }
+
+    /**
+     * 在所有Action入口判断是否登录用户
+     */
+    protected static boolean checkuser() {
+        return SecurityUtils.getSubject().getPrincipal() != null;
+    }
+
+    /**
+     * 生成主键
+     */
+    protected static String getUUID() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    public static String GetCurrentTime() {
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return s.format(Calendar.getInstance().getTime());
+    }
+
+    /**
+     * 对象转换成JSON字串
+     */
+    public String GetGsonString(Object obj) {
+        return new Gson().toJson(obj);
+    }
+
+    /**
+     * 获取发起请求的IP
+     */
+    protected String getRomoteIP() {
+        String ip;
+        ip = request.getHeader("x-forwarded-for");
+        if (isNullIp(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (isNullIp(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (isNullIp(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (isNullIp(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (isNullIp(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        if (ip.contains(",")) {
+            ip = ip.split(",")[0];
+        }
+        if ("0.0.0.0.0.0.0.1".equals(ip) || "0.0.0.0.0.0.0.1%0".equals(ip)) {
+            ip = "127.0.0.1";
+        }
+        return ip;
+    }
+
+    private static boolean isNullIp(final String ip) {
+        return ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip);
     }
 }

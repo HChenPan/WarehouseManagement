@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.DictionarysMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Dictionarys">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="DCODE" jdbcType="VARCHAR" property="dcode"/>
+        <result column="DNAME" jdbcType="VARCHAR" property="dname"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WM_DICTIONARYS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hchenpan.pojo.Dictionarys">
+    insert into WM_DICTIONARYS (ID, CREATORID, CREATOR, 
+      CREATETIME, UPDATERID, UPDATER, 
+      UPDATETIME, DCODE, DNAME, 
+      FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{creatorid,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updaterid,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR}, #{dcode,jdbcType=VARCHAR}, #{dname,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR})
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="com.hchenpan.pojo.Dictionarys">
+    update WM_DICTIONARYS
+    set CREATORID = #{creatorid,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=VARCHAR},
+      UPDATERID = #{updaterid,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      DCODE = #{dcode,jdbcType=VARCHAR},
+      DNAME = #{dname,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, DCODE, 
+    DNAME, FLAG
+    from WM_DICTIONARYS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, DCODE, 
+    DNAME, FLAG
+    from WM_DICTIONARYS
+    order by updateTime desc,updater asc
+  </select>
+</mapper>

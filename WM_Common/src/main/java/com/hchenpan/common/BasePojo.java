@@ -22,19 +22,23 @@ public class BasePojo implements Serializable {
     @TableId(value = "ID", type = IdType.INPUT)
     private String id;
     @TableField(fill = FieldFill.INSERT)
-    private String creatorId;
+    private String creatorid;
     @TableField(fill = FieldFill.INSERT)
     private String creator;
     @TableField(fill = FieldFill.INSERT)
-    private String createTime;
+    private String createtime;
     @TableField(fill = FieldFill.UPDATE)
-    private String updaterId;
+    private String updaterid;
     @TableField(fill = FieldFill.UPDATE)
     private String updater;
     @TableField(fill = FieldFill.UPDATE)
-    private String updateTime;
+    private String updatetime;
 
     public BasePojo() {
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public String getId() {
@@ -45,12 +49,12 @@ public class BasePojo implements Serializable {
         this.id = id;
     }
 
-    public String getCreatorId() {
-        return creatorId;
+    public String getCreatorid() {
+        return creatorid;
     }
 
-    public void setCreatorId(String creatorId) {
-        this.creatorId = creatorId;
+    public void setCreatorid(String creatorid) {
+        this.creatorid = creatorid;
     }
 
     public String getCreator() {
@@ -61,24 +65,20 @@ public class BasePojo implements Serializable {
         this.creator = creator;
     }
 
-    public String getCreateTime() {
-        return createTime;
+    public String getCreatetime() {
+        return createtime;
     }
 
-    public String getCreateTimes() {
-        return getCreateTime();
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
+    public String getUpdaterid() {
+        return updaterid;
     }
 
-    public String getUpdaterId() {
-        return updaterId;
-    }
-
-    public void setUpdaterId(String updaterId) {
-        this.updaterId = updaterId;
+    public void setUpdaterid(String updaterid) {
+        this.updaterid = updaterid;
     }
 
     public String getUpdater() {
@@ -89,15 +89,11 @@ public class BasePojo implements Serializable {
         this.updater = updater;
     }
 
-    public String getUpdateTime() {
-        return updateTime;
+    public String getUpdatetime() {
+        return updatetime;
     }
 
-    public String getUpdateTimes() {
-        return getUpdateTime();
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
     }
 }

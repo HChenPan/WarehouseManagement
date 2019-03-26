@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.DictionaryschildMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Dictionaryschild">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="CODE" jdbcType="VARCHAR" property="code"/>
+        <result column="DCODE" jdbcType="VARCHAR" property="dcode"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="NOTE" jdbcType="VARCHAR" property="note"/>
+        <result column="DICTIONARYS_ID" jdbcType="VARCHAR" property="dictionarysId"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WM_DICTIONARYSCHILD
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.hchenpan.pojo.Dictionaryschild">
+    insert into WM_DICTIONARYSCHILD (ID, CREATORID, CREATOR, 
+      CREATETIME, UPDATERID, UPDATER, 
+      UPDATETIME, CODE, DCODE, 
+      FLAG, NAME, NOTE, DICTIONARYS_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{creatorid,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updaterid,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{dcode,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{dictionarysId,jdbcType=VARCHAR}
+      )
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="com.hchenpan.pojo.Dictionaryschild">
+    update WM_DICTIONARYSCHILD
+    set CREATORID = #{creatorid,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=VARCHAR},
+      UPDATERID = #{updaterid,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      DCODE = #{dcode,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      DICTIONARYS_ID = #{dictionarysId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, CODE, 
+    DCODE, FLAG, NAME, NOTE, DICTIONARYS_ID
+    from WM_DICTIONARYSCHILD
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, CODE, 
+    DCODE, FLAG, NAME, NOTE, DICTIONARYS_ID
+    from WM_DICTIONARYSCHILD
+    order by updateTime desc,updater asc
+  </select>
+</mapper>

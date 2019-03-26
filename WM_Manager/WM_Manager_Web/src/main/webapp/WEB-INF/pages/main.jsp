@@ -37,14 +37,12 @@
 <div data-options="region:'north'" class="north">
     <table width="100%">
         <tr>
-            <%
-                User user = (User)request.getSession().getAttribute("user");
-
-            %>
             <td width="400"><img src="${ctx}/statics/img/title.png" alt="仓库管理系统"/></td>
-            <td align="right" class="right"><%=user.getUsername() %>,仓库管理系统</td>
+            <td align="right" class="right">
+                <%--<shiro:principal property="realname"/>,仓库管理系统--%>
+            </td>
             <td width="80" align="right" valign="bottom" class="logoutB">
-                <a href="/logout.do"> <img src="${ctx}/statics/img/logout.png" alt=" 退出"/> </a>
+                <a href="${ctx}/logout.do"> <img src="${ctx}/statics/img/logout.png" alt=" 退出"/> </a>
             </td>
         </tr>
     </table>
@@ -70,7 +68,9 @@
             </div>
             <div title="基础数据" style="overflow:auto" data-options="iconCls:'icon-main-jichushuju'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/dictionary.do','数据字典')">数据字典</a></div></li>
+                    <li>
+                        <div><a href="#" onclick="addPanel('${ctx}/dictionary.do','数据字典')">数据字典</a></div>
+                    </li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sparepartCode.do','备件编码管理')">备件编码管理</a></div> </li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sparepartCodeTree.do','物资编码管理树')">物资编码管理树</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置</a></div></li>
