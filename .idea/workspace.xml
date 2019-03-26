@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+	<component name="MavenImportPreferences">
+		<option name="generalSettings">
+			<MavenGeneralSettings>
+				<option name="alwaysUpdateSnapshots" value="true" />
+				<option name="localRepository" value="D:\bingd\Documents\repository" />
+				<option name="mavenHome" value="D:/Program Files/maven" />
+				<option name="pluginUpdatePolicy" value="UPDATE" />
+				<option name="printErrorStackTraces" value="true" />
+				<option name="userSettingsFile" value="D:\Program Files\maven\conf\settings.xml" />
+			</MavenGeneralSettings>
+		</option>
+		<option name="importingSettings">
+			<MavenImportingSettings>
+				<option name="createModuleGroups" value="true" />
+				<option name="downloadDocsAutomatically" value="true" />
+				<option name="downloadSourcesAutomatically" value="true" />
+				<option name="importAutomatically" value="true" />
+			</MavenImportingSettings>
+		</option>
+	</component>	
+</project>

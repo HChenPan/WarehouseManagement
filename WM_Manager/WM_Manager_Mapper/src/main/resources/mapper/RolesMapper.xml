@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.RolesMapper">
+  <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Roles">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CREATORID" jdbcType="VARCHAR" property="creatorid" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+    <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="INDEXORDER" jdbcType="VARCHAR" property="indexorder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, NAME, DESCRIPTION, 
+    TYPE, INDEXORDER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WM_ROLES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WM_ROLES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hchenpan.pojo.Roles">
+    insert into WM_ROLES (ID, CREATORID, CREATOR, 
+      CREATETIME, UPDATERID, UPDATER, 
+      UPDATETIME, NAME, DESCRIPTION, 
+      TYPE, INDEXORDER)
+    values (#{id,jdbcType=VARCHAR}, #{creatorid,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updaterid,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{indexorder,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hchenpan.pojo.Roles">
+    insert into WM_ROLES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="creatorid != null">
+        CREATORID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="updaterid != null">
+        UPDATERID,
+      </if>
+      <if test="updater != null">
+        UPDATER,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="indexorder != null">
+        INDEXORDER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorid != null">
+        #{creatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updaterid != null">
+        #{updaterid,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="indexorder != null">
+        #{indexorder,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hchenpan.pojo.Roles">
+    update WM_ROLES
+    <set>
+      <if test="creatorid != null">
+        CREATORID = #{creatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updaterid != null">
+        UPDATERID = #{updaterid,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null">
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="indexorder != null">
+        INDEXORDER = #{indexorder,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hchenpan.pojo.Roles">
+    update WM_ROLES
+    set CREATORID = #{creatorid,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=VARCHAR},
+      UPDATERID = #{updaterid,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      INDEXORDER = #{indexorder,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

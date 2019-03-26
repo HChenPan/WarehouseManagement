@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/WM_Common/WM_Common.iml" filepath="$PROJECT_DIR$/WM_Common/WM_Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WM_Manager/WM_Manager.iml" filepath="$PROJECT_DIR$/WM_Manager/WM_Manager.iml" group="WM_Manager and modules" />
+      <module fileurl="file://$PROJECT_DIR$/WM_Manager/WM_Manager_Mapper/WM_Manager_Mapper.iml" filepath="$PROJECT_DIR$/WM_Manager/WM_Manager_Mapper/WM_Manager_Mapper.iml" group="WM_Manager and modules" />
+      <module fileurl="file://$PROJECT_DIR$/WM_Manager/WM_Manager_Pojo/WM_Manager_Pojo.iml" filepath="$PROJECT_DIR$/WM_Manager/WM_Manager_Pojo/WM_Manager_Pojo.iml" group="WM_Manager and modules" />
+      <module fileurl="file://$PROJECT_DIR$/WM_Manager/WM_Manager_Service/WM_Manager_Service.iml" filepath="$PROJECT_DIR$/WM_Manager/WM_Manager_Service/WM_Manager_Service.iml" group="WM_Manager and modules" />
+      <module fileurl="file://$PROJECT_DIR$/WM_Manager/WM_Manager_Web/WM_Manager_Web.iml" filepath="$PROJECT_DIR$/WM_Manager/WM_Manager_Web/WM_Manager_Web.iml" group="WM_Manager and modules" />
+      <module fileurl="file://$PROJECT_DIR$/WM_Parent/WM_Parent.iml" filepath="$PROJECT_DIR$/WM_Parent/WM_Parent.iml" />
+    </modules>
+  </component>
+</project>

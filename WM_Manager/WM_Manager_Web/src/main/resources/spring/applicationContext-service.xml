@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="testService" class="com.hchenpan.service.impl.TestServiceImpl">
+        <qualifier value="testService"/>
+    </bean>
+    <bean id="userService" class="com.hchenpan.service.impl.UserServiceImpl">
+        <qualifier value="userService"/>
+    </bean>
+    <bean id="departmentService" class="com.hchenpan.service.impl.DepartmentServiceImpl">
+        <qualifier value="departmentService"/>
+    </bean>
+    <bean id="permissionService" class="com.hchenpan.service.impl.PermissionServiceImpl">
+        <qualifier value="permissionService"/>
+    </bean>
+    <bean id="rolesService" class="com.hchenpan.service.impl.RolesServiceImpl">
+        <qualifier value="rolesService"/>
+    </bean>
+    <bean id="userrolesService" class="com.hchenpan.service.impl.UserRolesServiceImpl">
+        <qualifier value="userrolesService"/>
+    </bean>
+</beans>

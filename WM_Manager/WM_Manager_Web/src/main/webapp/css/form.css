@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+form {
+    width: 300px;
+    margin: 20px auto;
+    border-radius: 5px;
+    /*	border:solid 1px #E0DEDE;
+        background:#FCF9EF;
+        box-shadow:0 1px 10px rgba(0,0,0,0.1) inset;*/
+}
+
+.label_input {
+    display: block;
+    height: 40px;
+    position: relative;
+    margin: 15px 0;
+}
+
+#password {
+    margin-top: 30px;
+}
+
+span {
+    position: absolute;
+    float: left;
+    line-height: 40px;
+    left: 10px;
+    color: #222;
+    cursor: text;
+    font-size: 14px;
+}
+
+.input_txt {
+    width: 298px;
+    border: solid 1px #ccc;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1) inset;
+    height: 38px;
+    line-height: 38px;
+    text-indent: 10px;
+    font-size: 18px;
+    color: #000;
+}
+
+.input_txt:focus {
+    box-shadow: 0 0 4px rgba(33, 153, 215, 0.8);
+    border: solid 1px #219dd7;
+}
+
+.border_radius {
+    border-radius: 5px;
+}
+
+h2 {
+    font-family: "微软雅黑", serif;
+    text-shadow: 1px 1px 3px #fff;
+}
+

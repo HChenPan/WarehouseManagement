@@ -1,0 +1,297 @@
+@charset "utf-8";
+/* CSS Document */
+.title {
+    margin-top: 40px;
+}
+
+b {
+    color: #e4ff6a;
+}
+
+body, p, h1, ul, li, a {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li, ol {
+    list-style-type: none;
+}
+
+.clear {
+    clear: both;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+}
+
+body {
+    /* background: url(images/bg_v3.jpg) no-repeat scroll center top transparent; */
+    background: #254375 url(/statics/img/bg_v1.jpg) no-repeat scroll center top;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+}
+
+a {
+    outline: medium none;
+}
+
+a:link, a:visited {
+    color: #999999;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.link1:link, a.link1:visited {
+    color: #45A9D8;
+    text-decoration: none;
+}
+
+a.link1:hover, a.link1:active {
+    color: #0E6D9A;
+    text-decoration: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.r1 {
+    float: right;
+}
+
+.r1 a {
+    float: left;
+}
+
+.r2 {
+    float: right;
+    width: 162px;
+    height: 34px;
+    padding-top: 10px;
+}
+
+.r2 a {
+    float: left;
+}
+
+.r3 {
+    float: right;
+}
+
+.r3 a {
+    float: left;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.login {
+    height: 700px;
+}
+
+.header {
+    height: 150px;
+    text-align: center;
+}
+
+.main {
+}
+
+.main_content {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.m {
+    margin: 0 auto;
+    width: 960px;
+}
+
+.header_logo {
+    float: left;
+    height: 65px;
+    width: 454px;
+}
+
+.header_link {
+    float: right;
+    line-height: 40px;
+    padding-top: 25px;
+}
+
+.header_link a {
+    margin: 0 5px;
+}
+
+
+.loginBox {
+    margin: 0 auto;
+    width: 550px;
+    height: 320px;
+    background: url(/statics/img/kuang.png) no-repeat;
+}
+
+.loginBox_title {
+    color: #0094DA;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 15px 25px 0;
+    font-family: "幼圆", serif;
+}
+
+
+.btn {
+    height: 46px;
+    margin: 20px auto;
+    width: 298px;
+}
+
+.btn .btn1 {
+    background: url(/statics/img/222.png) no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: "微软雅黑", "宋体", serif;
+    font-size: 18px;
+    height: 46px;
+    line-height: 44px;
+    text-align: center;
+    text-shadow: 0 1px 1px #006699;
+    width: 140px;
+}
+
+.btn .btn1_hover {
+    background-position: 0 -46px;
+    text-decoration: none;
+}
+
+.btn .btn1_down {
+    background-position: 0 -92px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #000000;
+}
+
+.btn .btn2 {
+    background-position: 0 -138px;
+    color: #333;
+    text-shadow: 0 1px 1px #FFFFFF;
+}
+
+.btn .btn2_hover {
+    background-position: 0 -184px;
+    color: #999999;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #FFFFFF;
+}
+
+.btn .btn2_down {
+    background-position: 0 -230px;
+    color: #999999;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #FFFFFF;
+}
+
+.checkBox {
+    font-size: 13px;
+    height: 24px;
+    line-height: 24px;
+    margin-top: 15px;
+}
+
+.checkBox input {
+    margin-top: -2px;
+    vertical-align: middle;
+}
+
+.checkBox a {
+    margin-left: 20px;
+}
+
+.checkBox2 {
+    margin-top: 0;
+}
+
+.checkBox2 a {
+    margin-left: 0;
+}
+
+.loginInfo {
+    height: 30px;
+    width: 298px;
+    margin-top: 27px;
+    color: red;
+}
+
+.error {
+    color: red;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+
+.tips {
+    padding: 20px 0 10px;
+}
+
+#password {
+    margin-top: 0;
+}
+
+span {
+    line-height: 40px;
+    left: 10px;
+    color: #BCBCBC;
+    cursor: text;
+    font-size: 14px;
+}
+
+.input_txt {
+    width: 298px;
+    border: solid 1px #ccc;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1) inset;
+    height: 38px;
+    line-height: 38px;
+    text-indent: 10px;
+    font-size: 18px;
+    color: #000;
+}
+
+.input_txt:focus {
+    box-shadow: 0 0 4px rgba(33, 153, 215, 0.8);
+    border: solid 1px #219dd7;
+}
+
+
+h2 {
+    font-family: "微软雅黑", serif;
+    text-shadow: 1px 1px 3px #fff;
+}
+
+.footer {
+    height: 100px;
+    line-height: 180px;
+}
+
+.ft_content {
+    width: 700px;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+}

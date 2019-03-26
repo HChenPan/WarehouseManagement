@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入属性配置 -->
+    <properties resource="mybatis-generator/generator.properties"/>
+    <classPathEntry location="D:\bingd\Documents\repository\com\oracle\ojdbc6\11.2.0\ojdbc6-11.2.0.jar"/>
+    <context id="context" targetRuntime="MyBatis3">
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
+            <!-- 针对oracle数据库 -->
+            <property name="remarksReporting" value="true"/>
+        </jdbcConnection>
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="${modelPackage}"
+                            targetProject="${modelProject}">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="${sqlPackage}" targetProject="${sqlProject}">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="${mapperPackage}"
+                             targetProject="${mapperProject}" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
+        <!--生成对应表及类名-->
+        <!-- 需要生产po类的表 -->
+        <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+        <table tableName="test" domainObjectName="Test"
+               enableInsert="true">
+        </table>
+
+
+        <!--<table schema="" tableName="${table2}"/>-->
+    </context>
+</generatorConfiguration>

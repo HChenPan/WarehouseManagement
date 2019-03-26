@@ -1,0 +1,37 @@
+<component name="ArtifactManager">
+	<artifact type="exploded-war" name="WM_Manager_Web:war exploded">
+		<output-path>$PROJECT_DIR$/WM_Manager/WM_Manager_Web/target/WM_Manager_Web</output-path>
+		<properties id="maven-jee-properties">
+			<options>
+				<exploded>true</exploded>
+				<module>WM_Manager_Web</module>
+				<packaging>war</packaging>
+			</options>
+		</properties>
+		<root id="root">
+		<element id="directory" name="WEB-INF">
+			<element id="directory" name="classes">
+				<element id="module-output" name="WM_Manager_Web" />
+			</element>
+			<element id="directory" name="lib">
+				<element id="archive" name="WM_Manager_Service-1.0-SNAPSHOT.jar">
+					<element id="module-output" name="WM_Manager_Service" />
+				</element>
+				<element id="archive" name="WM_Manager_Mapper-1.0-SNAPSHOT.jar">
+					<element id="module-output" name="WM_Manager_Mapper" />
+				</element>
+				<element id="archive" name="WM_Manager_Pojo-1.0-SNAPSHOT.jar">
+					<element id="module-output" name="WM_Manager_Pojo" />
+				</element>
+				<element id="archive" name="WM_Common-1.0-SNAPSHOT.jar">
+					<element id="module-output" name="WM_Common" />
+				</element>
+			</element>
+		</element>
+		<element id="directory" name="META-INF">
+			<element id="file-copy" path="$PROJECT_DIR$/WM_Manager/WM_Manager_Web/target/WM_Manager_Web/META-INF/MANIFEST.MF" />
+		</element>
+		<element id="javaee-facet-resources" facet="WM_Manager_Web/web/Web" />
+		</root>
+	</artifact>
+</component>
