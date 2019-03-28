@@ -1,14 +1,9 @@
 package com.hchenpan.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseServiceImpl;
 import com.hchenpan.mapper.DictionaryschildMapper;
-import com.hchenpan.mapper.RolesMapper;
-import com.hchenpan.model.DictionaryschildVO;
 import com.hchenpan.pojo.Dictionaryschild;
-import com.hchenpan.pojo.Roles;
 import com.hchenpan.service.DictionaryschildService;
-import com.hchenpan.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +25,5 @@ public class DictionaryschildServiceImpl extends BaseServiceImpl<Dictionaryschil
         this.mapper = mapper;
     }
 
-    @Override
-    public Page<DictionaryschildVO> selectDicDictionaryschildVO(Page<DictionaryschildVO> page,String decode) {
-        return page.setRecords(mapper.selectDicDictionaryschildVO(page,decode));
-    }
+
 }
