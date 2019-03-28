@@ -1,5 +1,6 @@
 package com.hchenpan.pojo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.hchenpan.common.BasePojo;
 
@@ -9,6 +10,7 @@ import com.hchenpan.common.BasePojo;
  */
 @TableName("WM_DICTIONARYSCHILD")
 public class Dictionaryschild extends BasePojo {
+    @TableField("code")
     private String code;
 
     private String dcode;

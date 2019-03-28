@@ -1,6 +1,6 @@
 CREATE USER wmdb IDENTIFIED BY 1475369;
-GRANT CONNECT,
-RESOURCE TO wmdb;
+GRANT CONNECT,RESOURCE TO wmdb;
+ALTER USER wmdb QUOTA UNLIMITED ON "USERS";
 -- ----------------------------
 -- Table structure for TEST
 -- ----------------------------
@@ -13,7 +13,7 @@ CREATE TABLE test (
 -- Table structure for WM_USER
 -- ----------------------------
 CREATE TABLE wm_user (
-	id VARCHAR ( 20) NOT NULL PRIMARY KEY,
+	id VARCHAR (255) NOT NULL PRIMARY KEY,
 	creatorId VARCHAR ( 255 ),
 	creator VARCHAR ( 255 ),
 	createTime VARCHAR ( 255 ),

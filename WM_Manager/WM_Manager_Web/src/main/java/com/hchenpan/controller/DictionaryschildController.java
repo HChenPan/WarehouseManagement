@@ -1,7 +1,11 @@
 package com.hchenpan.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseController;
+import com.hchenpan.model.DictionaryschildVO;
+import com.hchenpan.pojo.Dictionarys;
+import com.hchenpan.pojo.Dictionaryschild;
 import com.hchenpan.pojo.User;
 import com.hchenpan.service.DictionaryschildService;
 import com.hchenpan.service.UserService;
@@ -43,4 +47,15 @@ public class DictionaryschildController extends BaseController {
         this.dictionaryschildService = dictionaryschildService;
     }
 
+    /**
+     * 提供查询的分页数据
+     */
+    @ResponseBody
+    @RequestMapping(value = "/dictionaryschild/search")
+    public String search(Dictionaryschild dictionaryschild) {
+        Page<DictionaryschildVO> page = getPage();
+
+        dictionaryschildService.selectDicDictionaryschildVO(page, dictionaryschild.getDcode());
+        return null;
+    }
 }
