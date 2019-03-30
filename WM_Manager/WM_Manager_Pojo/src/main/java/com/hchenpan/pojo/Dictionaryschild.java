@@ -17,10 +17,14 @@ public class Dictionaryschild extends BasePojo {
 
     private String flag;
 
+    @TableField(exist = false)
+    private String dname;
+
     private String name;
 
     private String note;
 
+    @TableField("dictionarys_Id")
     private String dictionarysId;
 
     public String getCode() {

@@ -177,7 +177,8 @@ public class DictionarysController extends BaseController {
             deleteDictionarys.setUpdaterid(loginUser.getId());
             deleteDictionarys.setUpdatetime(timeString);
             deleteDictionarys.setUpdater(loginUser.getUsername());
-            dictionarysService.updateById(deleteDictionarys);
+            dictionarysService.deleteById(deleteDictionarys);
+
 
             //写入日志表
             Logs logs = new Logs();

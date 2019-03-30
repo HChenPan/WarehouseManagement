@@ -1,5 +1,6 @@
 package com.hchenpan.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @version 1.0
  * @date 2019/3/24 05:02 下午
  **/
-public class DepartJSON {
+public class DepartJSON implements Serializable {
     /*主键*/
     private String id;
 

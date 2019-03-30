@@ -10,7 +10,7 @@ package com.hchenpan.util;
  * @date 2019/3/20 12:48 上午
  **/
 public class StringUtil {
-
+    public static final String EMPTY = "";
     private static boolean isEmpty(String string) {
         return (string == null || string.isEmpty());
     }
@@ -31,4 +31,17 @@ public class StringUtil {
         }
         return t;
     }
+
+    public static boolean notTrimEmpty(String string) {
+        return !isTrimEmpty(string);
+    }
+
+    public static boolean isTrimEmpty(String string) {
+        return isEmpty(nullSafe(string));
+    }
+
+    public static String nullSafe(String string) {
+        return ((String) ObjectUtil.nullSafe(string, EMPTY));
+    }
+
 }

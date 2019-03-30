@@ -1,11 +1,15 @@
 package com.hchenpan.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseServiceImpl;
 import com.hchenpan.mapper.DictionaryschildMapper;
 import com.hchenpan.pojo.Dictionaryschild;
 import com.hchenpan.service.DictionaryschildService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Project : WarehouseManagement
@@ -26,4 +30,14 @@ public class DictionaryschildServiceImpl extends BaseServiceImpl<Dictionaryschil
     }
 
 
+    @Override
+    public Page<Map<String, Object>> getChildPage(Page<Map<String, Object>> page, Map<String, Object> params) {
+        page.setRecords(mapper.getChildPage(page, params));
+        return page;
+    }
+
+    @Override
+    public List<Dictionaryschild> selectchildList(String id) {
+        return mapper.selectchildList(id);
+    }
 }

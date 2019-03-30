@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.DictionaryschildMapper">
+    <resultMap id="ListResultMap" type="com.hchenpan.pojo.Dictionaryschild">
+        <result column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CODE" jdbcType="VARCHAR" property="code"/>
+        <result column="DCODE" jdbcType="VARCHAR" property="dcode"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="DNAME" jdbcType="VARCHAR" property="dname"/>
+        <result column="NOTE" jdbcType="VARCHAR" property="note"/>
+    </resultMap>
+    <select id="getChildPage" parameterType="map" resultType="map">
+        SELECT
+        C.ID AS id,
+        C.CODE AS code,
+        C.DCODE AS dcode,
+        C.NAME AS name,
+        C.NOTE AS note,
+        C.UPDATETIME AS updatetime,
+        P.DNAME AS dname
+        FROM
+        WMDB.WM_DICTIONARYSCHILD C
+        INNER JOIN WMDB.WM_DICTIONARYS P ON C.DICTIONARYS_ID = P.ID
+        AND C.DICTIONARYS_ID = P.ID
+        <where>
+            <if test="name != null and name != ''">
+                C.NAME LiKE #{name}
+            </if>
+            <if test="dcode != null and dcode != ''">
+                C.DCODE = #{dcode}
+            </if>
+        </where>
+    </select>
+    <select id="selectchildList" parameterType="java.lang.String" resultMap="ListResultMap">
+        SELECT A.ID    AS ID,
+               A.CODE  AS CODE,
+               A.DCODE AS DCODE,
+               A.NAME  AS NAME,
+               A.NOTE  AS NOTE,
+               B.DNAME AS DNAME
+        FROM WMDB.WM_DICTIONARYSCHILD A
+                 INNER JOIN WMDB.WM_DICTIONARYS B ON A.DICTIONARYS_ID = B.ID
+        where a.flag = 'E'
+          and A.id = #{id,jdbcType=VARCHAR}
+
+    </select>
+
+</mapper>

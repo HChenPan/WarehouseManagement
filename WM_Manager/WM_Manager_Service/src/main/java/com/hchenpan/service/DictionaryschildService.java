@@ -1,7 +1,11 @@
 package com.hchenpan.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseService;
 import com.hchenpan.pojo.Dictionaryschild;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Project : WarehouseManagement
@@ -15,4 +19,7 @@ import com.hchenpan.pojo.Dictionaryschild;
 public interface DictionaryschildService extends BaseService<Dictionaryschild> {
 
 
+    Page<Map<String, Object>> getChildPage(Page<Map<String, Object>> page, Map<String, Object> params);
+
+    List<Dictionaryschild> selectchildList(String id);
 }
