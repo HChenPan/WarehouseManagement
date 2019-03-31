@@ -22,4 +22,6 @@ public interface DictionaryschildService extends BaseService<Dictionaryschild> {
     Page<Map<String, Object>> getChildPage(Page<Map<String, Object>> page, Map<String, Object> params);
 
     List<Dictionaryschild> selectchildList(String id);
+
+    List<Dictionaryschild> getdchildlistbydecode(String dcode);
 }

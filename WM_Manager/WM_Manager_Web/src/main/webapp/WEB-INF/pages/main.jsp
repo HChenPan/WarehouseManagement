@@ -71,8 +71,8 @@
                     <li>
                         <div><a href="#" onclick="addPanel('${ctx}/dictionary.do','数据字典')">数据字典</a></div>
                     </li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sparepartCode.do','备件编码管理')">备件编码管理</a></div> </li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sparepartCodeTree.do','物资编码管理树')">物资编码管理树</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/sparepartcode.do','备件编码管理')">备件编码管理</a></div> </li>
+<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sparepartCodeTree.do','物资编码管理树')">物资编码管理树</a></div></li>--%>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/projectNoManage.do','工程号维护')">工程号维护</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/workflow.do','工作流程')">工作流程</a></div></li>
@@ -99,19 +99,19 @@
                     <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=wz.cpt','物资二维码打印')">物资二维码打印</a></div></li>
                 </ul>
             </div>
-            <div title="内部交易" style="overflow:auto" data-options="iconCls:'icon-main-nenghao'">
-                <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/innerdeal/applytransfer.do','申请调拨')">申请调拨</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/innerdeal/transfer.do','发货发料')">发货发料</a></div></li>
-                </ul>
-            </div>
-            <div title="委外加工" style="overflow:auto" data-options="iconCls:'icon-main-hb'">
-                <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontracting.do','委外加工')">委外加工</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontractingApproval.do','委外审批')">委外审批</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontractingSend.do','委外发货')">委外发货</a></div></li>
-                </ul>
-            </div>
+<%--            <div title="内部交易" style="overflow:auto" data-options="iconCls:'icon-main-nenghao'">--%>
+<%--                <ul class="navlist">--%>
+<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/innerdeal/applytransfer.do','申请调拨')">申请调拨</a></div></li>--%>
+<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/innerdeal/transfer.do','发货发料')">发货发料</a></div></li>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--            <div title="委外加工" style="overflow:auto" data-options="iconCls:'icon-main-hb'">--%>
+<%--                <ul class="navlist">--%>
+<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontracting.do','委外加工')">委外加工</a></div></li>--%>
+<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontractingApproval.do','委外审批')">委外审批</a></div></li>--%>
+<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontractingSend.do','委外发货')">委外发货</a></div></li>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
             <div title="运输管理" style="overflow:auto" data-options="iconCls:'icon-main-repair'">
                 <ul class="navlist">
                     <li><div><a href="#" onclick="addPanel('${ctx}/transportmanage/applycar.do','上报派车申请')">上报派车申请</a></div></li>

@@ -2,7 +2,6 @@ package com.hchenpan.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.google.gson.Gson;
 import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.Dictionaryschild;
 import com.hchenpan.pojo.Logs;
@@ -297,10 +296,21 @@ public class DictionaryschildController extends BaseController {
         return ERROR;
     }
 
-    /****/
+    /**
+     * 根据id数据字典子类
+     **/
     @ResponseBody
     @RequestMapping(value = "/dictionaryschild/getdictionarychildlistbyid")
     public String getdictionarychildlistbyid(Dictionaryschild dictionaryschild) {
-        return new Gson().toJson(dictionaryschildService.selectchildList(dictionaryschild.getId()));
+        return GetGsonString(dictionaryschildService.selectchildList(dictionaryschild.getId()));
+    }
+
+    /**
+     * 根据数据字典大类编码查找设备种类
+     **/
+    @ResponseBody
+    @RequestMapping(value = "/dictionaryschild/getsbzltypelistbydecode")
+    public String getsbzltypelistbydecode(Dictionaryschild dictionaryschild) {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "SBZL").eq("flag", "E")));
     }
 }

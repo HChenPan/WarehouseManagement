@@ -171,6 +171,36 @@ CREATE TABLE wm_logs (
 	PARAMS VARCHAR ( 255 ),
 	REALNAME VARCHAR ( 255 )	
 );
-
-
-
+-- ----------------------------
+-- Table structure for WM_SPAREPARTCODE
+-- ----------------------------
+CREATE TABLE wm_sparepartcode (
+	id VARCHAR ( 255 ) NOT NULL PRIMARY KEY,
+	creatorId VARCHAR ( 255 ),
+	creator VARCHAR ( 255 ),
+	createTime VARCHAR ( 255 ),
+	updaterId VARCHAR ( 255 ),
+	updater VARCHAR ( 255 ),
+	updateTime VARCHAR ( 255 ),
+ 	
+	parentid VARCHAR2(255),
+	parentcode VARCHAR2(255), 	
+	code VARCHAR2(255), 	
+	currencytype VARCHAR2(255), 
+	currencyunit VARCHAR2(255), 	
+	devicecode VARCHAR2(255), 
+	hostname VARCHAR2(255), 
+	modelspecification VARCHAR2(255), 
+	name VARCHAR2(255), 	
+	planprice VARCHAR2(255), 
+	purchasetime VARCHAR2(255), 
+	remark VARCHAR2(255), 
+	spareparttype VARCHAR2(255), 
+	spareparttypecode VARCHAR2(255), 
+	stockmin VARCHAR2(255), 
+	supplycycle VARCHAR2(255), 
+	tuhao VARCHAR2(255), 
+	unit VARCHAR2(255), 
+	ywname VARCHAR2(255), 	
+	description VARCHAR2(255)
+);

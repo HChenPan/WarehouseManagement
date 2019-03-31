@@ -31,4 +31,7 @@
     <bean id="logsService" class="com.hchenpan.service.impl.LogsServiceImpl">
         <qualifier value="logsService"/>
     </bean>
+    <bean id="sparepartCodeService" class="com.hchenpan.service.impl.SparepartCodeServiceImpl">
+        <qualifier value="sparepartCodeService"/>
+    </bean>
 </beans>

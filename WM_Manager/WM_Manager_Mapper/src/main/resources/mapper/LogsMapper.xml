@@ -18,52 +18,5 @@
         <result column="PARAMS" jdbcType="VARCHAR" property="params"/>
         <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
     </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from WM_LOGS
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-    <insert id="insert" parameterType="com.hchenpan.pojo.Logs">
-    insert into WM_LOGS (ID, CREATORID, CREATOR, 
-      CREATETIME, UPDATERID, UPDATER, 
-      UPDATETIME, DESCRIPTION, FLAGID, 
-      IPADDRESS, NAME, OLDCONTENT, 
-      OPTCONTENT, PARAMS, REALNAME
-      )
-    values (#{id,jdbcType=VARCHAR}, #{creatorid,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=VARCHAR}, #{updaterid,jdbcType=VARCHAR}, #{updater,jdbcType=VARCHAR}, 
-      #{updatetime,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{flagid,jdbcType=VARCHAR}, 
-      #{ipaddress,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{oldcontent,jdbcType=VARCHAR}, 
-      #{optcontent,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}
-      )
-  </insert>
-    <update id="updateByPrimaryKey" parameterType="com.hchenpan.pojo.Logs">
-    update WM_LOGS
-    set CREATORID = #{creatorid,jdbcType=VARCHAR},
-      CREATOR = #{creator,jdbcType=VARCHAR},
-      CREATETIME = #{createtime,jdbcType=VARCHAR},
-      UPDATERID = #{updaterid,jdbcType=VARCHAR},
-      UPDATER = #{updater,jdbcType=VARCHAR},
-      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
-      DESCRIPTION = #{description,jdbcType=VARCHAR},
-      FLAGID = #{flagid,jdbcType=VARCHAR},
-      IPADDRESS = #{ipaddress,jdbcType=VARCHAR},
-      NAME = #{name,jdbcType=VARCHAR},
-      OLDCONTENT = #{oldcontent,jdbcType=VARCHAR},
-      OPTCONTENT = #{optcontent,jdbcType=VARCHAR},
-      PARAMS = #{params,jdbcType=VARCHAR},
-      REALNAME = #{realname,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, DESCRIPTION, 
-    FLAGID, IPADDRESS, NAME, OLDCONTENT, OPTCONTENT, PARAMS, REALNAME
-    from WM_LOGS
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-    <select id="selectAll" resultMap="BaseResultMap">
-    select ID, CREATORID, CREATOR, CREATETIME, UPDATERID, UPDATER, UPDATETIME, DESCRIPTION, 
-    FLAGID, IPADDRESS, NAME, OLDCONTENT, OPTCONTENT, PARAMS, REALNAME
-    from WM_LOGS
-    order by updateTime desc,updater asc
-  </select>
+
 </mapper>

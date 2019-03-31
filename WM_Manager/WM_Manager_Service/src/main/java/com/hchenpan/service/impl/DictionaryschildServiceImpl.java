@@ -1,5 +1,6 @@
 package com.hchenpan.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseServiceImpl;
 import com.hchenpan.mapper.DictionaryschildMapper;
@@ -39,5 +40,10 @@ public class DictionaryschildServiceImpl extends BaseServiceImpl<Dictionaryschil
     @Override
     public List<Dictionaryschild> selectchildList(String id) {
         return mapper.selectchildList(id);
+    }
+
+    @Override
+    public List<Dictionaryschild> getdchildlistbydecode(String dcode) {
+        return mapper.selectList(new EntityWrapper<Dictionaryschild>().eq("flag", "E").eq("dcode", dcode).orderBy("code"));
     }
 }
