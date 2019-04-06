@@ -40,4 +40,7 @@
     <bean id="sptypespLevelUserService" class="com.hchenpan.service.impl.SptypespLevelUserServiceImpl">
         <qualifier value="sptypespLevelUserService"/>
     </bean>
+    <bean id="projectNoManageService" class="com.hchenpan.service.impl.ProjectNoManageServiceImpl">
+        <qualifier value="projectNoManageService"/>
+    </bean>
 </beans>
