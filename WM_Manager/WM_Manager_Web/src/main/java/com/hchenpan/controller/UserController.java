@@ -2,6 +2,7 @@ package com.hchenpan.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hchenpan.common.BaseController;
+import com.hchenpan.model.CommboxList;
 import com.hchenpan.pojo.User;
 import com.hchenpan.service.UserService;
 import com.hchenpan.util.LoginViewModel;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Project : WarehouseManagement
@@ -129,5 +131,15 @@ public class UserController extends BaseController {
             page1 = userService.selectPageRedis(current, size, "updatetime", true, user);
         }
         return jsonRedisPage(page1);
+    }
+
+    /**
+     * 功能:获取部门用户列表
+     */
+    @ResponseBody
+    @PostMapping("/user/getdeptuserlist")
+    public String getdeptuserlist() {
+        List<CommboxList> deptserlist = userService.getdeptuserlist();
+        return GetGsonString(deptserlist);
     }
 }

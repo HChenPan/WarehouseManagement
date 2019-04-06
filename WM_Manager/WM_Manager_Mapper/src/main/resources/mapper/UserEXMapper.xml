@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.UserMapper">
+    <resultMap id="ListResultMap" type="com.hchenpan.model.CommboxList">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="TEXT" jdbcType="VARCHAR" property="text"/>
+    </resultMap>
+
+    <select id="getdeptuserlist" resultMap="ListResultMap">
+SELECT
+	A.ID AS id,
+	concat( concat( B.NAME, '--' ), A.REALNAME ) AS text
+FROM
+	WMDB.WM_USER A
+	INNER JOIN WMDB.WM_DEPARTMENT B ON A.DEPARTMENTID = B.ID
+ORDER BY
+	A.REALNAME ASC
+    </select>
+</mapper>

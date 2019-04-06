@@ -3,6 +3,8 @@ package com.hchenpan.pojo;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.hchenpan.common.BasePojo;
 
+import java.util.Objects;
+
 /**
  * @author hchenpan
  * @version 1.0
@@ -108,5 +110,27 @@ public class User extends BasePojo {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(realname, user.realname) &&
+                Objects.equals(department, user.department) &&
+                Objects.equals(tel, user.tel) &&
+                Objects.equals(issuper, user.issuper) &&
+                Objects.equals(lastlogintime, user.lastlogintime) &&
+                Objects.equals(applogin, user.applogin) &&
+                Objects.equals(departmentid, user.departmentid) &&
+                Objects.equals(state, user.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password, realname, department, tel, issuper, lastlogintime, applogin, departmentid, state);
     }
 }

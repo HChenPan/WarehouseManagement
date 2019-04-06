@@ -1,8 +1,11 @@
 package com.hchenpan.service;
 
 import com.hchenpan.common.BaseService;
+import com.hchenpan.model.CommboxList;
 import com.hchenpan.pojo.User;
 import com.hchenpan.util.RedisPage;
+
+import java.util.List;
 
 /**
  * Project : WarehouseManagement
@@ -22,4 +25,5 @@ public interface UserService extends BaseService<User> {
     RedisPage<User> selectPageRedis(int current, int size, String orderByField, boolean isAsc, User user);
 
 
+    List<CommboxList> getdeptuserlist();
 }

@@ -73,7 +73,7 @@
                     </li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/sparepartcode.do','备件编码管理')">备件编码管理</a></div> </li>
 <%--                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sparepartCodeTree.do','物资编码管理树')">物资编码管理树</a></div></li>--%>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/projectNoManage.do','工程号维护')">工程号维护</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/workflow.do','工作流程')">工作流程</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/warehousenum/warehousenum.do','仓库编码')">仓库编码</a></div></li>

@@ -11,6 +11,7 @@ package com.hchenpan.util;
  **/
 public class StringUtil {
     public static final String EMPTY = "";
+
     private static boolean isEmpty(String string) {
         return (string == null || string.isEmpty());
     }
@@ -44,4 +45,7 @@ public class StringUtil {
         return ((String) ObjectUtil.nullSafe(string, EMPTY));
     }
 
+    public static boolean isEmpty(CharSequence cs) {
+        return cs == null || cs.length() == 0;
+    }
 }

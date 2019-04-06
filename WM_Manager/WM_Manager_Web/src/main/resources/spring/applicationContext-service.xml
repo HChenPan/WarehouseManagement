@@ -34,4 +34,10 @@
     <bean id="sparepartCodeService" class="com.hchenpan.service.impl.SparepartCodeServiceImpl">
         <qualifier value="sparepartCodeService"/>
     </bean>
+    <bean id="sptypespLevelService" class="com.hchenpan.service.impl.SptypespLevelServiceImpl">
+        <qualifier value="sptypespLevelService"/>
+    </bean>
+    <bean id="sptypespLevelUserService" class="com.hchenpan.service.impl.SptypespLevelUserServiceImpl">
+        <qualifier value="sptypespLevelUserService"/>
+    </bean>
 </beans>

@@ -5,12 +5,15 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseServiceImpl;
 import com.hchenpan.mapper.UserMapper;
+import com.hchenpan.model.CommboxList;
 import com.hchenpan.pojo.User;
 import com.hchenpan.service.UserService;
 import com.hchenpan.util.RedisPage;
 import com.hchenpan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Project : WarehouseManagement
@@ -58,6 +61,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         userPage.setRecords(userPage1.getRecords());
         userPage.setSize(userPage1.getSize());
         return userPage;
+    }
+
+    @Override
+    public List<CommboxList> getdeptuserlist() {
+        return userMapper.getdeptuserlist();
     }
 
 

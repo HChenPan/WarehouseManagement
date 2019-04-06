@@ -310,7 +310,25 @@ public class DictionaryschildController extends BaseController {
      **/
     @ResponseBody
     @RequestMapping(value = "/dictionaryschild/getsbzltypelistbydecode")
-    public String getsbzltypelistbydecode(Dictionaryschild dictionaryschild) {
+    public String getsbzltypelistbydecode() {
         return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "SBZL").eq("flag", "E")));
+    }
+
+    /**
+     * 功能:根据数据字典大类编码查找使审批类型
+     */
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getSptypelistbydecode")
+    public String getSptypelistbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST2001").eq("flag", "E")));
+    }
+
+    /**
+     * 功能:根据数据字典大类编码查找审批级别
+     */
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getSpjblistbydecode")
+    public String getSpjblistbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "SPJB").eq("flag", "E")));
     }
 }
