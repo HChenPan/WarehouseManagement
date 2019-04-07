@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.BuyerMapper">
+  <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Buyer">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CREATORID" jdbcType="VARCHAR" property="creatorid" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+    <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="BANK" jdbcType="VARCHAR" property="bank" />
+    <result column="BUYERCODE" jdbcType="VARCHAR" property="buyercode" />
+    <result column="BUYERNAME" jdbcType="VARCHAR" property="buyername" />
+    <result column="FAX" jdbcType="VARCHAR" property="fax" />
+    <result column="FLAG" jdbcType="VARCHAR" property="flag" />
+    <result column="LEGALREPRESENTATIVE" jdbcType="VARCHAR" property="legalrepresentative" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+    <result column="REGISTEREDCAPITAL" jdbcType="VARCHAR" property="registeredcapital" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="SUPPLYSCOPE" jdbcType="VARCHAR" property="supplyscope" />
+    <result column="TAXID" jdbcType="VARCHAR" property="taxid" />
+  </resultMap>
+
+</mapper>

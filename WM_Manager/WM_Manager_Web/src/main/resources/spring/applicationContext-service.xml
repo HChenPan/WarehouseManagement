@@ -49,4 +49,10 @@
     <bean id="warehouseNumUserService" class="com.hchenpan.service.impl.WarehouseNumUserServiceImpl">
         <qualifier value="warehouseNumUserService"/>
     </bean>
+    <bean id="supplierService" class="com.hchenpan.service.impl.SupplierServiceImpl">
+        <qualifier value="supplierService"/>
+    </bean>
+    <bean id="buyerService" class="com.hchenpan.service.impl.BuyerServiceImpl">
+        <qualifier value="buyerService"/>
+    </bean>
 </beans>

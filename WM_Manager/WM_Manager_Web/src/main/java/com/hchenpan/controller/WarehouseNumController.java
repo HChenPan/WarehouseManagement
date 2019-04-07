@@ -130,7 +130,7 @@ public class WarehouseNumController extends BaseController {
             Logs logs = new Logs();
             logs.setId(getUUID());
             logs.setFlagid(warehouseNum.getId());
-            logs.setName("com.hchenpan.controller.WarehouseNumController.delete");
+            logs.setName("com.hchenpan.controller.WarehouseNumController.create");
             logs.setParams("com.hchenpan.pojo.WarehouseNum类");
             logs.setDescription("新增仓库");
             logs.setUpdaterid(loginUser.getId());
@@ -163,9 +163,6 @@ public class WarehouseNumController extends BaseController {
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
             String timeString = GetCurrentTime();
             warehouseNum.setFlag("E");
-            warehouseNum.setCreatorid(loginUser.getId());
-            warehouseNum.setCreator(loginUser.getUsername());
-            warehouseNum.setCreatetime(timeString);
             warehouseNum.setUpdaterid(loginUser.getId());
             warehouseNum.setUpdater(loginUser.getUsername());
             warehouseNum.setUpdatetime(timeString);
@@ -262,9 +259,6 @@ public class WarehouseNumController extends BaseController {
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
             String timeString = GetCurrentTime();
             warehouseNum.setFlag("D");
-            warehouseNum.setCreatorid(loginUser.getId());
-            warehouseNum.setCreator(loginUser.getUsername());
-            warehouseNum.setCreatetime(timeString);
             warehouseNum.setUpdaterid(loginUser.getId());
             warehouseNum.setUpdater(loginUser.getUsername());
             warehouseNum.setUpdatetime(timeString);

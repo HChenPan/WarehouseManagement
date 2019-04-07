@@ -48,8 +48,8 @@
                     <li><div><a href="#" onclick="addPanel('${ctx}/employee.do','员工维护')">员工维护</a></div></li>
                     </shiro:hasRole>
                     <shiro:hasAnyRoles name="admin,cangku">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/trade/supplier.do','供应商管理')">供应商管理</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/trade/buyer.do','购买方管理')">购买方管理</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/supplier.do','供应商管理')">供应商管理</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/buyer.do','购买方管理')">购买方管理</a></div></li>
                     </shiro:hasAnyRoles>
                 </ul>
             </div>

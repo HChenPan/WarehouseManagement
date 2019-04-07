@@ -122,9 +122,6 @@ public class SptypespLevelController extends BaseController {
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
             String timeString = GetCurrentTime();
             sptypespLevel.setFlag("E");
-            sptypespLevel.setCreatorid(loginUser.getId());
-            sptypespLevel.setCreator(loginUser.getUsername());
-            sptypespLevel.setCreatetime(timeString);
             sptypespLevel.setUpdaterid(loginUser.getId());
             sptypespLevel.setUpdater(loginUser.getUsername());
             sptypespLevel.setUpdatetime(timeString);
