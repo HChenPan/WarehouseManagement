@@ -43,4 +43,10 @@
     <bean id="projectNoManageService" class="com.hchenpan.service.impl.ProjectNoManageServiceImpl">
         <qualifier value="projectNoManageService"/>
     </bean>
+    <bean id="warehouseNumService" class="com.hchenpan.service.impl.WarehouseNumServiceImpl">
+        <qualifier value="warehouseNumService"/>
+    </bean>
+    <bean id="warehouseNumUserService" class="com.hchenpan.service.impl.WarehouseNumUserServiceImpl">
+        <qualifier value="warehouseNumUserService"/>
+    </bean>
 </beans>

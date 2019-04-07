@@ -93,21 +93,18 @@ public class SptypespLevelController extends BaseController {
                 StringBuilder fhrzw = new StringBuilder();
                 for (User user : spuserList) {
                     fhrzw.append(user.getDepartment()).append("--").append(user.getRealname()).append(",");
-                }
-                String fhrzwzh = fhrzw.substring(0, fhrzw.length() - 1);
-                sptypespLevel.setSpuserszw(fhrzwzh);
-                System.out.println(spuserList.get(0).getId());
-                Set<User> set = new HashSet<>(spuserList);
-                sptypespLevel.setSpusers(set);
-                sptypespLevel.setSpusersid(spusersIdstemp.replace(" ", ""));
-                sptypespLevelService.insert(sptypespLevel);
-                for (User user : spuserList) {
                     SptypespLevelUser sptypespLevelUser = new SptypespLevelUser();
                     sptypespLevelUser.setId(getUUID());
                     sptypespLevelUser.setSptypesplevelid(sptypespLevel.getId());
                     sptypespLevelUser.setUserid(user.getId());
                     sptypespLevelUserService.insert(sptypespLevelUser);
                 }
+                String fhrzwzh = fhrzw.substring(0, fhrzw.length() - 1);
+                sptypespLevel.setSpuserszw(fhrzwzh);
+                Set<User> set = new HashSet<>(spuserList);
+                sptypespLevel.setSpusers(set);
+                sptypespLevel.setSpusersid(spusersIdstemp.replace(" ", ""));
+                sptypespLevelService.insert(sptypespLevel);
             }
             return SUCCESS;
         }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.WarehouseNumMapper">
+    <select id="getPage" parameterType="map" resultType="map">
+        select
+        a.id as id,
+        a.stockname as stockname,
+        a.stockcode as stockcode,
+        a.updatetime as updatetime,
+        a.fhrzw as fhrzw,
+        b.name as ssunitname,
+        c.name as stocktypename
+        from wm_warehousenum a
+        inner join wm_department b on a.ssunitid = b.id
+        inner join wm_dictionaryschild c on a.stocktype = c.id and c.flag = 'E'
+        <where>
+            <if test="1==1">
+                a.flag = 'E'
+            </if>
+            <if test="stockcode != null and stockcode != ''">
+                <bind name="pattern" value="'%' + stockcode + '%'"/>
+                and a.stockcode LIKE #{pattern}
+            </if>
+            <if test="stockname != null and stockname != ''">
+                <bind name="pattern" value="'%' + stockname + '%'"/>
+                and a.stockname LIKE #{pattern}
+            </if>
+        </where>
+    </select>
+</mapper>

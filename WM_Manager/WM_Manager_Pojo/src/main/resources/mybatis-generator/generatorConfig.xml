@@ -234,7 +234,7 @@
         <!--&ndash;&gt;-->
         <!--&lt;!&ndash;<ignoreColumn column="deptId" delimitedColumnName=""/>&ndash;&gt;-->
         <!--</table>-->
-        <table tableName="wm_projectnomanage" domainObjectName="ProjectNoManage"
+        <table tableName="wm_warehousenum_user" domainObjectName="WarehouseNumUser"
                enableInsert="true" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="constructorBased" value="false"/>

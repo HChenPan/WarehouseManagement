@@ -23,11 +23,15 @@
         INNER JOIN WMDB.WM_DICTIONARYS P ON C.DICTIONARYS_ID = P.ID
         AND C.DICTIONARYS_ID = P.ID
         <where>
+            <if test="1==1">
+                a.flag = 'E'
+            </if>
             <if test="name != null and name != ''">
-                C.NAME LiKE #{name}
+                <bind name="pattern" value="'%' + name + '%'"/>
+                and C.NAME LiKE LIKE #{pattern}
             </if>
             <if test="dcode != null and dcode != ''">
-                C.DCODE = #{dcode}
+                and C.DCODE = #{dcode}
             </if>
         </where>
     </select>
@@ -40,8 +44,8 @@
                B.DNAME AS DNAME
         FROM WMDB.WM_DICTIONARYSCHILD A
                  INNER JOIN WMDB.WM_DICTIONARYS B ON A.DICTIONARYS_ID = B.ID
-        where a.flag = 'E'
-          and A.id = #{id,jdbcType=VARCHAR}
+            where a.flag = 'E'
+                 and A.id = #{id,jdbcType=VARCHAR}
 
     </select>
 

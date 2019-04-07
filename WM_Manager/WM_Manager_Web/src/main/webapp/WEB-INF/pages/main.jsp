@@ -60,7 +60,7 @@
                     <li><div><a href="#" onclick="addPanel('${ctx}/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/projectNoManage.do','工程号维护')">工程号维护</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/workflow.do','工作流程')">工作流程</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousenum/warehousenum.do','仓库编码')">仓库编码</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousenum.do','仓库编码')">仓库编码</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/wzqx.do','物资编码权限')">物资编码权限</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/contracttemp.do','合同条款模板')">合同条款模板</a></div></li>
                 </ul>

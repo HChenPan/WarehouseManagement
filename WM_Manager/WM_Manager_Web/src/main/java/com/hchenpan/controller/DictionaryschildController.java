@@ -331,4 +331,13 @@ public class DictionaryschildController extends BaseController {
     public String getSpjblistbydecode() {
         return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "SPJB").eq("flag", "E")));
     }
+
+    /**
+     * 功能:根据数据字典大类编码查找仓库编码
+     */
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getcklistbydecode")
+    public String getcklistbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST4001").eq("flag", "E")));
+    }
 }

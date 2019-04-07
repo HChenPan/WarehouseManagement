@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.WarehouseNumMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.WarehouseNum">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="FHR" jdbcType="VARCHAR" property="fhr"/>
+        <result column="FHRZW" jdbcType="VARCHAR" property="fhrzw"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="SSUNITID" jdbcType="VARCHAR" property="ssunitid"/>
+        <result column="STOCKCODE" jdbcType="VARCHAR" property="stockcode"/>
+        <result column="STOCKNAME" jdbcType="VARCHAR" property="stockname"/>
+        <result column="STOCKTYPE" jdbcType="VARCHAR" property="stocktype"/>
+    </resultMap>
+
+</mapper>

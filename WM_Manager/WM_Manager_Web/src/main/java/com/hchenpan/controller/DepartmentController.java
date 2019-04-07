@@ -1,10 +1,13 @@
 package com.hchenpan.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hchenpan.common.BaseController;
 import com.hchenpan.model.DepartJSON;
+import com.hchenpan.pojo.Department;
 import com.hchenpan.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -61,6 +64,15 @@ public class DepartmentController extends BaseController {
             }
         }
         return dlist;
+    }
+
+    /**
+     * 功能:提供所有数据,供下拉
+     */
+    @ResponseBody
+    @PostMapping("/department/getall")
+    public String getall() {
+        return GetGsonString(departmentService.selectList(new EntityWrapper<Department>().orderBy("name")));
     }
 
 }
