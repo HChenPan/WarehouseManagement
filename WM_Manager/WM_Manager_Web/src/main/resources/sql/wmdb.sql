@@ -1253,6 +1253,12 @@ alter table wm_warehousenum_user add constraint wm_warehousenum_user_userid fore
 -- ----------------------------
 alter table wm_wzqx_user add constraint wm_wzqx_user_userid foreign key ( userid ) references wm_user ( id ) on delete cascade not deferrable initially immediate norely validate;
 alter table wm_wzqx_user add constraint wm_wzqx_user_warehouseid foreign key ( warehouseid ) references wm_wzqx ( id ) on delete cascade not deferrable initially immediate norely validate;
+-- ----------------------------
+-- foreign keys structure for table wm_transferlist
+-- ----------------------------
+alter table wm_transferlist add constraint applytransfercodeid foreign key ( applytransfercodeid ) references wm_applytransfer ( id ) on delete cascade not deferrable initially immediate norely validate;
+
+--插入初始值
 INSERT INTO wm_department ( id, creatorid, creator, createtime, updaterid, updater, updatetime, name, tel, deptnumber, parentid )
 VALUES	( 'c2b632dc87637a5fd03fdf9b61693d17', NULL, NULL, NULL, NULL, NULL, NULL, '全厂', '15552224', '001', NULL );
 INSERT INTO wm_user ( id, creatorid,creator,createtime,updaterid,updater,updatetime,username,password,realname,department,tel,issuper,lastlogintime,applogin,departmentid,state )

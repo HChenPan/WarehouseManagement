@@ -234,18 +234,7 @@
         <!--&ndash;&gt;-->
         <!--&lt;!&ndash;<ignoreColumn column="deptId" delimitedColumnName=""/>&ndash;&gt;-->
         <!--</table>-->
-        <table tableName="wm_buyer" domainObjectName="Buyer"
-               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="constructorBased" value="false"/>
-            <property name="ignoreQualifiersAtRuntime" value="false"/>
-            <property name="immutable" value="false"/>
-            <property name="modelOnly" value="false"/>
-            <property name="rootClass" value="com.hchenpan.common.BasePojo"/>
-            <property name="selectAllOrderByClause" value="updateTime desc,updater asc"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="wm_supplier" domainObjectName="Supplier"
+        <table tableName="wm_stock" domainObjectName="Stock"
                enableInsert="true" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="constructorBased" value="false"/>

@@ -26,7 +26,11 @@
         <tr>
             <td width="400"><img src="${ctx}/statics/img/title.png" alt="仓库管理系统"/></td>
             <td align="right" class="right">
-                <%--<shiro:principal property="realname"/>,仓库管理系统--%>
+                <%
+                    User user = (User) request.getSession().getAttribute("user");
+                    out.print(user.getRealname());
+                %>
+                ,仓库管理系统
             </td>
             <td width="80" align="right" valign="bottom" class="logoutB">
                 <a href="${ctx}/logout.do"> <img src="${ctx}/statics/img/logout.png" alt=" 退出"/> </a>
@@ -82,8 +86,8 @@
             </div>
             <div title="内部交易" style="overflow:auto" data-options="iconCls:'icon-main-nenghao'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/innerdeal/applytransfer.do','申请调拨')">申请调拨</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/innerdeal/transfer.do','发货发料')">发货发料</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/applytransfer.do','申请调拨')">申请调拨</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/transfer.do','发货发料')">发货发料</a></div></li>
                 </ul>
             </div>
 <%--            <div title="委外加工" style="overflow:auto" data-options="iconCls:'icon-main-hb'">--%>

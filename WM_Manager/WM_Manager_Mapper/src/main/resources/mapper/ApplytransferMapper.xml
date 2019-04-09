@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.ApplytransferMapper">
+  <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Applytransfer">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CREATORID" jdbcType="VARCHAR" property="creatorid" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+    <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime" />
+    <result column="APPLYTRANSFERCODE" jdbcType="VARCHAR" property="applytransfercode" />
+    <result column="DCCK" jdbcType="VARCHAR" property="dcck" />
+    <result column="DCCKCODE" jdbcType="VARCHAR" property="dcckcode" />
+    <result column="DCCKID" jdbcType="VARCHAR" property="dcckid" />
+    <result column="DRCK" jdbcType="VARCHAR" property="drck" />
+    <result column="DRCKCODE" jdbcType="VARCHAR" property="drckcode" />
+    <result column="DRCKID" jdbcType="VARCHAR" property="drckid" />
+    <result column="FLAG" jdbcType="VARCHAR" property="flag" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="REALMONEY" jdbcType="VARCHAR" property="realmoney" />
+    <result column="SBDATE" jdbcType="VARCHAR" property="sbdate" />
+    <result column="SBMONEY" jdbcType="VARCHAR" property="sbmoney" />
+    <result column="SBSTATUS" jdbcType="VARCHAR" property="sbstatus" />
+    <result column="SBUNIT" jdbcType="VARCHAR" property="sbunit" />
+    <result column="SBUNITID" jdbcType="VARCHAR" property="sbunitid" />
+    <result column="SQRID" jdbcType="VARCHAR" property="sqrid" />
+    <result column="SQRNAME" jdbcType="VARCHAR" property="sqrname" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="ZJCODE" jdbcType="VARCHAR" property="zjcode" />
+    <result column="ZJNAME" jdbcType="VARCHAR" property="zjname" />
+  </resultMap>
+
+</mapper>

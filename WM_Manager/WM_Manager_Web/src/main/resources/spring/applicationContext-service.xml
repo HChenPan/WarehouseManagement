@@ -55,4 +55,13 @@
     <bean id="buyerService" class="com.hchenpan.service.impl.BuyerServiceImpl">
         <qualifier value="buyerService"/>
     </bean>
+    <bean id="applytransferService" class="com.hchenpan.service.impl.ApplytransferServiceImpl">
+        <qualifier value="applytransferService"/>
+    </bean>
+    <bean id="transferlistService" class="com.hchenpan.service.impl.TransferlistServiceImpl">
+        <qualifier value="transferlistService"/>
+    </bean>
+    <bean id="stockService" class="com.hchenpan.service.impl.StockServiceImpl">
+        <qualifier value="stockService"/>
+    </bean>
 </beans>
