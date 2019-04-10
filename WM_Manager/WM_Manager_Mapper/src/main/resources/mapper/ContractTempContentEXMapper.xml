@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.ContractTempContentMapper">
+    <select id="selectPage" parameterType="java.lang.String" resultType="map">
+SELECT
+	C.ID,
+	C.CONTENT,
+	C.SN,
+	C.UPDATETIME,
+	D.CONTRACTEMPNAME as realtempname
+FROM
+	WMDB.WM_CONTRACTTEMPCONTENT C INNER JOIN WMDB.WM_CONTRACTTEMPNAME D ON C.TEMPNAME_ID = D.ID
+WHERE
+	C.FLAG = 'E'  AND C.TEMPNAME_ID = #{tempnameId,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

@@ -64,4 +64,10 @@
     <bean id="stockService" class="com.hchenpan.service.impl.StockServiceImpl">
         <qualifier value="stockService"/>
     </bean>
+    <bean id="contractTempNameService" class="com.hchenpan.service.impl.ContractTempNameServiceImpl">
+        <qualifier value="contractTempNameService"/>
+    </bean>
+    <bean id="contractTempContentService" class="com.hchenpan.service.impl.ContractTempContentServiceImpl">
+        <qualifier value="contractTempContentService"/>
+    </bean>
 </beans>

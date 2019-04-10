@@ -200,10 +200,115 @@ public class TransferlistController extends BaseController {
                 }
             }
             for (Transferlist TlNew : list) {
+                Transferlist TlOld = transferlistService.selectById(TlNew.getId());
+                String oldcontent = GetGsonString(TlOld);
+                /*通用字段赋值*/
+                User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+                String timeString = GetCurrentTime();
+                TlOld.setUpdaterid(loginUser.getId());
+                TlOld.setUpdater(loginUser.getUsername());
+                TlOld.setUpdatetime(timeString);
 
+                TlOld.setRealnum(TlNew.getSqnum());
+                TlOld.setSqnum(TlNew.getSqnum());
+
+                transferlistService.updateById(TlOld);
+                //写入日志表
+                Logs logs = new Logs();
+                logs.setId(getUUID());
+                logs.setFlagid(TlOld.getId());
+                logs.setName("com.hchenpan.controller.TransferlistController.update");
+                logs.setParams("com.hchenpan.pojo.Transferlist类");
+                logs.setDescription("修改申请 物资明细");
+                logs.setUpdaterid(loginUser.getId());
+                logs.setIpaddress(getRomoteIP());
+                logs.setOptcontent(GetGsonString(TlOld));
+                /* 修改，需要保存修改前后的数据 */
+                logs.setOldcontent(oldcontent);
+                logs.setCreatorid(loginUser.getId());
+                logs.setCreator(loginUser.getUsername());
+                logs.setCreatetime(timeString);
+                logs.setUpdater(loginUser.getUsername());
+                logs.setRealname(loginUser.getRealname());
+                logs.setUpdatetime(timeString);
+                logsService.insert(logs);
+            }
+            return SUCCESS;
+        }
+        return ERROR;
+    }
+
+    /**
+     * 功能：更新实际发货 明细
+     */
+    @ResponseBody
+    @PostMapping("/transferlist/updatereal")
+    public String updatereal() {
+        if (checkuser()) {
+            String arrayList = request.getParameter("arrayList");
+            //将 arrayList 字符串转换成 json 对象
+            //将 json 对象转换成 Transferlist 集合
+            List<Transferlist> list = null;
+            for (Transferlist tl : list) {
+                Applytransfer applyTransfer = applytransferService.selectById(tl.getApplytransfercodeid());
+                if ("已发货".equals(applyTransfer.getSbstatus())) {
+                    return "已发货";
+                }
+                BigDecimal sqnum = new BigDecimal(tl.getSqnum()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                BigDecimal ljnum = new BigDecimal(tl.getLjnum()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                BigDecimal bcnum = new BigDecimal(tl.getRealnum()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                ljnum = ljnum.add(bcnum);
+                if (ljnum.compareTo(sqnum) == 1) {
+                    return "物资编码为 " + tl.getWzcode() + " 的物资发货数量大于申请数量,请核实后重试！";
+                }
+                Stock stock = stockService.selectOne(new EntityWrapper<Stock>().eq("Wzcode", tl.getWzcode()).eq("Dcckcode", tl.getDcckcode()).ge("bqend", "0").ne("bqend", "0.00").ne("bqend", "0").ge("bqend", "0.00").isNotNull("stockyearmon").isNotNull("tranflag"));
+                String kcnumNow = stock.getBqend();
+
+                BigDecimal kcnumNow1 = new BigDecimal(kcnumNow).setScale(2, BigDecimal.ROUND_HALF_UP);
+                BigDecimal sqnumNew1 = new BigDecimal(tl.getRealnum()).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+                if (Integer.parseInt((kcnumNow1).subtract(sqnumNew1).setScale(0, BigDecimal.ROUND_HALF_UP).toString()) < 0) {
+                    return "仓库  " + tl.getDcck() + " 物资编码 " + tl.getWzcode() + " 发货数量超出库存 " + kcnumNow1.toString();
+                }
             }
 
+
+            for (Transferlist TlNew : list) {
+                Transferlist TlOld = transferlistService.selectById(TlNew.getId());
+                String oldcontent = GetGsonString(TlOld);
+                /*通用字段赋值*/
+                User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+                String timeString = GetCurrentTime();
+                TlOld.setUpdaterid(loginUser.getId());
+                TlOld.setUpdater(loginUser.getUsername());
+                TlOld.setUpdatetime(timeString);
+
+                TlOld.setRealnum(TlNew.getRealnum());
+
+                transferlistService.updateById(TlOld);
+                //写入日志表
+                Logs logs = new Logs();
+                logs.setId(getUUID());
+                logs.setFlagid(TlOld.getId());
+                logs.setName("com.hchenpan.controller.TransferlistController.updatereal");
+                logs.setParams("com.hchenpan.pojo.Transferlist类");
+                logs.setDescription("修改发货 物资明细");
+                logs.setUpdaterid(loginUser.getId());
+                logs.setIpaddress(getRomoteIP());
+                logs.setOptcontent(GetGsonString(TlOld));
+                /* 修改，需要保存修改前后的数据 */
+                logs.setOldcontent(oldcontent);
+                logs.setCreatorid(loginUser.getId());
+                logs.setCreator(loginUser.getUsername());
+                logs.setCreatetime(timeString);
+                logs.setUpdater(loginUser.getUsername());
+                logs.setRealname(loginUser.getRealname());
+                logs.setUpdatetime(timeString);
+                logsService.insert(logs);
+            }
+            return SUCCESS;
         }
+
         return ERROR;
     }
 
@@ -213,6 +318,41 @@ public class TransferlistController extends BaseController {
     @ResponseBody
     @GetMapping("/transferlist/delete")
     public String delete(Transferlist transferlist) {
+        if (checkuser()) {
+            Transferlist TlOld = transferlistService.selectById(transferlist.getId());
+            String oldcontent = GetGsonString(TlOld);
+            Applytransfer applyTransfer = applytransferService.selectById(TlOld.getApplytransfercodeid());
+            if ("已申请".equals(applyTransfer.getSbstatus()) || "已发货".equals(applyTransfer.getSbstatus())) {
+                return "已申请";
+            } else {
+                /*通用字段赋值*/
+                User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+                String timeString = GetCurrentTime();
+                TlOld.setUpdaterid(loginUser.getId());
+                TlOld.setUpdater(loginUser.getUsername());
+                TlOld.setUpdatetime(timeString);
+                transferlistService.deleteById(TlOld);
+                //写入日志表
+                Logs logs = new Logs();
+                logs.setId(getUUID());
+                logs.setFlagid(TlOld.getId());
+                logs.setName("com.hchenpan.controller.TransferlistController.delete");
+                logs.setParams("com.hchenpan.pojo.Transferlist类");
+                logs.setDescription("删除 申请 物资明细");
+                logs.setUpdaterid(loginUser.getId());
+                logs.setIpaddress(getRomoteIP());
+                logs.setOptcontent(GetGsonString(TlOld));
+                /* 修改，需要保存修改前后的数据 */
+                logs.setOldcontent(oldcontent);
+                logs.setCreatorid(loginUser.getId());
+                logs.setCreator(loginUser.getUsername());
+                logs.setCreatetime(timeString);
+                logs.setUpdater(loginUser.getUsername());
+                logs.setRealname(loginUser.getRealname());
+                logs.setUpdatetime(timeString);
+                return SUCCESS;
+            }
+        }
         return ERROR;
     }
 }

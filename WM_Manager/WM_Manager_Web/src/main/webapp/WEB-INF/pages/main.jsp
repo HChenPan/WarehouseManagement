@@ -45,28 +45,28 @@
             <div title="系统配置" style="overflow:auto" data-options="iconCls:'icon-main-xtsz'">
                 <ul class="navlist">
                     <shiro:hasRole name="admin">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/user.do','用户管理')">用户管理</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/user.do','用户管理')">用户管理*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/role.do','角色管理')">角色管理</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/permission.do','权限管理')">权限管理</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/department.do','部门设置')">部门设置</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/employee.do','员工维护')">员工维护</a></div></li>
                     </shiro:hasRole>
                     <shiro:hasAnyRoles name="admin,cangku">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/supplier.do','供应商管理')">供应商管理</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/buyer.do','购买方管理')">购买方管理</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/supplier.do','供应商管理')">供应商管理*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/buyer.do','购买方管理')">购买方管理*</a></div></li>
                     </shiro:hasAnyRoles>
                 </ul>
             </div>
             <div title="基础数据" style="overflow:auto" data-options="iconCls:'icon-main-jichushuju'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/dictionary.do','数据字典')">数据字典</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/sparepartcode.do','备件编码管理树')">备件编码管理树</a></div> </li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/projectNoManage.do','工程号维护')">工程号维护</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/dictionary.do','数据字典')">数据字典*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/sparepartcode.do','备件编码管理树')">备件编码管理树*</a></div> </li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/projectNoManage.do','工程号维护')">工程号维护*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/workflow.do','工作流程')">工作流程</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousenum.do','仓库编码')">仓库编码</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousenum.do','仓库编码')">仓库编码*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/wzqx.do','物资编码权限')">物资编码权限</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/contracttemp.do','合同条款模板')">合同条款模板</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/contracttemp.do','合同条款模板')">合同条款模板*</a></div></li>
                 </ul>
             </div>
             <div title="采购管理" style="overflow:auto" data-options="iconCls:'icon-main-shebeiguanli'">
@@ -86,56 +86,25 @@
             </div>
             <div title="内部交易" style="overflow:auto" data-options="iconCls:'icon-main-nenghao'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/applytransfer.do','申请调拨')">申请调拨</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/transfer.do','发货发料')">发货发料</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/applytransfer.do','申请调拨')">申请调拨*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/transfer.do','发货发料')">发货发料*</a></div></li>
                 </ul>
             </div>
-<%--            <div title="委外加工" style="overflow:auto" data-options="iconCls:'icon-main-hb'">--%>
-<%--                <ul class="navlist">--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontracting.do','委外加工')">委外加工</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontractingApproval.do','委外审批')">委外审批</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/subcontracting/subcontractingSend.do','委外发货')">委外发货</a></div></li>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
-<%--            <div title="运输管理" style="overflow:auto" data-options="iconCls:'icon-main-repair'">--%>
-<%--                <ul class="navlist">--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/transportmanage/applycar.do','上报派车申请')">上报派车申请</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/transportmanage/transportdepart.do','运输管理调度')">运输管理调度</a>--%>
-<%--                    </div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/transportmanage/costmoney.do','运输费用管理')">运输费用管理</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('${ctx}/transportmanage/searchtransport.do','运输派车查询')">运输派车查询</a>--%>
-<%--                    </div></li>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
             <div title="库存管理" style="overflow:auto" data-options="iconCls:'icon-main-beijian'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/warehousing.do','采购入库')">采购入库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/whtwarehousing.do','无合同入库')">无合同入库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/callslip.do','领料单申请')">领料单申请</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/callslipout.do','领料出库')">领料出库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/callslipapproval.do','领料单审批')">领料单审批</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/returntreasury.do','采购退货')">采购退货</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/cancellingstocks.do','领料退库')">领料退库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/stock.do','库存管理')">库存管理</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/reserve/stockjz.do','库存结转')">库存结转</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousing.do','采购入库')">采购入库</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/whtwarehousing.do','无合同入库')">无合同入库</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/callslip.do','领料单申请')">领料单申请</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/callslipout.do','领料出库')">领料出库</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/callslipapproval.do','领料单审批')">领料单审批</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/returntreasury.do','采购退货')">采购退货</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/cancellingstocks.do','领料退库')">领料退库</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/stock.do','库存管理')">库存管理*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/stockjz.do','库存结转')">库存结转*</a></div></li>
                 </ul>
             </div>
-<%--            <div title="报表管理" style="overflow:auto" data-options="iconCls:'icon-main-baobiao'">--%>
-<%--                <ul class="navlist">--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=buyapply.cpt','采购报表')">采购报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=requireapply.cpt','需求申请报表')">需求申请报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=neibujiaoyi.cpt','内部交易报表')">内部交易报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=stock.cpt','库存转结报表')">库存转结报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=stockkucun.cpt','库存报表')">库存报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=lingliaochuku.cpt','领料出库报表')">领料出库报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=lingliaotuiku.cpt','领料退库报表')">领料退库报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=caigouruku.cpt','采购入库报表')">采购入库报表</a></div></li>--%>
-<%--                    <li><div><a href="#" onclick="addPanel('http://172.17.8.77:8080/WebReport/ReportServer?reportlet=caigoutuihuo.cpt','采购退货报表')">采购退货报表</a></div></li>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
             <div title="用户设置" style="overflow:auto" data-options="iconCls:'icon-main-user'">
                 <ul class="navlist">
-                    <%-- <li><div><a href="#" onclick="addPanel('${ctx}/user/setuserinfo.do','个人资料更新')">个人资料更新</a></div></li> --%>
                     <li><div><a href="#" onclick="addPanel('${ctx}/setpassword.do','个人密码修改')">密码修改</a></div></li>
                 </ul>
             </div>
