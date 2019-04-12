@@ -340,4 +340,14 @@ public class DictionaryschildController extends BaseController {
     public String getcklistbydecode() {
         return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST4001").eq("flag", "E")));
     }
+
+    /**
+     * 功能:根据数据字典大类编码查找采购计划大类
+     */
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getbuytypelistbydecode")
+    public String getbuytypelistbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST2001").eq("note", "BUY").eq("flag", "E")));
+    }
+
 }

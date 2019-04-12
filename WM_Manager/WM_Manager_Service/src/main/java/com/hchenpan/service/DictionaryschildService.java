@@ -24,4 +24,8 @@ public interface DictionaryschildService extends BaseService<Dictionaryschild> {
     List<Dictionaryschild> selectchildList(String id);
 
     List<Dictionaryschild> getdchildlistbydecode(String dcode);
+
+    String getsptypecodesbynote(String note);
+
+    String getSpnodenamebycode(String dcode, String code);
 }

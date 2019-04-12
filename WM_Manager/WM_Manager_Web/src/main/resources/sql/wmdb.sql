@@ -132,6 +132,7 @@ CREATE TABLE wm_buylist (
 	updater VARCHAR2 ( 255 byte ),
 	updatetime VARCHAR2 ( 255 byte ),
 	buycode VARCHAR2 ( 255 byte ),
+	buycodeid VARCHAR2 ( 255 byte ),
 	buymoney VARCHAR2 ( 255 byte ),
 	buyname VARCHAR2 ( 255 byte ),
 	buynum VARCHAR2 ( 255 byte ),
@@ -1257,6 +1258,14 @@ alter table wm_wzqx_user add constraint wm_wzqx_user_warehouseid foreign key ( w
 -- foreign keys structure for table wm_transferlist
 -- ----------------------------
 alter table wm_transferlist add constraint applytransfercodeid foreign key ( applytransfercodeid ) references wm_applytransfer ( id ) on delete cascade not deferrable initially immediate norely validate;
+-- ----------------------------
+-- foreign keys structure for table wm_buylist
+-- ----------------------------
+alter table wm_buylist add constraint buycodeid foreign key ( buycodeid ) references wm_buy ( id ) on delete cascade not deferrable initially immediate norely validate;
+-- ----------------------------
+-- foreign keys structure for table wm_planlist
+-- ----------------------------
+alter table wm_planlist add constraint plancodeid foreign key ( plancodeid ) references wm_plan ( id ) on delete cascade not deferrable initially immediate norely validate;
 
 --插入初始值
 INSERT INTO wm_department ( id, creatorid, creator, createtime, updaterid, updater, updatetime, name, tel, deptnumber, parentid )

@@ -70,4 +70,28 @@
     <bean id="contractTempContentService" class="com.hchenpan.service.impl.ContractTempContentServiceImpl">
         <qualifier value="contractTempContentService"/>
     </bean>
+    <bean id="buylistService" class="com.hchenpan.service.impl.BuylistServiceImpl">
+        <qualifier value="buylistService"/>
+    </bean>
+    <bean id="buyService" class="com.hchenpan.service.impl.BuyServiceImpl">
+        <qualifier value="buyService"/>
+    </bean>
+    <bean id="planService" class="com.hchenpan.service.impl.PlanServiceImpl">
+        <qualifier value="planService"/>
+    </bean>
+    <bean id="planlistService" class="com.hchenpan.service.impl.PlanlistServiceImpl">
+        <qualifier value="planlistService"/>
+    </bean>
+    <bean id="approvalRecordService" class="com.hchenpan.service.impl.ApprovalRecordServiceImpl">
+        <qualifier value="approvalRecordService"/>
+    </bean>
+    <bean id="workFlowService" class="com.hchenpan.service.impl.WorkFlowServiceImpl">
+        <qualifier value="workFlowService"/>
+    </bean>
+    <bean id="wzQxUserService" class="com.hchenpan.service.impl.WzQxUserServiceImpl">
+        <qualifier value="wzQxUserService"/>
+    </bean>
+    <bean id="wzQxService" class="com.hchenpan.service.impl.WzQxServiceImpl">
+        <qualifier value="wzQxService"/>
+    </bean>
 </beans>

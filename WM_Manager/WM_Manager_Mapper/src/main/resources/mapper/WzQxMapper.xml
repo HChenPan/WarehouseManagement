@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hchenpan.mapper.SptypespLevelMapper">
-    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.SptypespLevel">
+<mapper namespace="com.hchenpan.mapper.WzQxMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.WzQx">
         <id column="ID" jdbcType="VARCHAR" property="id"/>
         <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
         <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
@@ -9,13 +9,10 @@
         <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
         <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
         <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="CZR" jdbcType="VARCHAR" property="czr"/>
+        <result column="CZRZW" jdbcType="VARCHAR" property="czrzw"/>
         <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
-        <result column="SPLEVELCODE" jdbcType="VARCHAR" property="splevelcode"/>
-        <result column="SPNOTE" jdbcType="VARCHAR" property="spnote"/>
-        <result column="SPTYPECODE" jdbcType="VARCHAR" property="sptypecode"/>
-        <result column="SPUSERSID" jdbcType="VARCHAR" property="spusersid"/>
-        <result column="SPUSERSZW" jdbcType="VARCHAR" property="spuserszw"/>
+        <result column="WZQZ" jdbcType="VARCHAR" property="wzqz"/>
     </resultMap>
-
 
 </mapper>

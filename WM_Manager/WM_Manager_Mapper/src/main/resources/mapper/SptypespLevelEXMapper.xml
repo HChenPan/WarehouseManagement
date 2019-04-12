@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.SptypespLevelMapper">
+    <select id="getusersplevelnode" resultType="com.hchenpan.model.CommboxList" parameterType="map">
+        SELECT
+        A.SPTYPECODE AS "id",
+        A.SPLEVELCODE AS "text"
+        FROM
+        WMDB.WM_SPTYPESPLEVEL A,
+        WMDB.WM_SPTYPESPLEVEL_USER B
+        WHERE
+        <bind name="pattern" value="sptypecodes"/>
+        A.SPTYPECODE IN ( #{pattern} )
+        AND A.ID = B.SPTYPESPLEVELID
+        <bind name="pattern" value="id"/>
+        AND B.USERID = #{pattern}
+    </select>
+</mapper>

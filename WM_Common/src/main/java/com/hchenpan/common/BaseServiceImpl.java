@@ -2,6 +2,7 @@ package com.hchenpan.common;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -36,5 +37,26 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
             }
         }
         return mapList;
+    }
+
+    /**
+     * 获取前/后半年的开始时间
+     *
+     * @return
+     */
+    public static String getHalfYearStartTime() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+
+
+        //过去三个月
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, -6);
+        Date m3 = c.getTime();
+        String mon3 = format.format(m3);
+        System.out.println("过去六个月：" + mon3);
+        return mon3;
+
+
     }
 }

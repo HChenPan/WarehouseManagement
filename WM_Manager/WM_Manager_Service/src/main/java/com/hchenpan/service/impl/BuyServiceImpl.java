@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseServiceImpl;
-import com.hchenpan.mapper.ApplytransferMapper;
-import com.hchenpan.pojo.Applytransfer;
-import com.hchenpan.service.ApplytransferService;
+import com.hchenpan.mapper.BuyMapper;
+import com.hchenpan.pojo.Buy;
+import com.hchenpan.service.BuyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,35 +16,34 @@ import java.util.Date;
 
 /**
  * Project : WarehouseManagement
- * ClassName : com.hchenpan.service.impl.ApplytransferServiceImpl
+ * ClassName : com.hchenpan.service.impl.BuyServiceImpl
  * Description :
  *
  * @author Huangcp
  * @version 1.0
- * @date 2019/4/8 01:38 下午
+ * @date 2019/4/11 12:32 下午
  **/
-@Service("applytransferService")
-public class ApplytransferServiceImpl extends BaseServiceImpl<ApplytransferMapper, Applytransfer> implements ApplytransferService {
-    private final ApplytransferMapper mapper;
+@Service("buyService")
+public class BuyServiceImpl extends BaseServiceImpl<BuyMapper, Buy> implements BuyService {
+    private final BuyMapper mapper;
 
     @Autowired
-    public ApplytransferServiceImpl(ApplytransferMapper mapper) {
+    public BuyServiceImpl(BuyMapper mapper) {
         this.mapper = mapper;
     }
 
     @Override
-    public String getCode() {
+    public String createbuycode(String buytype) {
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("yyyyMMdd");
-        String strDate = format.format(date);
-        Page<Applytransfer> page = selectPage(new Page<>(1, 1, "applytransfercode", false), new EntityWrapper<Applytransfer>().eq("flag", "E").like("applytransfercode", strDate, SqlLike.DEFAULT).setSqlSelect("applytransfercode"));
+        String _str_date = format.format(date);
+        Page<Buy> page = selectPage(new Page<>(1, 1, "buycode", false), new EntityWrapper<Buy>().eq("flag", "E").like("buycode", buytype + _str_date, SqlLike.DEFAULT).setSqlSelect("buycode"));
         StringBuilder temp = new StringBuilder();
         if (page.getTotal() == 0) {
-            temp.append(strDate).append("001");
+            temp.append("001");
         } else {
-            String nid = page.getRecords().get(0).getApplytransfercode();
+            String nid = page.getRecords().get(0).getBuycode();
             StringBuilder sb = new StringBuilder();
-
             String temp1 = nid.substring(8, 9);
             String temp2 = nid.substring(9, 10);
             int k;
@@ -52,24 +51,24 @@ public class ApplytransferServiceImpl extends BaseServiceImpl<ApplytransferMappe
                 k = Integer.parseInt(nid.substring(8));
                 k++;
                 sb.append(k);
-                temp.append(strDate).append(sb);
+                temp.append(_str_date).append(sb);
             } else if ("0".equals(temp2)) {
                 k = Integer.parseInt(nid.substring(10));
                 k++;
                 sb.append(k);
                 if (k == 10) {
-                    temp.append(strDate).append("0").append(sb);
+                    temp.append(_str_date).append("0").append(sb);
                 } else {
-                    temp.append(strDate).append("00").append(sb);
+                    temp.append(_str_date).append("00").append(sb);
                 }
             } else {
                 k = Integer.parseInt(nid.substring(9));
                 k++;
                 sb.append(k);
                 if (k == 100) {
-                    temp.append(strDate).append(sb);
+                    temp.append(_str_date).append(sb);
                 } else {
-                    temp.append(strDate).append("0").append(sb);
+                    temp.append(_str_date).append("0").append(sb);
                 }
             }
         }

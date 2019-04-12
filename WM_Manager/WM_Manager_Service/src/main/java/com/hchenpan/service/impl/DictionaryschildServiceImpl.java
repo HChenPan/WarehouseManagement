@@ -46,4 +46,23 @@ public class DictionaryschildServiceImpl extends BaseServiceImpl<Dictionaryschil
     public List<Dictionaryschild> getdchildlistbydecode(String dcode) {
         return mapper.selectList(new EntityWrapper<Dictionaryschild>().eq("flag", "E").eq("dcode", dcode).orderBy("code"));
     }
+
+    @Override
+    public String getsptypecodesbynote(String note) {
+        List<Dictionaryschild> dictionaryschildList = selectList(new EntityWrapper<Dictionaryschild>().eq("note", note));
+        StringBuilder sptypecodes = new StringBuilder();
+        for (int i = 0; i < dictionaryschildList.size(); i++) {
+            Dictionaryschild dictionaryschild = dictionaryschildList.get(i);
+            sptypecodes.append(dictionaryschild.getCode());
+            if (i < dictionaryschildList.size()) {
+                sptypecodes.append(",");
+            }
+        }
+        return sptypecodes.toString();
+    }
+
+    @Override
+    public String getSpnodenamebycode(String dcode, String code) {
+        return selectOne(new EntityWrapper<Dictionaryschild>().eq("dcode", dcode).eq("code", code)).getName();
+    }
 }

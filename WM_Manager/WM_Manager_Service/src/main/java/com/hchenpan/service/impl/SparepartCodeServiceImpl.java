@@ -2,6 +2,7 @@ package com.hchenpan.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.hchenpan.common.BaseServiceImpl;
+import com.hchenpan.mapper.PlanlistMapper;
 import com.hchenpan.mapper.SparepartCodeMapper;
 import com.hchenpan.model.PageContainer;
 import com.hchenpan.model.Spart;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Project : WarehouseManagement
@@ -25,10 +27,12 @@ import java.util.List;
 @Service("sparepartCodeService")
 public class SparepartCodeServiceImpl extends BaseServiceImpl<SparepartCodeMapper, SparepartCode> implements SparepartCodeService {
     private final SparepartCodeMapper sparepartCodeMapper;
+    private final PlanlistMapper planlistMapper;
 
     @Autowired
-    public SparepartCodeServiceImpl(SparepartCodeMapper sparepartCodeMapper) {
+    public SparepartCodeServiceImpl(SparepartCodeMapper sparepartCodeMapper, PlanlistMapper planlistMapper) {
         this.sparepartCodeMapper = sparepartCodeMapper;
+        this.planlistMapper = planlistMapper;
     }
 
     @Override
@@ -82,5 +86,19 @@ public class SparepartCodeServiceImpl extends BaseServiceImpl<SparepartCodeMappe
         SparepartCode sparepartCode1 = new SparepartCode();
         sparepartCode1.setParentid(parentid);
         return sparepartCodeMapper.selectOne(sparepartCode1).get_parentid();
+    }
+
+    @Override
+    public List<SparepartCode> getallsparepart() {
+        List<SparepartCode> sparepartCodes = sparepartCodeMapper.selectList(new EntityWrapper<SparepartCode>().eq("description", "物资"));
+        List<SparepartCode> dlist = new ArrayList<>();
+        for (SparepartCode sparepartCode : sparepartCodes) {
+            List<Map<String, Object>> mapList = planlistMapper.selectWZ(sparepartCode.getCode(), getHalfYearStartTime());
+            if (mapList.size() != 0) {
+                sparepartCode.setPlanprice(mapList.get(0).get("BUYPRICE").toString());
+            }
+            dlist.add(sparepartCode);
+        }
+        return dlist;
     }
 }

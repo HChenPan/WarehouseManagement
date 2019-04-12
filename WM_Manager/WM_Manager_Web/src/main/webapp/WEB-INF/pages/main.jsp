@@ -71,10 +71,10 @@
             </div>
             <div title="采购管理" style="overflow:auto" data-options="iconCls:'icon-main-shebeiguanli'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/Buymanage/plan.do','需求申请')">需求申请</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/Buymanage/planapproval.do','需求申请审批')">需求申请审批</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/Buymanage/buy.do','采购计划申请')">采购计划申请</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/Buymanage/buyapproval.do','采购计划申请审批')">采购计划申请审批</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/plan.do','需求申请')">需求申请*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/planapproval.do','需求申请审批')">需求申请审批*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/buy.do','采购计划申请')">采购计划申请*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/buyapproval.do','采购计划申请审批')">采购计划申请审批*</a></div></li>
                 </ul>
             </div>
             <div title="合同管理" style="overflow:auto" data-options="iconCls:'icon-main-contract'">

@@ -74,6 +74,16 @@ public class SparepartCodeController extends BaseController {
     }
 
     /**
+     * 取单条数据编辑
+     */
+    @ResponseBody
+    @PostMapping(value = "/sparepartcode/getallwz")
+    public String getallwz() {
+        List<SparepartCode> slist = sparepartCodeService.getallsparepart();
+        return GetGsonString(slist);
+    }
+
+    /**
      * 功能取子节点数据
      */
     @ResponseBody

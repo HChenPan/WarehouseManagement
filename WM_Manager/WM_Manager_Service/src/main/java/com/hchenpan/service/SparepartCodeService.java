@@ -24,4 +24,6 @@ public interface SparepartCodeService extends BaseService<SparepartCode> {
     List<Spart> getsons(Spart spart);
 
     String getexpandid(String parentid);
+
+    List<SparepartCode> getallsparepart();
 }
