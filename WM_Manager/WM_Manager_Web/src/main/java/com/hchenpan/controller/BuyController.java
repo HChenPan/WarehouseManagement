@@ -185,8 +185,8 @@ public class BuyController extends BaseController {
      * 数据列表JSON 通过审核的计划号
      */
     @ResponseBody
-    @GetMapping("/buy/getbuylist")
-    public String getbuylist(Buy buy) {
+    @PostMapping("/buy/getbuylist")
+    public String getbuylist() {
         return GetGsonString(buyService.selectList(new EntityWrapper<Buy>().eq("spcode", "99").eq("flag", "E").orderBy("updatetime")));
     }
 
@@ -265,13 +265,13 @@ public class BuyController extends BaseController {
         if (checkuser()) {
             Buy old = buyService.selectById(buy.getId());
             String oldcontent = GetGsonString(old);
-            old.setFlag("E");
+            buy.setFlag("E");
             /*通用字段修改*/
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
             String timeString = GetCurrentTime();
-            old.setUpdaterid(loginUser.getId());
-            old.setUpdater(loginUser.getUsername());
-            old.setUpdatetime(timeString);
+            buy.setUpdaterid(loginUser.getId());
+            buy.setUpdater(loginUser.getUsername());
+            buy.setUpdatetime(timeString);
             //todo 修改明细 表
             buyService.updateById(old);
 

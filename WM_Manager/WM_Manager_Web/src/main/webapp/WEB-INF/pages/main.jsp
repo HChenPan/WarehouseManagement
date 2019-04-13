@@ -79,9 +79,9 @@
             </div>
             <div title="合同管理" style="overflow:auto" data-options="iconCls:'icon-main-contract'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/contractmanage/contractbasic.do','合同基本信息')">合同基本信息</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/contractmanage/contractgoods.do','合同物资信息')">合同物资信息</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/contractmanage/contractapproval.do','合同审批')">合同审批</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/contractbasic.do','合同基本信息')">合同基本信息*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/contractgoods.do','合同物资信息')">合同物资信息*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/contractapproval.do','合同审批')">合同审批*</a></div></li>
                 </ul>
             </div>
             <div title="内部交易" style="overflow:auto" data-options="iconCls:'icon-main-nenghao'">

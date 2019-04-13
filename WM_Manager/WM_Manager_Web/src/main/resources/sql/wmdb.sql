@@ -1266,6 +1266,10 @@ alter table wm_buylist add constraint buycodeid foreign key ( buycodeid ) refere
 -- foreign keys structure for table wm_planlist
 -- ----------------------------
 alter table wm_planlist add constraint plancodeid foreign key ( plancodeid ) references wm_plan ( id ) on delete cascade not deferrable initially immediate norely validate;
+-- ----------------------------
+-- foreign keys structure for table wm_contractgoods
+-- ----------------------------
+alter table wm_contractgoods add constraint contractbasicid foreign key (contractbasicid) references wm_contractbasic ( id ) on delete cascade not deferrable initially immediate norely validate;
 
 --插入初始值
 INSERT INTO wm_department ( id, creatorid, creator, createtime, updaterid, updater, updatetime, name, tel, deptnumber, parentid )

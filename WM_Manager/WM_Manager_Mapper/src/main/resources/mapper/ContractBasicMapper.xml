@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.ContractBasicMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.ContractBasic">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="AUDITINGSTATUS" jdbcType="VARCHAR" property="auditingstatus"/>
+        <result column="BACKREASON" jdbcType="VARCHAR" property="backreason"/>
+        <result column="BACKTIME" jdbcType="VARCHAR" property="backtime"/>
+        <result column="BACKUSERID" jdbcType="VARCHAR" property="backuserid"/>
+        <result column="BJF1" jdbcType="VARCHAR" property="bjf1"/>
+        <result column="BJF2" jdbcType="VARCHAR" property="bjf2"/>
+        <result column="BJF3" jdbcType="VARCHAR" property="bjf3"/>
+        <result column="BJREASONS" jdbcType="VARCHAR" property="bjreasons"/>
+        <result column="BUYERID" jdbcType="VARCHAR" property="buyerid"/>
+        <result column="BUYERNAME" jdbcType="VARCHAR" property="buyername"/>
+        <result column="BUYERWT" jdbcType="VARCHAR" property="buyerwt"/>
+        <result column="CONTRACTAREA" jdbcType="VARCHAR" property="contractarea"/>
+        <result column="CONTRACTAUDITINGTYPCODE" jdbcType="VARCHAR" property="contractauditingtypcode"/>
+        <result column="CONTRACTAUDITINGTYPE" jdbcType="VARCHAR" property="contractauditingtype"/>
+        <result column="CONTRACTAUDITINGTYPENAME" jdbcType="VARCHAR" property="contractauditingtypename"/>
+        <result column="CONTRACTID" jdbcType="VARCHAR" property="contractid"/>
+        <result column="CONTRACTMETHOD" jdbcType="VARCHAR" property="contractmethod"/>
+        <result column="CONTRACTSTATUS" jdbcType="VARCHAR" property="contractstatus"/>
+        <result column="CONTRACTTAX" jdbcType="VARCHAR" property="contracttax"/>
+        <result column="CONTRACTTEMP" jdbcType="VARCHAR" property="contracttemp"/>
+        <result column="CONTRACTTYPE" jdbcType="VARCHAR" property="contracttype"/>
+        <result column="CREATUSERID" jdbcType="VARCHAR" property="creatuserid"/>
+        <result column="ENDDATE" jdbcType="VARCHAR" property="enddate"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="FREIGHT" jdbcType="VARCHAR" property="freight"/>
+        <result column="NOTE" jdbcType="VARCHAR" property="note"/>
+        <result column="PAYMENTMETHOD" jdbcType="VARCHAR" property="paymentmethod"/>
+        <result column="SERIALSNUMBER" jdbcType="VARCHAR" property="serialsnumber"/>
+        <result column="SPCODE" jdbcType="VARCHAR" property="spcode"/>
+        <result column="STARTDATE" jdbcType="VARCHAR" property="startdate"/>
+        <result column="SUMMONEY" jdbcType="VARCHAR" property="summoney"/>
+        <result column="SUPPLIERREASONS" jdbcType="VARCHAR" property="supplierreasons"/>
+        <result column="VENDITORID" jdbcType="VARCHAR" property="venditorid"/>
+        <result column="VENDITORNAME" jdbcType="VARCHAR" property="venditorname"/>
+        <result column="VENDITORWT" jdbcType="VARCHAR" property="venditorwt"/>
+        <result column="ZJCODE" jdbcType="VARCHAR" property="zjcode"/>
+        <result column="ZJNAME" jdbcType="VARCHAR" property="zjname"/>
+    </resultMap>
+
+</mapper>

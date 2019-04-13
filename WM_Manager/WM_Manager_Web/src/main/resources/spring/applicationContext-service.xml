@@ -94,4 +94,13 @@
     <bean id="wzQxService" class="com.hchenpan.service.impl.WzQxServiceImpl">
         <qualifier value="wzQxService"/>
     </bean>
+    <bean id="contractBasicService" class="com.hchenpan.service.impl.ContractBasicServiceImpl">
+        <qualifier value="contractBasicService"/>
+    </bean>
+    <bean id="contractGoodsService" class="com.hchenpan.service.impl.ContractGoodsServiceImpl">
+        <qualifier value="contractGoodsService"/>
+    </bean>
+    <bean id="contractTermsService" class="com.hchenpan.service.impl.ContractTermsServiceImpl">
+        <qualifier value="contractTermsService"/>
+    </bean>
 </beans>

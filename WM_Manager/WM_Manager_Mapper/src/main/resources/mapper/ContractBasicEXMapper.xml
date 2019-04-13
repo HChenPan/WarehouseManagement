@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.ContractBasicMapper">
+    <select id="selectallList" resultType="map">
+        SELECT
+	a.id id,
+	a.serialsnumber serialsnumber,
+	b.name contracttype,
+	a.startdate startdate,
+	a.enddate enddate,
+	c.suppliername vendiorname
+FROM
+	wm_contractbasic a,
+	wm_dictionaryschild b,
+	wm_supplier c
+WHERE
+	a.spcode = '99'
+	AND a.flag = 'E'
+	AND a.contracttype = b.id
+	AND b.flag = 'E'
+	AND a.venditorid = c.id
+	AND c.flag = 'E'
+	AND a.contractstatus = '执行'
+ORDER BY
+	backtime DESC
+
+    </select>
+
+    <select id="selectContractPage" parameterType="map" resultType="map">
+        select
+        a.id,a.creatorid,a.creator,a.createtime,a.updaterid,a.updater,a.updatetime,a.auditingstatus,a.backreason,a.backtime,a.backuserid,a.bjf1,a.bjf2,a.bjf3,a.bjreasons,a.buyerid,a.buyername,a.buyerwt,a.contractarea,a.contractauditingtypcode,a.contractauditingtype,a.contractauditingtypename,a.contractid,a.contractmethod,a.contractstatus,a.contracttax,a.contracttemp,a.contracttype,a.creatuserid,a.enddate,a.flag,a.freight,a.note,a.paymentmethod,a.serialsnumber,a.spcode,a.startdate,a.summoney,a.supplierreasons,a.venditorid,a.venditorname,a.venditorwt,a.zjcode,a.zjname
+        from wmdb.wm_contractbasic a
+        inner join wmdb.wm_dictionaryschild b on b.id = a.contracttype
+        inner join wmdb.wm_user c on c.id = a.creatuserid
+        inner join wmdb.wm_buyer d on d.id = a.buyerid
+        inner join wmdb.wm_supplier e on e.id = a.venditorid
+        inner join wmdb.wm_contracttempname f on f.id = a.contracttemp
+        <where>
+            <if test="1==1">
+                a.flag = 'E'
+            </if>
+            <if test="serialsnumber != null and serialsnumber != ''">
+                <bind name="pattern" value="'%' + serialsnumber + '%'"/>
+                and a.serialsnumber LIKE #{pattern}
+            </if>
+            <if test="contracttype != null and contracttype != ''">
+                <bind name="pattern" value="'%' + contracttype + '%'"/>
+                and a.contracttype LIKE #{pattern}
+            </if>
+            <if test="datetime1 != null and datetime1 != ''">
+                <bind name="pattern" value="datetime1"/>
+                and substr( a.createtime, 1, 10 ) &gt;= #{pattern}
+            </if>
+            <if test="datetime2 != null and datetime2 != ''">
+                <bind name="pattern" value="datetime2"/>
+                and substr( a.createtime, 1, 10 )
+                &lt;= #{pattern}
+            </if>
+            <if test="creatuserid != null and creatuserid != ''">
+                <bind name="pattern" value="creatuserid"/>
+                and a.creatuserid = #{pattern}
+            </if>
+        </where>
+    </select>
+</mapper>
