@@ -75,6 +75,30 @@ public class WarehouseNumController extends BaseController {
     }
 
     /**
+     * 功能：取单条数据编辑
+     */
+    @ResponseBody
+    @PostMapping("/warehousenum/getall")
+    public String getall(WarehouseNum warehouseNum) {
+        return GetGsonString(warehouseNumService.selectList(new EntityWrapper<WarehouseNum>()
+                        .eq("flag", "E")
+                        .orderBy("stocktype")
+
+
+                )
+        );
+    }
+
+    /**
+     * 功能：取单条数据编辑
+     */
+    @ResponseBody
+    @PostMapping("/warehousenum/getckbyfhrid")
+    public String getckbyfhrid(WarehouseNum warehouseNum) {
+        return GetGsonString(warehouseNumService.selectCKbyfhrid(warehouseNum.getFhrid()));
+    }
+
+    /**
      * 功能：新增仓库
      */
     @ResponseBody

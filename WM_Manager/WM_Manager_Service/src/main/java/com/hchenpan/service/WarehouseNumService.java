@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseService;
 import com.hchenpan.pojo.WarehouseNum;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +19,6 @@ import java.util.Map;
 public interface WarehouseNumService extends BaseService<WarehouseNum> {
 
     Page<Map<String, Object>> getPage(Page<Map<String, Object>> page, Map<String, Object> params);
+
+    List<Map<String, Object>> selectCKbyfhrid(String fhrid);
 }

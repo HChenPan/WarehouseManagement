@@ -38,7 +38,8 @@
             </if>
         </where>
     </select>
-    <select id="selectallList" resultType="map">select
+    <select id="selectallList" resultType="map">
+select
 	a.id as id,
 	a.contractbasicid as contractbasicid,
 	a.buycode as buycode,

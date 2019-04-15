@@ -351,6 +351,21 @@ public class DictionaryschildController extends BaseController {
     }
 
     /**
+     * 功能:根据数据字典大类编码查找采购计划大类
+     */
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getbillbydecode")
+    public String getbillbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST2001").eq("note", "BILL").eq("flag", "E")));
+    }
+
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getytbydecode")
+    public String getytbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST2001").eq("flag", "E")));
+    }
+
+    /**
      * 功能:根据数据字典大类编码查找合同类型
      */
     @ResponseBody

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.ReturntreasurylistMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Returntreasurylist">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="BUYCODE" jdbcType="VARCHAR" property="buycode"/>
+        <result column="CONTRACTBASICID" jdbcType="VARCHAR" property="contractbasicid"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="PLANBUM" jdbcType="VARCHAR" property="planbum"/>
+        <result column="PLANCODE" jdbcType="VARCHAR" property="plancode"/>
+        <result column="PLANPRICE" jdbcType="VARCHAR" property="planprice"/>
+        <result column="RKCODE" jdbcType="VARCHAR" property="rkcode"/>
+        <result column="SJMONEY" jdbcType="VARCHAR" property="sjmoney"/>
+        <result column="SJNUM" jdbcType="VARCHAR" property="sjnum"/>
+        <result column="SJTHMONEY" jdbcType="VARCHAR" property="sjthmoney"/>
+        <result column="SJTHSL" jdbcType="VARCHAR" property="sjthsl"/>
+        <result column="SJTHSLCS" jdbcType="VARCHAR" property="sjthslcs"/>
+        <result column="SJTHSLJS" jdbcType="VARCHAR" property="sjthsljs"/>
+        <result column="STOREHOUSECODE" jdbcType="VARCHAR" property="storehousecode"/>
+        <result column="STOREHOUSENAME" jdbcType="VARCHAR" property="storehousename"/>
+        <result column="SYCKNUM" jdbcType="VARCHAR" property="sycknum"/>
+        <result column="TKCODE" jdbcType="VARCHAR" property="tkcode"/>
+        <result column="UNIT" jdbcType="VARCHAR" property="unit"/>
+        <result column="WZCODE" jdbcType="VARCHAR" property="wzcode"/>
+        <result column="WZNAME" jdbcType="VARCHAR" property="wzname"/>
+        <result column="ZJCODE" jdbcType="VARCHAR" property="zjcode"/>
+        <result column="ZJNAME" jdbcType="VARCHAR" property="zjname"/>
+    </resultMap>
+
+</mapper>

@@ -27,4 +27,8 @@
             </if>
         </where>
     </select>
+    <select id="selectCKbyfhrid" parameterType="map" resultType="map">
+        SELECT id,stockname,stockcode from wm_warehousenum where flag='E' and id in (select warehouseid from wm_warehousenum_user where userid =#{fhrid,jdbcType=VARCHAR}) order by updatetime desc
+
+    </select>
 </mapper>

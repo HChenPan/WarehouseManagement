@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.CallslipMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Callslip">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="APPLICATION" jdbcType="VARCHAR" property="application"/>
+        <result column="APPLYDATE" jdbcType="VARCHAR" property="applydate"/>
+        <result column="CALLSLIPCODE" jdbcType="VARCHAR" property="callslipcode"/>
+        <result column="CALLSLIPTYPE" jdbcType="VARCHAR" property="callsliptype"/>
+        <result column="DEPARTMENT" jdbcType="VARCHAR" property="department"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="LLCODE" jdbcType="VARCHAR" property="llcode"/>
+        <result column="MONEY" jdbcType="VARCHAR" property="money"/>
+        <result column="NOTE" jdbcType="VARCHAR" property="note"/>
+        <result column="OUTTIME" jdbcType="VARCHAR" property="outtime"/>
+        <result column="OUTUSERID" jdbcType="VARCHAR" property="outuserid"/>
+        <result column="OUTUSERNAME" jdbcType="VARCHAR" property="outusername"/>
+        <result column="PROJECTNAME" jdbcType="VARCHAR" property="projectname"/>
+        <result column="PROJECTNO" jdbcType="VARCHAR" property="projectno"/>
+        <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
+        <result column="SPCODE" jdbcType="VARCHAR" property="spcode"/>
+        <result column="SPJSDATE" jdbcType="VARCHAR" property="spjsdate"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="STOREHOUSE" jdbcType="VARCHAR" property="storehouse"/>
+        <result column="USERID" jdbcType="VARCHAR" property="userid"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.WarehousingMapper">
+    <select id="selectUserList" parameterType="map" resultType="map">
+        SELECT wm_warehousing.id   id,
+               notecode,
+               entryinfotype,
+               storehousecode,
+               storehousename,
+               entrydate,
+               consignee,
+               storeman,
+               note,
+               rkstatus,
+               wm_warehousing.flag flag
+        FROM wm_warehousing,
+             wm_warehousenum
+        WHERE wm_warehousing.flag = 'E'
+          AND wm_warehousing.storehousecode = wm_warehousenum.stockcode
+          AND wm_warehousenum.flag = 'E'
+          AND wm_warehousing.rkstatus = '已入库'
+          AND wm_warehousing.updatetime &gt;= #{halfYearStartTime}
+          AND wm_warehousing.userid = #{userid}
+        ORDER BY wm_warehousing.updatetime DESC
+    </select>
+</mapper>

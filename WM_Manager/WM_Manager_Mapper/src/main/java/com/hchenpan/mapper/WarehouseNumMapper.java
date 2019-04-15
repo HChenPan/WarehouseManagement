@@ -12,4 +12,6 @@ import java.util.Map;
 public interface WarehouseNumMapper extends BaseMapper<WarehouseNum> {
 
     List<Map<String, Object>> getPage(Page<Map<String, Object>> page, Map<String, Object> params);
+
+    List<Map<String, Object>> selectCKbyfhrid(String fhrid);
 }

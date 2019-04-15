@@ -21,4 +21,7 @@ public interface ContractGoodsService extends BaseService<ContractGoods> {
     Page<Map<String, Object>> selectContractPage(Page<Map<String, Object>> page, Map<String, Object> params);
 
     List<Map<String, Object>> selectallList();
+
+    String getid(String buycode, String wzcode, String plancode, String contractbasicid);
+
 }

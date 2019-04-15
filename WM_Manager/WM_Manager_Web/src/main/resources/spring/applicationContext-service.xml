@@ -19,6 +19,9 @@
     <bean id="rolesService" class="com.hchenpan.service.impl.RolesServiceImpl">
         <qualifier value="rolesService"/>
     </bean>
+    <bean id="rolesPermissionsService" class="com.hchenpan.service.impl.RolesPermissionsServiceImpl">
+        <qualifier value="rolesPermissionsService"/>
+    </bean>
     <bean id="userrolesService" class="com.hchenpan.service.impl.UserRolesServiceImpl">
         <qualifier value="userrolesService"/>
     </bean>
@@ -103,4 +106,39 @@
     <bean id="contractTermsService" class="com.hchenpan.service.impl.ContractTermsServiceImpl">
         <qualifier value="contractTermsService"/>
     </bean>
+    <bean id="callslipService" class="com.hchenpan.service.impl.CallslipServiceImpl">
+        <qualifier value="callslipService"/>
+    </bean>
+    <bean id="callslipGoodsService" class="com.hchenpan.service.impl.CallslipGoodsServiceImpl">
+        <qualifier value="callslipGoodsService"/>
+    </bean>
+    <bean id="cancellingstocksSQService" class="com.hchenpan.service.impl.CancellingstocksSQServiceImpl">
+        <qualifier value="cancellingstocksSQService"/>
+    </bean>
+    <bean id="cancellingstocksWZService" class="com.hchenpan.service.impl.CancellingstocksWZServiceImpl">
+        <qualifier value="cancellingstocksWZService"/>
+    </bean>
+    <bean id="whtwarehousingService" class="com.hchenpan.service.impl.WhtwarehousingServiceImpl">
+        <qualifier value="whtwarehousingService"/>
+    </bean>
+    <bean id="whtwarehousinglistService" class="com.hchenpan.service.impl.WhtwarehousinglistServiceImpl">
+        <qualifier value="whtwarehousinglistService"/>
+    </bean>
+    <bean id="warehousingService" class="com.hchenpan.service.impl.WarehousingServiceImpl">
+        <qualifier value="warehousingService"/>
+    </bean>
+    <bean id="warehousinglistService" class="com.hchenpan.service.impl.WarehousinglistServiceImpl">
+        <qualifier value="warehousinglistService"/>
+    </bean>
+    <bean id="returntreasuryService" class="com.hchenpan.service.impl.ReturntreasuryServiceImpl">
+        <qualifier value="returntreasuryService"/>
+    </bean>
+    <bean id="returntreasurylistService" class="com.hchenpan.service.impl.ReturntreasurylistServiceImpl">
+        <qualifier value="returntreasurylistService"/>
+    </bean>
+    <bean id="employeeService" class="com.hchenpan.service.impl.EmployeeServiceImpl">
+        <qualifier value="employeeService"/>
+    </bean>
+
+
 </beans>

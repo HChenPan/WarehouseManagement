@@ -1,5 +1,6 @@
 package com.hchenpan.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseServiceImpl;
 import com.hchenpan.mapper.ContractGoodsMapper;
@@ -39,5 +40,17 @@ public class ContractGoodsServiceImpl extends BaseServiceImpl<ContractGoodsMappe
     @Override
     public List<Map<String, Object>> selectallList() {
         return transformUpperCase(mapper.selectallList());
+    }
+
+    @Override
+    public String getid(String buycode, String wzcode, String plancode, String contractbasicid) {
+
+        return selectOne(new EntityWrapper<ContractGoods>()
+                .eq("buycode", buycode)
+                .eq("wzcode", wzcode)
+                .eq("plancode", plancode)
+                .eq("contractbasicid", contractbasicid)
+                .eq("flag", "E")
+        ).getId();
     }
 }

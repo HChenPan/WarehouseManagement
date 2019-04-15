@@ -3,23 +3,38 @@ package com.hchenpan.pojo;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.hchenpan.common.BasePojo;
 
-/**
+/***
  * @author hchenpan
  * @version 1.0
  */
 @TableName("WM_PERMISSION")
 public class Permission extends BasePojo {
 
-
+    /**
+     * 权限名称
+     */
     private String name;
 
-    private String namevalue;
+    /**
+     * 权限键值
+     */
+    private String nameValue;
 
+    /**
+     * 权限操作描述
+     */
     private String description;
 
+    /**
+     * 所属模块
+     */
     private String modular;
 
-    private String indexorder;
+    /**
+     * 排列顺序
+     */
+    private int indexorder;
+
 
     public String getName() {
         return name;
@@ -29,12 +44,12 @@ public class Permission extends BasePojo {
         this.name = name;
     }
 
-    public String getNamevalue() {
-        return namevalue;
+    public String getNameValue() {
+        return nameValue;
     }
 
-    public void setNamevalue(String namevalue) {
-        this.namevalue = namevalue;
+    public void setNameValue(String nameValue) {
+        this.nameValue = nameValue;
     }
 
     public String getDescription() {
@@ -53,11 +68,11 @@ public class Permission extends BasePojo {
         this.modular = modular;
     }
 
-    public String getIndexorder() {
+    public int getIndexorder() {
         return indexorder;
     }
 
-    public void setIndexorder(String indexorder) {
+    public void setIndexorder(int indexorder) {
         this.indexorder = indexorder;
     }
 }

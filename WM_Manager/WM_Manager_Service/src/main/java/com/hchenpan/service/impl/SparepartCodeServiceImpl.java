@@ -101,4 +101,15 @@ public class SparepartCodeServiceImpl extends BaseServiceImpl<SparepartCodeMappe
         }
         return dlist;
     }
+
+    @Override
+    public List<SparepartCode> getcodelx(String bjcode, String type) {
+
+        return selectList(new EntityWrapper<SparepartCode>()
+                .eq("description", type)
+                .eq("code", bjcode)
+
+
+        );
+    }
 }

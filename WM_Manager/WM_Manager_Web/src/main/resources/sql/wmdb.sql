@@ -552,24 +552,6 @@ CREATE TABLE wm_permission (
 	indexorder VARCHAR2 ( 255 byte ) 
 );
 -- ----------------------------
--- table structure for wm_permissions
--- ----------------------------
-CREATE TABLE wm_permissions (
-	id VARCHAR2 ( 255 byte ) NOT NULL primary key,
-	creatorid VARCHAR2 ( 255 byte ),
-	creator VARCHAR2 ( 255 byte ),
-	createtime VARCHAR2 ( 255 byte ),
-	updaterid VARCHAR2 ( 255 byte ),
-	updater VARCHAR2 ( 255 byte ),
-	updatetime VARCHAR2 ( 255 byte ),
-	pid VARCHAR2 ( 255 byte ) NOT NULL,
-	description VARCHAR2 ( 255 byte ),
-	indexorder NUMBER NOT NULL,
-	modular VARCHAR2 ( 255 byte ),
-	name VARCHAR2 ( 255 byte ),
-	namevalue VARCHAR2 ( 255 byte ) 
-);
--- ----------------------------
 -- table structure for wm_pexcel
 -- ----------------------------
 CREATE TABLE wm_pexcel (
@@ -738,6 +720,20 @@ CREATE TABLE wm_roles (
 	description VARCHAR2 ( 255 byte ),
 	TYPE VARCHAR2 ( 255 byte ),
 	indexorder VARCHAR2 ( 255 byte ) 
+);
+-- ----------------------------
+-- table structure for wm_roles_permissions
+-- ----------------------------
+CREATE TABLE wm_roles_permissions (
+	id VARCHAR2 ( 255 byte ) NOT NULL primary key,
+	creatorid VARCHAR2 ( 255 byte ),
+	creator VARCHAR2 ( 255 byte ),
+	createtime VARCHAR2 ( 255 byte ),
+	updaterid VARCHAR2 ( 255 byte ),
+	updater VARCHAR2 ( 255 byte ),
+	updatetime VARCHAR2 ( 255 byte ),
+	gd_roles_rid varchar2 ( 255 byte ),
+	permissions_pid varchar2 ( 255 byte )
 );
 -- ----------------------------
 -- table structure for wm_sparepartcode
@@ -1267,12 +1263,15 @@ alter table wm_buylist add constraint buycodeid foreign key ( buycodeid ) refere
 -- ----------------------------
 alter table wm_planlist add constraint plancodeid foreign key ( plancodeid ) references wm_plan ( id ) on delete cascade not deferrable initially immediate norely validate;
 -- ----------------------------
--- foreign keys structure for table wm_contractgoods
+-- foreign keys structure for table wm_roles_permissions
 -- ----------------------------
-alter table wm_contractgoods add constraint contractbasicid foreign key (contractbasicid) references wm_contractbasic ( id ) on delete cascade not deferrable initially immediate norely validate;
+alter table wm_roles_permissions add constraint rid foreign key (rid) references wm_roles ( id ) on delete cascade not deferrable initially immediate norely validate;
+alter table wm_roles_permissions add constraint pid foreign key (pid) references wm_permission ( id ) on delete cascade not deferrable initially immediate norely validate;
+
+
 
 --插入初始值
-INSERT INTO wm_department ( id, creatorid, creator, createtime, updaterid, updater, updatetime, name, tel, deptnumber, parentid )
-VALUES	( 'c2b632dc87637a5fd03fdf9b61693d17', NULL, NULL, NULL, NULL, NULL, NULL, '全厂', '15552224', '001', NULL );
-INSERT INTO wm_user ( id, creatorid,creator,createtime,updaterid,updater,updatetime,username,password,realname,department,tel,issuper,lastlogintime,applogin,departmentid,state )
-VALUES	('005afb46a05d42a6802400c74ff6e84e','001','admin','2019-03-20',NULL,NULL,NULL,'admin','c2b632dc87637a5fd03fdf9b61693d17','管理员','全厂','17764347918','1','2019-03-20','0','c2b632dc87637a5fd03fdf9b61693d17','normal');
+insert into wm_department ( id, creatorid, creator, createtime, updaterid, updater, updatetime, name, tel, deptnumber, parentid )
+values ('c4b98fbd340b4ee1835891600ac20cac', '005afb46a05d42a6802400c74ff6e84e', 'admin', '2019-04-15 20:45:39', '005afb46a05d42a6802400c74ff6e84e', 'admin', '2019-04-15 20:45:39', '马钢集团公司', null, null, null);
+insert into wm_user(id, creatorid, creator, createtime, updaterid, updater, updatetime, username, password, realname, department, tel, issuper, lastlogintime, applogin, departmentid, state) 
+values ('005afb46a05d42a6802400c74ff6e84e', '005afb46a05d42a6802400c74ff6e84e', 'admin', '2019-03-20', '005afb46a05d42a6802400c74ff6e84e', 'admin', '2019-03-20', 'admin', 'c2b632dc87637a5fd03fdf9b61693d17', '管理员', '马钢集团公司', '17764347918', '1', '2019-03-20', '0', 'c4b98fbd340b4ee1835891600ac20cac', 'normal');

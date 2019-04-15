@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.CallslipMapper">
+    <select id="getallOrderByApplication" parameterType="map" resultType="map">
+        <bind name="HalfYearStartTime" value="HalfYearStartTime"/>
+        <bind name="tkrid" value="tkrid"/>
+        SELECT
+        c.id AS rn,
+        c.id,
+        d.name,
+        c.applydate,
+        e.name callsliptype,
+        c.createtime,
+        g.name department,
+        c.flag,
+        c.note,
+        c.projectname,
+        c.projectno,
+        c.realname,
+        c.storehouse,
+        c.updatetime,
+        c.userid,
+        c.callslipcode,
+        f.stockname
+        FROM
+        wm_callslip c
+        LEFT JOIN wm_dictionaryschild d ON d.id = c.application
+        LEFT JOIN wm_dictionaryschild e ON e.id = c.callsliptype
+        LEFT JOIN wm_warehousenum f ON c.storehouse = f.stockcode
+        LEFT JOIN wm_department g ON c.department = g.id
+        WHERE
+        1 = 1
+        AND c.STATUS IN ( '已出库' )
+        AND c.flag = 'E'
+        AND f.flag = 'E'
+        AND c.updatetime &gt;= #{HalfYearStartTime}
+        AND c.storehouse IN (
+        SELECT
+        stockcode
+        FROM
+        wm_warehousenum
+        WHERE
+        flag = 'E'
+        AND id IN ( SELECT warehouseid FROM wm_warehousenum_user WHERE userid = #{tkrid} ))
+        ORDER BY
+        updatetime DESC
+    </select>
+    <select id="selectPagelist" parameterType="map" resultType="map">
+
+        SELECT
+        c.id,
+        d.name,
+        c.applydate,
+        e.name callsliptype,
+        c.createtime,
+        g.name department,
+        c.flag,
+        c.note,
+        c.projectname,
+        c.projectno,
+        c.realname,
+        c.storehouse,
+        c.updatetime,
+        c.userid,
+        c.callslipcode,
+        f.stockname,
+        c.status,
+        c.outtime,
+        c.outusername,
+        c.spcode
+        FROM
+        wm_callslip c
+        LEFT JOIN wm_dictionaryschild d ON d.id = c.application
+        LEFT JOIN wm_dictionaryschild e ON e.id = c.callsliptype
+        LEFT JOIN wm_warehousenum f ON c.storehouse = f.stockcode
+        LEFT JOIN wm_department g ON c.department = g.id
+        <where>
+            <if test="1==1">
+                <bind name="pattern" value="userid"/>
+                f.flag = 'E'
+                AND c.userid = #{pattern}
+            </if>
+            <if test="callslipcode != null and callslipcode != ''">
+                <bind name="pattern" value="'%' + callslipcode + '%'"/>
+                AND c.callslipcode LIKE #{pattern}
+            </if>
+            <if test="callsliptype != null and callsliptype != ''">
+                <bind name="pattern" value="'%' + callsliptype + '%'"/>
+                AND c.callslipcode LIKE #{pattern}
+            </if>
+            <if test="dcode != null and dcode != ''">
+                <bind name="pattern" value="datetime1"/>
+                AND c.applydate &gt;= #{pattern}
+            </if>
+            <if test="dcode != null and dcode != ''">
+                <bind name="pattern" value="datetime2"/>
+                AND c.applydate &lt;= #{pattern}
+            </if>
+        </where>
+    </select>
+    <select id="selectPagelistck" parameterType="map" resultType="map">
+        SELECT
+        c.id,
+        d.name,
+        c.applydate,
+        e.name callsliptype,
+        c.createtime,
+        g.name department,
+        c.flag,
+        c.note,
+        c.projectname,
+        c.projectno,
+        c.realname,
+        c.storehouse,
+        c.updatetime,
+        c.userid,
+        c.callslipcode,
+        f.stockname,
+        c.status,
+        c.outtime,
+        c.outusername
+        FROM
+        wm_callslip c
+        LEFT JOIN wm_dictionaryschild d ON d.id = c.application
+        LEFT JOIN wm_dictionaryschild e ON e.id = c.callsliptype
+        LEFT JOIN wm_warehousenum f ON c.storehouse = f.stockcode
+        LEFT JOIN wm_department g ON c.department = g.id
+        WHERE
+        1 = 1
+        <if test="callslipcode != null and callslipcode != ''">
+            <bind name="pattern" value="'%' + callslipcode + '%'"/>
+            AND c.callslipcode LIKE #{pattern}
+        </if>
+        <if test="callsliptype != null and callsliptype != ''">
+            <bind name="pattern" value="'%' + callsliptype + '%'"/>
+            AND c.callslipcode LIKE #{pattern}
+        </if>
+        <if test="dcode != null and dcode != ''">
+            <bind name="pattern" value="datetime1"/>
+            AND c.applydate &gt;= #{pattern}
+        </if>
+        <if test="dcode != null and dcode != ''">
+            <bind name="pattern" value="datetime2"/>
+            AND c.applydate &lt;= #{pattern}
+        </if>
+        AND c.flag = 'E'
+        AND c.spcode = '99'
+        AND STOREHOUSE IN (
+        SELECT
+        b.STOCKCODE
+        FROM
+        wm_WAREHOUSENUM b
+        WHERE
+        b.ID IN ( SELECT warehouseid FROM wm_WAREHOUSENUM_USER a WHERE a.userid = #{userid} ))
+        AND f.flag = 'E'
+    </select>
+    <select id="selectSPlistck" resultType="map" parameterType="map">
+           select * from ( ${sql} )
+    </select>
+</mapper>

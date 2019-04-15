@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.EmployeeMapper">
+
+    <select id="getlistPage" parameterType="map" resultType="map">
+        SELECT
+        A.ID AS ID,
+        A.EMPLOYEENUM AS EMPLOYEENUM,
+        A.EMPLOYEENAME AS EMPLOYEENAME,
+        A.PHONENUM AS PHONENUM,
+        A.UPDATETIME AS updatetime,
+        B.NAME AS DEPARTNAME
+        FROM
+        WMDB.WM_EMPLOYEE A
+        INNER JOIN WMDB.WM_DEPARTMENT B ON A.DEPARTID = B.ID
+        <where>
+            A.FLAG = 'E'
+            <if test="name != null and name != ''">
+                <bind name="pattern" value="'%' + employeename + '%'"/>
+                AND A.EMPLOYEENAME LIKE #{pattern}
+            </if>
+            <if test="name != null and name != ''">
+                <bind name="pattern" value="'%' + employeenum + '%'"/>
+                AND A.EMPLOYEENUM LIKE #{pattern}
+            </if>
+            <if test="name != null and name != ''">
+                <bind name="pattern" value="'%' + phonenum + '%'"/>
+                AND A.PHONENUM LIKE #{pattern}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -46,10 +46,10 @@
                 <ul class="navlist">
                     <shiro:hasRole name="admin">
                     <li><div><a href="#" onclick="addPanel('${ctx}/user.do','用户管理')">用户管理*</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/role.do','角色管理')">角色管理</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/permission.do','权限管理')">权限管理</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/department.do','部门设置')">部门设置</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/employee.do','员工维护')">员工维护</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/role.do','角色管理')">角色管理*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/permission.do','权限管理')">权限管理*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/department.do','部门设置')">部门设置*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/employee.do','员工维护')">员工维护*</a></div></li>
                     </shiro:hasRole>
                     <shiro:hasAnyRoles name="admin,cangku">
                     <li><div><a href="#" onclick="addPanel('${ctx}/supplier.do','供应商管理')">供应商管理*</a></div></li>
@@ -63,9 +63,9 @@
                     <li><div><a href="#" onclick="addPanel('${ctx}/sparepartcode.do','备件编码管理树')">备件编码管理树*</a></div> </li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/sptypeSplevel.do','审批类型级别配置')">审批类型级别配置*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/projectNoManage.do','工程号维护')">工程号维护*</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/workflow.do','工作流程')">工作流程</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/workflow.do','工作流程')">工作流程*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/warehousenum.do','仓库编码')">仓库编码*</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/basicdata/wzqx.do','物资编码权限')">物资编码权限</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/wzqx.do','物资编码权限')">物资编码权限</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/contracttemp.do','合同条款模板')">合同条款模板*</a></div></li>
                 </ul>
             </div>
@@ -92,13 +92,13 @@
             </div>
             <div title="库存管理" style="overflow:auto" data-options="iconCls:'icon-main-beijian'">
                 <ul class="navlist">
-                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousing.do','采购入库')">采购入库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/whtwarehousing.do','无合同入库')">无合同入库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/callslip.do','领料单申请')">领料单申请</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/callslipout.do','领料出库')">领料出库</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/callslipapproval.do','领料单审批')">领料单审批</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/returntreasury.do','采购退货')">采购退货</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/cancellingstocks.do','领料退库')">领料退库</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/warehousing.do','采购入库')">采购入库*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/whtwarehousing.do','无合同入库')">无合同入库*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/callslip.do','领料单申请')">领料单申请*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/callslipout.do','领料出库')">领料出库*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/callslipapproval.do','领料单审批')">领料单审批*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/returntreasury.do','采购退货')">采购退货*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/cancellingstocks.do','领料退库')">领料退库*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/stock.do','库存管理')">库存管理*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/stockjz.do','库存结转')">库存结转*</a></div></li>
                 </ul>

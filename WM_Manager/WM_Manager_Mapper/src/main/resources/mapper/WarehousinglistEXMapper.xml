@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.WarehousinglistMapper">
+    <select id="selectWZList" resultType="map" parameterType="map">
+        <bind name="plancode" value="'('  plancode  +')' "/>
+        <bind name="storehousecode" value="storehousecode'"/>
+        SELECT
+        c.id,
+        c.contractbasicid,
+        c.buycode,
+        c.plancode,
+        c.sjnum,
+        c.sjmoney,
+        c.planprice,
+        c.wzcode,
+        c.wzname,
+        c.ZJCODE,
+        c.ZJNAME,
+        c.RKCODE,
+        c.SYCKNUM,
+        c.unit
+        FROM
+        wm_warehousinglist c,
+        wm_warehousing d
+        WHERE
+        c.flag = 'E'
+        AND cast(
+        c.sycknum AS DECIMAL ( 38, 2 )) > 0
+        AND c.plancode IN #{plancode}
+        AND d.RKSTATUS = '已入库'
+        AND d.storehousecode = #{storehousecode}
+        AND c.RKCODE = d.NOTECODE ;
+
+    </select>
+
+</mapper>

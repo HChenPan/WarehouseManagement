@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.WhtwarehousinglistMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.Whtwarehousinglist">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="MODELSPCIFICATION" jdbcType="VARCHAR" property="modelspcification"/>
+        <result column="PLANPRICE" jdbcType="VARCHAR" property="planprice"/>
+        <result column="RKCODE" jdbcType="VARCHAR" property="rkcode"/>
+        <result column="SJMONEY" jdbcType="VARCHAR" property="sjmoney"/>
+        <result column="SJNUM" jdbcType="VARCHAR" property="sjnum"/>
+        <result column="UNIT" jdbcType="VARCHAR" property="unit"/>
+        <result column="WZCODE" jdbcType="VARCHAR" property="wzcode"/>
+        <result column="WZID" jdbcType="VARCHAR" property="wzid"/>
+        <result column="WZNAME" jdbcType="VARCHAR" property="wzname"/>
+        <result column="ZJCODE" jdbcType="VARCHAR" property="zjcode"/>
+        <result column="ZJNAME" jdbcType="VARCHAR" property="zjname"/>
+    </resultMap>
+</mapper>

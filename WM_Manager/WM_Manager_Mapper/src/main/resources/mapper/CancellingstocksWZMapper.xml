@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.CancellingstocksWZMapper">
+    <resultMap id="BaseResultMap" type="com.hchenpan.pojo.CancellingstocksWZ">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="CREATORID" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="creator"/>
+        <result column="CREATETIME" jdbcType="VARCHAR" property="createtime"/>
+        <result column="UPDATERID" jdbcType="VARCHAR" property="updaterid"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="updater"/>
+        <result column="UPDATETIME" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="TKCODE" jdbcType="VARCHAR" property="tkcode"/>
+        <result column="TKID" jdbcType="VARCHAR" property="tkid"/>
+        <result column="CALLSLIPCODE" jdbcType="VARCHAR" property="callslipcode"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="MODELSPECIFICATION" jdbcType="VARCHAR" property="modelspecification"/>
+        <result column="PRICE" jdbcType="VARCHAR" property="price"/>
+        <result column="STOCKCODE" jdbcType="VARCHAR" property="stockcode"/>
+        <result column="STOCKNAME" jdbcType="VARCHAR" property="stockname"/>
+        <result column="SUM" jdbcType="VARCHAR" property="sum"/>
+        <result column="SYSUM" jdbcType="VARCHAR" property="sysum"/>
+        <result column="TKPRICE" jdbcType="VARCHAR" property="tkprice"/>
+        <result column="TKSUM" jdbcType="VARCHAR" property="tksum"/>
+        <result column="UNIT" jdbcType="VARCHAR" property="unit"/>
+        <result column="WZCODE" jdbcType="VARCHAR" property="wzcode"/>
+        <result column="WZNAME" jdbcType="VARCHAR" property="wzname"/>
+        <result column="ZJCODE" jdbcType="VARCHAR" property="zjcode"/>
+        <result column="ZJNAME" jdbcType="VARCHAR" property="zjname"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hchenpan.mapper.ReturntreasurylistMapper">
+    <select id="selectMXPage" parameterType="map" resultType="map">
+        SELECT
+        c.id id,
+        c.rkcode rkcode,
+        c.contractbasicid contractbasicid,
+        c.buycode buycode,
+        c.plancode plancode,
+        c.wzcode wzcode,
+        c.wzname wzname,
+        c.planbum planbum,
+        c.planprice planprice,
+        c.sjnum sjnum,
+        c.sjmoney sjmoney,
+        c.zjcode zjcode,
+        c.zjname zjname,
+        c.flag flag,
+        c.unit unit,
+        d.storehousecode storehousecode,
+        d.storehousename storehousename,
+        c.sycknum sycknum
+        FROM
+        gd_warehousinglist c,
+        gd_warehousing d
+        WHERE
+        1 = 1
+        AND c.flag = 'E'
+        AND d.flag = 'E'
+        AND sycknum &gt; 0.00
+        AND c.rkcode = d.notecode
+        <if test="serialsnumber != null and serialsnumber != ''">
+            <bind name="notecodes" value="notecodes "/>
+            AND c.rkcode IN (#{pattern})
+        </if>
+
+
+    </select>
+
+</mapper>

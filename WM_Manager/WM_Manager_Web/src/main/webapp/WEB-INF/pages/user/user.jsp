@@ -6,22 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
     <title>用户管理</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-    <%--<%@ include file="../common/head.jsp" %>--%>
+    <%@ include file="../common/head.jsp" %>
     <link href="${ctx}/css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/statics/jqueryeasyui/themes/material-teal/easyui.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/statics/jqueryeasyui/themes/icon.css" rel="stylesheet" type="text/css"/>
-    <script src="${ctx}/statics/js/jquery-1.8.0.min.js" type="text/javascript"></script>
-    <script src="${ctx}/statics/jqueryeasyui/jquery.easyui.min.js" type="text/javascript"></script>
-    <script src="${ctx}/statics/jqueryeasyui/jquery.easyui.mobile.js" type="text/javascript"></script>
-    <script src="${ctx}/statics/jqueryeasyui/easyloader.js" type="text/javascript"></script>
-    <script src="${ctx}/statics/jqueryeasyui/locale/easyui-lang-zh_CN.js" type="text/javascript" charset="UTF-8" ></script>
+    <script type="text/javascript" src="${ctx}/statics/jqueryeasyui/plugins/datagrid-cellediting.js"></script>
+    <script type="text/javascript" src="${ctx}/statics/jqueryeasyui/plugins/datagrid-filter.js"></script>
     <script src="${ctx}/JavaScript/user.js" type="text/javascript"></script>
-
 </head>
 <script type="text/javascript">
     $(function () {
@@ -50,7 +44,7 @@
                     </td>
                     <td>拥有角色</td>
                     <td>
-                        <input class="easyui-combobox" id="password2" style="width: 180px;" panelHeight="auto" data-options="valueField:'rid', textField:'name',url:'roles/getall.do'"/>
+                        <input class="easyui-combobox" id="password2" style="width: 180px;" panelHeight="auto" data-options="valueField:'rid', textField:'name',url:'role/getall.do'"/>
                     </td>
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="usersearch()">查询用户</a>
@@ -94,7 +88,7 @@
                     </td>
                     <td>是否超级管理员</td>
                     <td>
-                        <select id="cc" class="easyui-combobox" name="issuper" panelHeight="auto">
+                        <select id="cc" class="easyui-combobox" name="issuper" panelHeight="auto" style="width:80px">
                             <option value="TRUE">是</option>
                             <option value="FALSE">否</option>
                         </select>

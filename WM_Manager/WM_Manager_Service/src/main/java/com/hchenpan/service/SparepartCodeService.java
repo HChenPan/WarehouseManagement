@@ -26,4 +26,6 @@ public interface SparepartCodeService extends BaseService<SparepartCode> {
     String getexpandid(String parentid);
 
     List<SparepartCode> getallsparepart();
+
+    List<SparepartCode> getcodelx(String bjcode, String type);
 }

@@ -8,6 +8,7 @@ import com.hchenpan.service.WarehouseNumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,5 +34,12 @@ public class WarehouseNumServiceImpl extends BaseServiceImpl<WarehouseNumMapper,
     public Page<Map<String, Object>> getPage(Page<Map<String, Object>> page, Map<String, Object> params) {
         page.setRecords(mapper.getPage(page, params));
         return page;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectCKbyfhrid(String fhrid) {
+
+
+        return transformUpperCase(mapper.selectCKbyfhrid(fhrid));
     }
 }

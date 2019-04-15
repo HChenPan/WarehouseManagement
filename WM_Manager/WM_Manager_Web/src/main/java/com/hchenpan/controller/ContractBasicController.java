@@ -447,8 +447,9 @@ public class ContractBasicController extends BaseController {
         }
         return SUCCESS;
     }
+
     @ResponseBody
-    @GetMapping("/contractbasic/getcontractbasiclist")
+    @PostMapping("/contractbasic/getcontractbasiclist")
     public String getcontractbasiclist() {
         return GetGsonString(contractBasicService.selectallList());
     }

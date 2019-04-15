@@ -1,7 +1,10 @@
 package com.hchenpan.pojo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.hchenpan.common.BasePojo;
+
+import java.util.List;
 
 /**
  * @author hchenpan
@@ -11,13 +14,37 @@ import com.hchenpan.common.BasePojo;
 public class Roles extends BasePojo {
 
 
+    /**
+     * 角色名称
+     */
     private String name;
 
+    /**
+     * 功能描述
+     */
     private String description;
 
+    /**
+     * 角色类别
+     */
     private String type;
 
-    private String indexorder;
+    /**
+     * 排列顺序
+     */
+    private int indexorder;
+
+    /**
+     * 对应权限列表
+     */
+    @TableField(exist = false)
+    private List<Permission> permissions;
+
+    /**
+     * 用于传值的权限主键列表
+     */
+    @TableField(exist = false)
+    private List<String> pid;
 
     public String getName() {
         return name;
@@ -43,11 +70,27 @@ public class Roles extends BasePojo {
         this.type = type;
     }
 
-    public String getIndexorder() {
+    public int getIndexorder() {
         return indexorder;
     }
 
-    public void setIndexorder(String indexorder) {
+    public void setIndexorder(int indexorder) {
         this.indexorder = indexorder;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public List<String> getPid() {
+        return pid;
+    }
+
+    public void setPid(List<String> pid) {
+        this.pid = pid;
     }
 }
