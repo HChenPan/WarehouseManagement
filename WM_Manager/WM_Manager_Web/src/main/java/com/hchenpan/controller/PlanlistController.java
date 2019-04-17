@@ -66,7 +66,7 @@ public class PlanlistController extends BaseController {
      * 功能：取单条数据编辑
      */
     @ResponseBody
-    @GetMapping("/planlist/getbyid")
+    @PostMapping("/planlist/getbyid")
     public String getallbyid(Planlist planlist) {
         return GetGsonString(planlistService.selectById(planlist.getId()));
     }
@@ -86,7 +86,7 @@ public class PlanlistController extends BaseController {
             //替换字符串中的'/'
             String str = arrayList.replaceAll("\\\\", "\"");
             //转为json对象
-            JSONArray json = JSONArray.fromObject(arrayList.substring(0, arrayList.length() - 1));
+            JSONArray json = JSONArray.fromObject(str);
             List<Planlist> list = (List<Planlist>) JSONArray.toCollection(json, Planlist.class);
 
 
@@ -94,7 +94,7 @@ public class PlanlistController extends BaseController {
             if (!"00".equals(spcode)) {
                 return "审批中";
             } else {
-                StringBuilder flag = null;
+                StringBuilder flag = new StringBuilder();
                 int k = 0;
                 for (Planlist planlist : list) {
                     int wznum = planlistService.selectCount(new EntityWrapper<Planlist>()
@@ -250,7 +250,7 @@ public class PlanlistController extends BaseController {
         if (checkuser()) {
             Planlist d = planlistService.selectById(planlist.getId());
             String oldcontent = GetGsonString(d);
-            String spcode = planService.selectOne(new EntityWrapper<Plan>().eq("id", planlist.getPlancodeid())).getSpcode();
+            String spcode = planService.selectOne(new EntityWrapper<Plan>().eq("id", d.getPlancodeid())).getSpcode();
             if (!"00".equals(spcode)) {
                 return "审批中";
             } else {
