@@ -15,4 +15,14 @@
         <bind name="pattern" value="id"/>
         AND B.USERID = #{pattern}
     </select>
+    <select id="selectSPJBList" parameterType="map" resultType="map">
+        select b.id, b.code, b.name
+        from gd_sptypesplevel a,
+             gd_dictionaryschild b
+        where a.splevelcode = b.code
+          and a.sptypecode = #{sptypecode}
+        order by b.code
+    </select>
+
+
 </mapper>

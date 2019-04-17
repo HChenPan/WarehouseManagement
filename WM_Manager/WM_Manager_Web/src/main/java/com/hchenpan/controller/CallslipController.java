@@ -76,7 +76,7 @@ public class CallslipController extends BaseController {
     @PostMapping("/callslip/getcallsliplist")
     public String getcallsliplist() {
         String tkrid = request.getParameter("tkrid");
-        return GetGsonString(callslipService.getallOrderByApplication(tkrid));
+        return ListToGson(callslipService.getallOrderByApplication(tkrid));
     }
 
     /**
@@ -86,7 +86,7 @@ public class CallslipController extends BaseController {
     @PostMapping("/callslip/getallOrderByApplication")
     public String getallOrderByApplication() {
         String tkrid = request.getParameter("tkrid");
-        return GetGsonString(callslipService.getallOrderByApplication(tkrid));
+        return ListToGson(callslipService.getallOrderByApplication(tkrid));
     }
 
     /**

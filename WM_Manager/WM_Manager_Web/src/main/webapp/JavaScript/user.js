@@ -1,32 +1,37 @@
-$(function() {
+$(function () {
     $('#userlist').datagrid({
-        url:'/user/search.do',
-        rownumbers:true,
-        pagination:true,
-        toolbar:toolbar,
-        singleSelect:true,
-        striped:true,
-        pageSize:10,
-        pageList : [ 10, 20 ],
-        columns:[[
-            {field:'id',title:'id',hidden:true,width : 100,},
-            {field:'password',title:'password',hidden:true},
-            {field:'username',title:'用户名',width:120,sortable:true},
-            {field:'realname',title:'真实姓名',width:100,sortable:true},
-            {field:'issuper',title:'是否超管',width:100,sortable:true,formatter: function(value,row,index){
-                    if (row.issuper){
+        url: 'user/search.do',
+        rownumbers: true,
+        pagination: true,
+        toolbar: toolbar,
+        singleSelect: true,
+        striped: true,
+        pageSize: 10,
+        pageList: [10, 20],
+        columns: [[
+            {field: 'id', title: 'id', hidden: true, width: 100,},
+            {field: 'password', title: 'password', hidden: true},
+            {field: 'username', title: '用户名', width: 120, sortable: true},
+            {field: 'realname', title: '真实姓名', width: 100, sortable: true},
+            {
+                field: 'issuper', title: '是否超管', width: 100, sortable: true, formatter: function (value, row, index) {
+                    if (row.issuper) {
                         return '是';
                     } else {
                         return '否';
-                    }}},
-            {field:'department',title:'所属部门',width:120,formatter: function(value,row,index){
-                    if (row.department){
-                        return row.department.name;
+                    }
+                }
+            },
+            {
+                field: 'department', title: '所属部门', width: 120, formatter: function (value, row, index) {
+                    if (row.department) {
+                        return row.department;
                     } else {
                         return value;
-                    }}
+                    }
+                }
             },
-            {field:'tel',title:'联系电话',width:120},
+            {field: 'tel', title: '联系电话', width: 120},
         ]]
     });
 });
@@ -104,7 +109,7 @@ function usersearch() {
     var realname = $("#searchrealname").textbox('getValue');
     var password1 = $("#password1").combotree('getValue');
     var password2 = $("#password2").combobox('getValue');
-    var url = 'search.do?username=' + username + '&realname=' + encodeURIComponent(realname) + '&password1=' + password1 + '&password2=' + password2;
+    var url = '/user/search?username=' + username + '&realname=' + encodeURIComponent(realname) + '&password1=' + password1 + '&password2=' + password2;
     $('#userlist').datagrid('options').url = url;
     $("#userlist").datagrid('reload');
 }
@@ -120,7 +125,7 @@ function usersearchclean() {
 /*新增数据表单提交*/
 function submituserForm() {
     $('#useradd').form('submit', {
-        url: 'create.action',
+        url: '/user/create',
         onSubmit: function () {
             return $('#useradd').form('validate')
         },
@@ -139,7 +144,7 @@ function submituserForm() {
 /*修改数据表单提交*/
 function updateuserForm() {
     $('#userupdate').form('submit', {
-        url: 'update',
+        url: '/user/update',
         onSubmit: function () {
             return $('#userupdate').form('validate')
         },
@@ -163,7 +168,7 @@ function deleteSelecteduser() {
             if (r) {
                 $.ajax({
                     async: false,
-                    url: 'delete.action',
+                    url: '/user/delete',
                     data: 'id=' + row.id,
                     success: function (data) {
                         if (data === "success") {
@@ -193,7 +198,7 @@ function getSelecteduser() {
         $.ajax({
             async: false,
             dataType: 'json',
-            url: 'getridlistbyid.action',
+            url: '/user/getridlistbyid',
             data: 'id=' + row.id,
             success: function (data) {
                 row = data;

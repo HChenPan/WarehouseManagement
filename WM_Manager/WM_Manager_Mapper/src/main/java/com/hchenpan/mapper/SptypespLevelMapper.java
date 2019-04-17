@@ -14,4 +14,6 @@ public interface SptypespLevelMapper extends BaseMapper<SptypespLevel> {
 
 
     List<CommboxList> getusersplevelnode(Map<String, Object> params);
+
+    List<Map<String, Object>> selectSPJBList(Map<String, Object> params);
 }

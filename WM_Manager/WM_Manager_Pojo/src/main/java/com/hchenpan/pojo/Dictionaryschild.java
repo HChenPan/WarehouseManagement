@@ -74,4 +74,12 @@ public class Dictionaryschild extends BasePojo {
     public void setDictionarysId(String dictionarysId) {
         this.dictionarysId = dictionarysId == null ? null : dictionarysId.trim();
     }
+
+    public String getDname() {
+        return dname;
+    }
+
+    public void setDname(String dname) {
+        this.dname = dname;
+    }
 }

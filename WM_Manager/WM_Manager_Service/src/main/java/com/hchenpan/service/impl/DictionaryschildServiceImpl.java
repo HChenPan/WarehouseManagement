@@ -33,7 +33,7 @@ public class DictionaryschildServiceImpl extends BaseServiceImpl<Dictionaryschil
 
     @Override
     public Page<Map<String, Object>> getChildPage(Page<Map<String, Object>> page, Map<String, Object> params) {
-        page.setRecords(mapper.getChildPage(page, params));
+        page.setRecords(transformUpperCase(mapper.getChildPage(page, params)));
         return page;
     }
 

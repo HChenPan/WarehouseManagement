@@ -7,6 +7,7 @@ import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
 import com.hchenpan.service.impl.DictionaryschildServiceImpl;
 import com.hchenpan.util.StringUtil;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,9 +91,12 @@ public class TransferlistController extends BaseController {
         if (checkuser()) {
             String arrayList = request.getParameter("arrayList");
             String applytransfercodeid = request.getParameter("applytransfercodeid");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-            List<Stock> list = null;
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Stock> list = (List<Stock>) JSONArray.toCollection(json, Stock.class);
+            
             //获取调拨单 信息
             Applytransfer applyTransfer = applytransferService.selectById(applytransfercodeid);
             if ("已申请".equals(applyTransfer.getSbstatus()) || "已发货".equals(applyTransfer.getSbstatus())) {
@@ -181,9 +185,12 @@ public class TransferlistController extends BaseController {
     public String update() {
         if (checkuser()) {
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 Transferlist 集合
-            List<Transferlist> list = null;
+                  //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Transferlist> list = (List<Transferlist>) JSONArray.toCollection(json, Transferlist.class);
+            
             //遍历需要修改的 Transferlist 集合
             for (Transferlist TlNew : list) {
                 Applytransfer applyTransfer = applytransferService.selectById(TlNew.getApplytransfercodeid());
@@ -246,9 +253,12 @@ public class TransferlistController extends BaseController {
     public String updatereal() {
         if (checkuser()) {
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 Transferlist 集合
-            List<Transferlist> list = null;
+                   //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Transferlist> list = (List<Transferlist>) JSONArray.toCollection(json, Transferlist.class);
+            
             for (Transferlist tl : list) {
                 Applytransfer applyTransfer = applytransferService.selectById(tl.getApplytransfercodeid());
                 if ("已发货".equals(applyTransfer.getSbstatus())) {

@@ -6,6 +6,7 @@ import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
 import com.hchenpan.util.StringUtil;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,7 +110,7 @@ public class ContractGoodsController extends BaseController {
     @ResponseBody
     @GetMapping("/contractgoods/getcontractgoodslist")
     public String getcontractgoodslist() {
-        return GetGsonString(contractGoodsService.selectallList());
+        return ListToGson(contractGoodsService.selectallList());
     }
 
     /**
@@ -124,11 +124,12 @@ public class ContractGoodsController extends BaseController {
 
             String arrayList = request.getParameter("arrayList");
             String serialsnumber = request.getParameter("serialsnumber");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-//            JSONArray json = JSONArray.fromObject(arrayList);
-//            List<ContractGoods> list= (List<ContractGoods>)JSONArray.toCollection(json, ContractGoods.class);
-            List<ContractGoods> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<ContractGoods> list = (List<ContractGoods>) JSONArray.toCollection(json, ContractGoods.class);
+
             String auditingstatus = contractBasicService.selectOne(new EntityWrapper<ContractBasic>().eq("flag", "E").eq("serialsnumber", serialsnumber)).getAuditingstatus();
 
             if (!"00".equals(auditingstatus)) {
@@ -215,10 +216,11 @@ public class ContractGoodsController extends BaseController {
 
             String arrayList = request.getParameter("arrayList");
             String serialsnumber = request.getParameter("serialsnumber");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-
-            List<ContractGoods> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<ContractGoods> list = (List<ContractGoods>) JSONArray.toCollection(json, ContractGoods.class);
             String auditingstatus = contractBasicService.selectOne(new EntityWrapper<ContractBasic>().eq("flag", "E").eq("serialsnumber", serialsnumber)).getAuditingstatus();
 
 //			System.out.println(auditingstatus);
@@ -300,10 +302,11 @@ public class ContractGoodsController extends BaseController {
 
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-
-            List<ContractGoods> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<ContractGoods> list = (List<ContractGoods>) JSONArray.toCollection(json, ContractGoods.class);
             String auditingstatus = contractBasicService.selectOne(new EntityWrapper<ContractBasic>().eq("flag", "E").eq("serialsnumber", list.get(0).getContractbasicid())).getAuditingstatus();
 
             if (!auditingstatus.equals("00")) {

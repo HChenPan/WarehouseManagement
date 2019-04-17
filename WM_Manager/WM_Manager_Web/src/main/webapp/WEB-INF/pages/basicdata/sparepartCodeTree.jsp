@@ -13,10 +13,14 @@
     <%@ include file="../common/head.jsp" %>
     <script src="${ctx}/JavaScript/sparepartCodeTree.js" type="text/javascript"></script>
 </head>
-<body class="easyui-layout">
-<table class="easyui-datagrid" id="departlist"></table>
 
-<div id="w" class="easyui-window" title="添加备件编码" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:800px;height:550px;padding:10px;">
+
+<body>
+<table class="easyui-datagrid" id="departlist">
+</table>
+
+<div id="w" class="easyui-window" title="添加备件编码" data-options="modal:true,closed:true,iconCls:'icon-save'"
+     style="width:800px;height:550px;padding:10px;">
     <div style="padding:10px 20px 20px 20px">
         <form id="departadd" method="post">
             <table cellpadding="5" align="center">
@@ -65,8 +69,7 @@
                 <tr>
                     <td>主机名称及型号</td>
                     <td>
-                        <input style="width:240px;" class="easyui-textbox" type="text" id="hostname" name="hostname" data-options="required:true"/>
-                    </td>
+                        <input style="width:240px;" class="easyui-textbox" type="text" id="hostname" name="hostname" data-options="required:true"/></td>
                     <td>供货周期</td>
                     <td>
                         <input style="width:240px;" class="easyui-textbox" type="text" id="supplycycle" name="supplycycle" data-options="required:true"/>
@@ -79,7 +82,7 @@
                     </td>
                     <td>采购时间</td>
                     <td>
-                        <input  class="easyui-datebox purchasetime" data-options="required:true" name="purchasetime" style="width: 240px; height: 25px"/>
+                        <input id="purchasetime" class="easyui-datebox" data-options="required:true" name="purchasetime" style="width: 240px; height: 25px"/>
                     </td>
                 </tr>
                 <tr>
@@ -99,17 +102,17 @@
                     </td>
                     <td>资金类型</td>
                     <td>
-                        <input style="width:240px;" class="easyui-textbox" type="text" id="currencytype" name="currencytype"/>
+                        <input style="width:240px;" class="easyui-textbox" type="text" id="currencytype"name="currencytype"/>
                     </td>
                 </tr>
                 <tr>
                     <td>计划价格</td>
                     <td>
-                        <input style="width:240px;" class="easyui-textbox" type="text" id="planprice" name="planprice" data-options="required:true" validtype="number"/>
+                        <input style="width:240px;" class="easyui-textbox" type="text" id="planprice" name="planprice"data-options="required:true" validtype="number"/>
                     </td>
                     <td>最低库存量</td>
                     <td>
-                        <input style="width:240px;" class="easyui-textbox" type="text" id="stockmin" name="stockmin" data-options="required:true" validtype="number"/>
+                        <input style="width:240px;" class="easyui-textbox" type="text" id="stockmin" name="stockmin"data-options="required:true" validtype="number"/>
                     </td>
                 </tr>
                 <tr>
@@ -177,7 +180,7 @@
                     </td>
                     <td>采购时间编码</td>
                     <td>
-                        <input  class="easyui-datebox purchasetime" name="purchasetime" style="width: 240px; height: 25px" data-options="readonly:true"/>
+                        <input id="purchasetime" class="easyui-datebox" name="purchasetime" style="width: 240px; height: 25px" data-options="readonly:true"/>
                     </td>
                 </tr>
                 <tr>
@@ -190,20 +193,20 @@
                         <input style="width:240px;" class="easyui-textbox" type="text" name="tuhao" data-options="readonly:true"/>
                     </td>
                 </tr>
-                <td>资金单位</td>
-                <td>
-                    <input style="width:240px;" class="easyui-textbox" type="text" name="currencyunit" data-options="readonly:true"/>
-                </td>
-                <td>资金类型</td>
-                <td>
-                    <input style="width:240px;" class="easyui-textbox" type="text" name="currencytype" data-options="readonly:true"/>
-                </td>
+                <tr>
+                    <td>资金单位</td>
+                    <td>
+                        <input style="width:240px;" class="easyui-textbox" type="text" name="currencyunit" data-options="readonly:true"/>
+                    </td>
+                    <td>资金类型</td>
+                    <td>
+                        <input style="width:240px;" class="easyui-textbox" type="text" name="currencytype" data-options="readonly:true"/>
+                    </td>
                 </tr>
                 <tr>
                     <td>计划价格</td>
                     <td>
-                        <input style="width:240px;" class="easyui-textbox" type="text" name="planprice" data-options="readonly:true"/>
-                    </td>
+                        <input style="width:240px;" class="easyui-textbox" type="text" name="planprice" data-options="readonly:true"/></td>
                     <td>最低库存量</td>
                     <td>
                         <input style="width:240px;" class="easyui-textbox" type="text" name="stockmin" data-options="readonly:true"/>

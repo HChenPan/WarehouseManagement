@@ -39,6 +39,11 @@ public class Roles extends BasePojo {
      */
     @TableField(exist = false)
     private List<Permission> permissions;
+    /**
+     * 对应权限列表
+     */
+    @TableField(exist = false)
+    private String rid;
 
     /**
      * 用于传值的权限主键列表
@@ -92,5 +97,13 @@ public class Roles extends BasePojo {
 
     public void setPid(List<String> pid) {
         this.pid = pid;
+    }
+
+    public String getRid() {
+        return rid;
+    }
+
+    public void setRid(String rid) {
+        this.rid = rid;
     }
 }

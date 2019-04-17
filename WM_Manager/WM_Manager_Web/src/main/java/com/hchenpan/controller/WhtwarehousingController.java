@@ -252,7 +252,7 @@ public class WhtwarehousingController extends BaseController {
     @ResponseBody
     @GetMapping("/whtwarehousing/getalllist")
     public String getalllist(Whtwarehousing whtwarehousing) {
-        return GetGsonString(whtwarehousingService.selectList(new EntityWrapper<Whtwarehousing>()
+        return ListToGson(whtwarehousingService.selectList(new EntityWrapper<Whtwarehousing>()
                 .eq("storehousecode", whtwarehousing.getStorehousecode())
                 .eq("flag", "E")
                 .eq("rkstatus", "已入库")
@@ -265,7 +265,7 @@ public class WhtwarehousingController extends BaseController {
         /*通用字段赋值*/
         User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
 
-        return GetGsonString(whtwarehousingService.selectWHlist(loginUser.getId()));
+        return ListToGson(whtwarehousingService.selectWHlist(loginUser.getId()));
     }
 
 

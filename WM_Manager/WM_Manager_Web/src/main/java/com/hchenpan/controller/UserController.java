@@ -1,12 +1,17 @@
 package com.hchenpan.controller;
 
+import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseController;
 import com.hchenpan.model.CommboxList;
 import com.hchenpan.pojo.User;
+import com.hchenpan.pojo.UserRoles;
+import com.hchenpan.service.DepartmentService;
+import com.hchenpan.service.RolesService;
+import com.hchenpan.service.UserRolesService;
 import com.hchenpan.service.UserService;
 import com.hchenpan.util.LoginViewModel;
-import com.hchenpan.util.RedisPage;
 import com.hchenpan.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,11 +43,17 @@ import java.util.List;
 @Controller
 public class UserController extends BaseController {
     private final UserService userService;
+    private final RolesService rolesService;
+    private final DepartmentService departmentService;
+    private final UserRolesService userRolesService;
 
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RolesService rolesService, DepartmentService departmentService, UserRolesService userRolesService) {
         this.userService = userService;
+        this.rolesService = rolesService;
+        this.departmentService = departmentService;
+        this.userRolesService = userRolesService;
     }
 
     @GetMapping("/login")
@@ -118,11 +130,36 @@ public class UserController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/user/search")
     public String search(User user) {
-        int current = Integer.parseInt(request.getParameter("page"));
+        Page<User> page = getPage();
+        EntityWrapper<User> ew = new EntityWrapper<>();
+        if (StringUtil.notTrimEmpty(user.getUsername())) {
+            ew.like("username", user.getUsername(), SqlLike.DEFAULT);
+        }
+        if (StringUtil.notTrimEmpty(user.getRealname())) {
+            ew.like("realname", user.getRealname(), SqlLike.DEFAULT);
+        }
+        if (StringUtil.notTrimEmpty(user.getPassword1())) {
+            ew.eq("departmentid", user.getPassword1());
+        }
+        if (StringUtil.notTrimEmpty(user.getPassword2())) {
+            //获取角色列表
+            List<UserRoles> userRoles = userRolesService.selectList(new EntityWrapper<UserRoles>().eq("roleid", user.getPassword2()));
+            StringBuilder uids = new StringBuilder();
+            for (UserRoles userRole : userRoles) {
+                uids.append(userRole.getUserid()).append(",");
+            }
+            ew.in("id", uids.substring(0, uids.length() - 1));
+        }
+        return jsonPage(userService.selectPage(page, ew));
+
+
+
+
+      /*  int current = Integer.parseInt(request.getParameter("page"));
         int size = Integer.parseInt(request.getParameter("rows"));
-        /*SQL 排序 ORDER BY 字段，例如： id DESC（根据id倒序查询）*/
+        *//*SQL 排序 ORDER BY 字段，例如： id DESC（根据id倒序查询）*//*
         String orderByField = request.getParameter("sort");
-        /*是否为升序 ASC（ 默认： true ）*/
+        *//*是否为升序 ASC（ 默认： true ）*//*
         boolean isAsc = !"desc".equals(request.getParameter("order"));
         RedisPage<User> page1;
         if (StringUtil.notEmpty(orderByField)) {
@@ -130,7 +167,33 @@ public class UserController extends BaseController {
         } else {
             page1 = userService.selectPageRedis(current, size, "updatetime", true, user);
         }
-        return jsonRedisPage(page1);
+        return jsonRedisPage(page1);*/
+    }
+
+    /**
+     * 功能:取得完整包含rid值的用户对象
+     */
+    @ResponseBody
+    @GetMapping("/user/getridlistbyid")
+    public String getridlistbyid(User user) {
+        User u = userService.selectById(user.getId());
+        List<UserRoles> userRoles = userRolesService.selectList(new EntityWrapper<UserRoles>().eq("userid", user.getId()));
+        List<String> ridlist = new ArrayList<>();
+        for (UserRoles userRole : userRoles) {
+            ridlist.add(userRole.getRoleid());
+        }
+        u.setRid(ridlist);
+        return GetGsonString(u);
+    }
+
+    /**
+     * 功能:根据专业分类取得用户
+     */
+    @ResponseBody
+    @PostMapping("/user/getexpertbytype")
+    public String getexpertbytype() {
+        List<CommboxList> deptserlist = userService.getdeptuserlist();
+        return GetGsonString(deptserlist);
     }
 
     /**
@@ -141,5 +204,129 @@ public class UserController extends BaseController {
     public String getdeptuserlist() {
         List<CommboxList> deptserlist = userService.getdeptuserlist();
         return GetGsonString(deptserlist);
+    }
+
+    /**
+     * 功能:设定用户密码
+     */
+    @ResponseBody
+    @PostMapping("/user/setpassword")
+    public String setpassword(User user) {
+        if (checkuser()) {
+
+            /*通用字段赋值*/
+            User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+            String timeString = GetCurrentTime();
+            loginUser.setUpdaterid(loginUser.getId());
+            loginUser.setUpdater(loginUser.getUsername());
+            loginUser.setUpdatetime(timeString);
+            loginUser.setPassword(user.getPassword1());
+            userService.updateById(loginUser);
+            return SUCCESS;
+        }
+        return ERROR;
+    }
+
+    /**
+     * 功能：新增用户
+     */
+    @ResponseBody
+    @PostMapping("/user/create")
+    public String create(User user) {
+        if (checkuser()) {
+            /*通用字段赋值*/
+            User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+            String timeString = GetCurrentTime();
+            user.setId(getUUID());
+            user.setCreatorid(loginUser.getId());
+            user.setCreator(loginUser.getUsername());
+            user.setCreatetime(timeString);
+            user.setUpdaterid(loginUser.getId());
+            user.setUpdater(loginUser.getUsername());
+            user.setUpdatetime(timeString);
+            String md5 = "e10adc3949ba59abbe56e057f20f883e";
+            String newPs = new SimpleHash("MD5", md5, user.getUsername(), 1024).toHex();
+            user.setPassword(newPs);
+            user.setDepartment(departmentService.selectById(user.getDepartmentid()).getName());
+            if (!"1".equals(loginUser.getIssuper())) {
+                user.setIssuper("0");
+            }
+            userService.insert(user);
+
+            if (user.getRid() != null) {
+                for (int i = 0; i < user.getRid().size(); i++) {
+                    UserRoles ur = new UserRoles();
+                    ur.setUserid(user.getId());
+                    ur.setRoleid(user.getRid().get(i));
+                    ur.setId(getUUID());
+                    ur.setCreatorid(loginUser.getId());
+                    ur.setCreator(loginUser.getUsername());
+                    ur.setCreatetime(timeString);
+                    ur.setUpdaterid(loginUser.getId());
+                    ur.setUpdater(loginUser.getUsername());
+                    ur.setUpdatetime(timeString);
+                    userRolesService.insert(ur);
+                }
+            }
+            return SUCCESS;
+        }
+        return ERROR;
+
+    }
+
+    /**
+     * 功能：新增用户
+     */
+    @ResponseBody
+    @PostMapping("/user/update")
+    public String update(User user) {
+        if (checkuser()) {
+            /*通用字段赋值*/
+            User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+            String timeString = GetCurrentTime();
+
+            userRolesService.delete(new EntityWrapper<UserRoles>().eq("userid", user.getId()));
+            if (user.getRid() != null) {
+                for (int i = 0; i < user.getRid().size(); i++) {
+                    UserRoles ur = new UserRoles();
+                    ur.setUserid(user.getId());
+                    ur.setRoleid(user.getRid().get(i));
+                    ur.setId(getUUID());
+                    ur.setCreatorid(loginUser.getId());
+                    ur.setCreator(loginUser.getUsername());
+                    ur.setCreatetime(timeString);
+                    ur.setUpdaterid(loginUser.getId());
+                    ur.setUpdater(loginUser.getUsername());
+                    ur.setUpdatetime(timeString);
+                    userRolesService.insert(ur);
+                }
+            }
+            user.setUpdaterid(loginUser.getId());
+            user.setUpdater(loginUser.getUsername());
+            user.setUpdatetime(timeString);
+            user.setDepartment(departmentService.selectById(user.getDepartmentid()).getName());
+            userService.updateById(user);
+            return SUCCESS;
+        }
+        return ERROR;
+    }
+
+    /**
+     * 功能： 删除用户
+     */
+    @ResponseBody
+    @PostMapping("/user/delete")
+    public String delete(User user) {
+        if (checkuser()) {
+            /*通用字段赋值*/
+            User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+            String timeString = GetCurrentTime();
+
+            userRolesService.delete(new EntityWrapper<UserRoles>().eq("userid", user.getId()));
+
+            userService.deleteById(user.getId());
+            return SUCCESS;
+        }
+        return ERROR;
     }
 }

@@ -154,8 +154,27 @@ public class BaseController {
     /**
      * 对象转换成JSON字串
      */
+    public String ListToGson(Object obj) {
+        Gson gson = new Gson();
+        String s = gson.toJson(obj);
+        return s.substring(1, s.length() - 1);
+    }
+
+
+    /**
+     * 对象转换成JSON字串
+     */
+    public String PageToGson(Object obj) {
+        Gson gson = new Gson();
+        return gson.toJson(obj);
+    }
+
+    /**
+     * 对象转换成JSON字串
+     */
     public String GetGsonString(Object obj) {
-        return new Gson().toJson(obj);
+        Gson gson = new Gson();
+        return gson.toJson(obj);
     }
 
     /**

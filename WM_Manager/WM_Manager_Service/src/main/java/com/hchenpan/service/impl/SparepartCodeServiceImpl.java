@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class SparepartCodeServiceImpl extends BaseServiceImpl<SparepartCodeMappe
         PageContainer<Spart> list = new PageContainer<>();
         List<Spart> dlist = new ArrayList<>();
         EntityWrapper<SparepartCode> ew = new EntityWrapper<>();
-
+        ew.isNull("parentid");
         ew.like("description", "备件类别");
         List<SparepartCode> sparepartCodes = sparepartCodeMapper.selectList(ew);
         for (SparepartCode sparepartCode : sparepartCodes) {
@@ -93,7 +94,10 @@ public class SparepartCodeServiceImpl extends BaseServiceImpl<SparepartCodeMappe
         List<SparepartCode> sparepartCodes = sparepartCodeMapper.selectList(new EntityWrapper<SparepartCode>().eq("description", "物资"));
         List<SparepartCode> dlist = new ArrayList<>();
         for (SparepartCode sparepartCode : sparepartCodes) {
-            List<Map<String, Object>> mapList = planlistMapper.selectWZ(sparepartCode.getCode(), getHalfYearStartTime());
+            Map<String, Object> map = new HashMap<>(10);
+            map.put("wzcode", sparepartCode.getCode());
+            map.put("halfYearStartTime", getHalfYearStartTime());
+            List<Map<String, Object>> mapList = planlistMapper.selectWZ(map);
             if (mapList.size() != 0) {
                 sparepartCode.setPlanprice(mapList.get(0).get("BUYPRICE").toString());
             }

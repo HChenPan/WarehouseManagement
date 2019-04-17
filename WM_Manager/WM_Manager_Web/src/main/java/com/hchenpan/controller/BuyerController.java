@@ -73,7 +73,7 @@ public class BuyerController extends BaseController {
     @ResponseBody
     @PostMapping("/buyer/getall")
     public String getall() {
-        return GetGsonString(buyerService.selectList(new EntityWrapper<Buyer>().eq("flag", "E").orderBy("buyername")));
+        return ListToGson(buyerService.selectList(new EntityWrapper<Buyer>().eq("flag", "E").orderBy("buyername")));
     }
 
     /**

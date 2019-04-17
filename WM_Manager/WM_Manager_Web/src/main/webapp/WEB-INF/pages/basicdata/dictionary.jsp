@@ -13,39 +13,38 @@
     <%@ include file="../common/head.jsp" %>
     <script src="${ctx}/JavaScript/dictionary.js" type="text/javascript"></script>
 </head>
+
 <body class="easyui-layout">
 <div data-options="region:'center',border:false">
     <div class="easyui-layout" data-options="fit:true">
         <div data-options="region:'west',border:false,split:true" style="width:40%;">
+            <!-- <div id="we" class="easyui-panel" data-options="region:'west',split:true,border:false"
+            style="padding:2px;background: #fafafa;height:42px;width:45%;"> -->
             <div class="easyui-layout" data-options="fit:true">
-                <div id="p1" class="easyui-panel" data-options="region:'north',split:false,border:false"
-                     style="padding:2px;background: #fafafa;height:50px;">
+                <div id="p1" class="easyui-panel" data-options="region:'north',split:false,border:false" style="padding:2px;background: #fafafa;height:50px;">
                     <table cellpadding="5" cellspacing="1" border="0">
                         <tr>
                             <td>字典名称</td>
                             <td>
-                                <input class="easyui-textbox" type="text" id="searchdedevicename"
-                                       style="width: 150px;"/>
+                                <input class="easyui-textbox" type="text" id="searchdedevicename" style="width: 150px;"/>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" class="easyui-linkbutton"
-                                   data-options="iconCls:'icon-search'" onclick="dictionarysearch()">查询</a>&nbsp;&nbsp;
-                                <a href="javascript:void(0)" class="easyui-linkbutton"
-                                   data-options="iconCls:'icon-reload'" onclick="dictionarysearchclean()">清空条件</a>
+                                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="dictionarysearch()">查询</a> &nbsp;&nbsp;
+                                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="dictionarysearchclean()">清空条件</a>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div data-options="region:'center',border:false">
-                    <table class="easyui-datagrid" id="dictionarylist" data-options="fit:true">
-                    </table>
+                    <table class="easyui-datagrid" id="dictionarylist" data-options="fit:true"></table>
                 </div>
             </div>
         </div>
+        <!-- <div id="e" class="easyui-panel" data-options="region:'east',split:false,border:false"
+            style="padding:2px;background: #fafafa;height:42px;width:55%;"> -->
         <div data-options="region:'east',border:false" style="width:60%;">
             <div class="easyui-layout" data-options="fit:true">
-                <div id="p2" class="easyui-panel" data-options="region:'north',split:false,border:false"
-                     style="padding:2px;background: #fafafa;height:50px;">
+                <div id="p2" class="easyui-panel" data-options="region:'north',split:false,border:false" style="padding:2px;background: #fafafa;height:50px;">
                     <table cellpadding="5" cellspacing="1" border="0">
                         <tr>
                             <td>字典子类名称</td>
@@ -53,10 +52,8 @@
                                 <input class="easyui-textbox" type="text" id="searchdchild" style="width: 200px;"/>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" class="easyui-linkbutton"
-                                   data-options="iconCls:'icon-search'" onclick="dchildsearch()">查询</a>&nbsp;&nbsp;
-                                <a href="javascript:void(0)" class="easyui-linkbutton"
-                                   data-options="iconCls:'icon-reload'" onclick="dchildsearchclean()">清空条件</a>
+                                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="dchildsearch()">查询</a> &nbsp;&nbsp;
+                                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="dchildsearchclean()">清空条件</a>
                             </td>
                         </tr>
                     </table>
@@ -68,8 +65,7 @@
         </div>
     </div>
 </div>
-<div id="w" class="easyui-window" title="新增数据字典大类" data-options="modal:true,closed:true,iconCls:'icon-save'"
-     style="width:400px;height:220px;padding:10px;">
+<div id="w" class="easyui-window" title="新增数据字典大类" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:400px;height:220px;padding:10px;">
     <div style="padding:10px 20px 20px 20px">
         <form id="dictionary" method="post">
             <table cellpadding="5" align="center">
@@ -77,7 +73,7 @@
                     <td>字典编码</td>
                     <td>
                         <input class="easyui-textbox" name="dcode" data-options="required:true" style="width:180px"/>
-                        <input type="hidden" name="id"/>
+                        <input type="hidden" name="id" id="id"/>
                     </td>
                 </tr>
                 <tr>
@@ -89,36 +85,29 @@
             </table>
         </form>
         <div style="text-align:center;padding:5px">
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
-               onclick="submitdictionaryform()">保存数据</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="submitdictionaryform()">保存数据</a>
         </div>
     </div>
 </div>
-<div id="c" class="easyui-window" title="新增数据字典子类"
-     data-options="modal:true,closed:true,iconCls:'icon-save'"
-     style="width:800px;height:250px;padding:10px;">
+<div id="c" class="easyui-window" title="新增数据字典子类" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:800px;height:250px;padding:10px;">
     <div style="padding:10px 20px 20px 20px">
         <form id="dictionaryschild" method="post">
             <table cellpadding="5" align="center">
                 <tr>
                     <td>字典大类编码</td>
-                    <td>
-                        <input class="easyui-textbox" id="dcode" name="dcode" data-options="readonly:true"
-                               style="width:180px"/>
-                        <input type="hidden" class="easyui-textbox" name="dictionarys.id" id="dictionarysid"/>
+                    <td><input class="easyui-textbox" id="dcode" name="dcode" data-options="readonly:true" style="width:180px"/>
+                        <input type="hidden" class="easyui-textbox" name="dictionarysid" id="dictionarysid"/>
                     </td>
                     <td>字典大类描述</td>
                     <td>
-                        <input class="easyui-textbox" id="dname" name="dname" data-options="readonly:true"
-                               style="width:180px"/>
+                        <input class="easyui-textbox" id="dname" name="dname" data-options="readonly:true" style="width:180px"/>
                     </td>
                 </tr>
                 <tr>
                     <td>子类编码</td>
                     <td>
-                        <input class="easyui-textbox" id="zname" name="code" data-options="required:true"
-                               style="width:180px"/>
-                        <input type="hidden" name="id"/>
+                        <input class="easyui-textbox" id="zname" name="code" data-options="required:true" style="width:180px"/>
+                        <input type="hidden" name="id" id="id"/>
                     </td>
                     <td>子类描述</td>
                     <td>
@@ -134,11 +123,11 @@
             </table>
         </form>
         <div style="text-align:center;padding:5px">
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
-               onclick="submitdictionarychildForm()">保存数据</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="submitdictionarychildForm()">保存数据</a>
         </div>
     </div>
 </div>
+
+
 </body>
 </html>
-

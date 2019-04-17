@@ -93,6 +93,7 @@ public class RolesController extends BaseController {
             }
             r.setPermissions(pl);
             r.setPid(pidlist);
+            r.setRid(r.getId());
             roles.add(r);
         }
         return GetGsonString(roles);
@@ -117,7 +118,7 @@ public class RolesController extends BaseController {
             r.setPid(pidlist);
             roles.add(r);
         }
-        return GetGsonString(roles);
+        return ListToGson(roles);
     }
 
     /**

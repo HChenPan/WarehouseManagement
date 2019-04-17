@@ -73,7 +73,7 @@ public class SupplierController extends BaseController {
     @ResponseBody
     @PostMapping("/supplier/getall")
     public String getall() {
-        return GetGsonString(supplierService.selectList(new EntityWrapper<Supplier>().eq("flag", "E").orderBy("suppliername")));
+        return ListToGson(supplierService.selectList(new EntityWrapper<Supplier>().eq("flag", "E").orderBy("suppliername")));
     }
 
     /**

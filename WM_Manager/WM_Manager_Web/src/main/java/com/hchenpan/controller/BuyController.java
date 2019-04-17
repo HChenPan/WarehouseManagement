@@ -112,7 +112,7 @@ public class BuyController extends BaseController {
         System.out.println(sql);
         ew.where("flag = {0}" + sql.toString(), "'E'");
 
-        return GetGsonString(buyService.selectPage(page, ew));
+        return jsonPage(buyService.selectPage(page, ew));
     }
 
     /**
@@ -187,7 +187,7 @@ public class BuyController extends BaseController {
     @ResponseBody
     @PostMapping("/buy/getbuylist")
     public String getbuylist() {
-        return GetGsonString(buyService.selectList(new EntityWrapper<Buy>().eq("spcode", "99").eq("flag", "E").orderBy("updatetime")));
+        return ListToGson(buyService.selectList(new EntityWrapper<Buy>().eq("spcode", "99").eq("flag", "E").orderBy("updatetime")));
     }
 
     /**

@@ -92,6 +92,8 @@ public class DictionaryschildController extends BaseController {
                             dictionaryschild.setCreator(loginUser.getUsername());
                             dictionaryschild.setUpdaterid(loginUser.getId());
                             dictionaryschild.setUpdatetime(timeString);
+                            Object parentid = request.getParameter("dictionarysid");
+                            dictionaryschild.setDictionarysId(parentid.toString());
                             dictionaryschildService.insert(dictionaryschild);
                             //写入日志表
                             Logs logs = new Logs();
@@ -123,6 +125,8 @@ public class DictionaryschildController extends BaseController {
                         dictionaryschild.setCreator(loginUser.getUsername());
                         dictionaryschild.setUpdaterid(loginUser.getId());
                         dictionaryschild.setUpdatetime(timeString);
+                        Object parentid = request.getParameter("dictionarysid");
+                        dictionaryschild.setDictionarysId(parentid.toString());
                         dictionaryschildService.insert(dictionaryschild);
                         //写入日志表
                         Logs logs = new Logs();
@@ -302,7 +306,7 @@ public class DictionaryschildController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/dictionaryschild/getdictionarychildlistbyid")
     public String getdictionarychildlistbyid(Dictionaryschild dictionaryschild) {
-        return GetGsonString(dictionaryschildService.selectchildList(dictionaryschild.getId()));
+        return ListToGson(dictionaryschildService.selectchildList(dictionaryschild.getId()));
     }
 
     /**
@@ -381,5 +385,14 @@ public class DictionaryschildController extends BaseController {
     @PostMapping("/dictionaryschild/getSplistbydecode")
     public String getSplistbydecode() {
         return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST2001").eq("note", "CT").eq("flag", "E")));
+    }
+
+    /**
+     * 功能:根据数据字典大类编码查找计划需求计划大类
+     */
+    @ResponseBody
+    @PostMapping("/dictionaryschild/getplantypelistbydecode")
+    public String getplantypelistbydecode() {
+        return GetGsonString(dictionaryschildService.selectList(new EntityWrapper<Dictionaryschild>().eq("dcode", "ST2001").eq("note", "PLAN").eq("flag", "E")));
     }
 }

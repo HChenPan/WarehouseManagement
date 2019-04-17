@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,10 +97,13 @@ public class WhtwarehousinglistController extends BaseController {
             String rkcode = request.getParameter("rkcode").trim();
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Whtwarehousinglist> list = (List<Whtwarehousinglist>) JSONArray.toCollection(json, Whtwarehousinglist.class);
 
-            List<Whtwarehousinglist> list = new ArrayList<>(10);
+
             String rkstatus = whtwarehousingService.getrkstatus(rkcode);
             if ("已入库".equals(rkstatus)) {
                 return "已入库";
@@ -175,9 +179,12 @@ public class WhtwarehousinglistController extends BaseController {
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
             String timeString = GetCurrentTime();
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-            List<Whtwarehousinglist> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Whtwarehousinglist> list = (List<Whtwarehousinglist>) JSONArray.toCollection(json, Whtwarehousinglist.class);
+
             String rkstatus = whtwarehousingService.getrkstatus(list.get(0).getRkcode().trim());
             if ("已入库".equals(rkstatus)) {
                 return "已入库";
@@ -303,6 +310,6 @@ public class WhtwarehousinglistController extends BaseController {
             d.setZjname(zjname);
             whtwarehousinglists.add(d);
         }
-        return GetGsonString(whtwarehousinglists);
+        return ListToGson(whtwarehousinglists);
     }
 }

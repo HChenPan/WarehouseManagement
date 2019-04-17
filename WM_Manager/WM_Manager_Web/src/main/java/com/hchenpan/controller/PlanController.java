@@ -126,7 +126,7 @@ public class PlanController extends BaseController {
 
         ew.where("flag = {0}" + sql.toString(), "E");
 
-        return GetGsonString(planService.selectPage(page, ew));
+        return jsonPage(planService.selectPage(page, ew));
 
 
     }
@@ -200,7 +200,7 @@ public class PlanController extends BaseController {
     @PostMapping("/plan/getplanlist")
     public String getplanlist() {
 //        List<Plan> planlist = planservice.getplanlist();
-        return GetGsonString(planService.selectList(new EntityWrapper<Plan>().eq("flag", "E").eq("spcode", "99").orderBy("updatetime")));
+        return ListToGson(planService.selectList(new EntityWrapper<Plan>().eq("flag", "E").eq("spcode", "99").orderBy("updatetime")));
 
     }
 
@@ -209,7 +209,7 @@ public class PlanController extends BaseController {
     public String getplanbyuserid() {
         /*通用字段赋值*/
         User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
-        return GetGsonString(planService.selectList(new EntityWrapper<Plan>()
+        return ListToGson(planService.selectList(new EntityWrapper<Plan>()
                 .eq("userid", loginUser.getId())
                 .eq("flag", "E")
                 .eq("spcode", "99")

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +68,10 @@ public class PlanlistServiceImpl extends BaseServiceImpl<PlanlistMapper, Planlis
             d.setZjcode(zjcode);
             d.setZjname(zjname);
             d.setSynum("0.00");
-            List<Map<String, Object>> mapList = mapper.selectWZ(d.getWzcode(), getHalfYearStartTime());
+            Map<String, Object> map=new HashMap<>(10);
+            map.put("wzcode", d.getWzcode());
+            map.put("halfYearStartTime", getHalfYearStartTime());
+            List<Map<String, Object>> mapList = mapper.selectWZ(map);
             List<Stock> stocks = stockMapper.selectList(new EntityWrapper<Stock>()
                     .eq("wzcode", d.getWzcode())
                     .isNull("tranflag")

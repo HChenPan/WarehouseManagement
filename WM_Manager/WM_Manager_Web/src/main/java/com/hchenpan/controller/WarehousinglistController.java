@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +43,6 @@ public class WarehousinglistController extends BaseController {
         this.logsService = logsService;
         this.userService = userService;
     }
-
 
 
     /**
@@ -109,10 +108,13 @@ public class WarehousinglistController extends BaseController {
             //String summoneystring=warehousingservice.getsummoney(warehousinglist.getRkcode().trim());
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Warehousinglist> list = (List<Warehousinglist>) JSONArray.toCollection(json, Warehousinglist.class);
 
-            List<Warehousinglist> list = new ArrayList<>();
+
             String rkstatus = warehousingService.getrkstatus(rkcode);
             if ("已入库".equals(rkstatus)) {
                 return "已入库";
@@ -196,9 +198,12 @@ public class WarehousinglistController extends BaseController {
 
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-            List<Warehousinglist> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Warehousinglist> list = (List<Warehousinglist>) JSONArray.toCollection(json, Warehousinglist.class);
+
             String rkstatus = warehousingService.getrkstatus(list.get(0).getRkcode().trim());
             if (rkstatus.equals("已入库")) {
                 return "已入库";
@@ -327,6 +332,6 @@ public class WarehousinglistController extends BaseController {
     @ResponseBody
     @PostMapping("/warehousinglist/getlistgoods")
     public String getlistgoods(Warehousinglist warehousinglist) {
-return GetGsonString(warehousinglistService.selectWZList(warehousinglist));
+        return ListToGson(warehousinglistService.selectWZList(warehousinglist));
     }
 }

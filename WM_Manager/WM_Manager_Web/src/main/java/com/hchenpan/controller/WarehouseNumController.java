@@ -80,7 +80,7 @@ public class WarehouseNumController extends BaseController {
     @ResponseBody
     @PostMapping("/warehousenum/getall")
     public String getall(WarehouseNum warehouseNum) {
-        return GetGsonString(warehouseNumService.selectList(new EntityWrapper<WarehouseNum>()
+        return ListToGson(warehouseNumService.selectList(new EntityWrapper<WarehouseNum>()
                         .eq("flag", "E")
                         .orderBy("stocktype")
 
@@ -95,7 +95,7 @@ public class WarehouseNumController extends BaseController {
     @ResponseBody
     @PostMapping("/warehousenum/getckbyfhrid")
     public String getckbyfhrid(WarehouseNum warehouseNum) {
-        return GetGsonString(warehouseNumService.selectCKbyfhrid(warehouseNum.getFhrid()));
+        return ListToGson(warehouseNumService.selectCKbyfhrid(warehouseNum.getFhrid()));
     }
 
     /**
@@ -125,7 +125,6 @@ public class WarehouseNumController extends BaseController {
                     return "仓库编码已存在";
                 }
             }
-            warehouseNumService.insert(warehouseNum);
             if (StringUtil.isEmpty(warehouseNum.getFhr())) {
                 //判断发货人是否为空
                 warehouseNum.setSpusers(null);
@@ -137,17 +136,27 @@ public class WarehouseNumController extends BaseController {
                 StringBuilder fhrzw = new StringBuilder();
                 for (User user : spuserList) {
                     fhrzw.append(user.getDepartment()).append("--").append(user.getRealname()).append(",");
-                    WarehouseNumUser warehouseNumUser = new WarehouseNumUser();
-                    warehouseNumUser.setId(getUUID());
-                    warehouseNumUser.setUserid(user.getId());
-                    warehouseNumUser.setWarehouseid(warehouseNum.getId());
-                    warehouseNumUserService.insert(warehouseNumUser);
                 }
                 String fhrzwzh = fhrzw.substring(0, fhrzw.length() - 1);
                 warehouseNum.setFhrzw(fhrzwzh);
                 Set<User> set = new HashSet<>(spuserList);
                 warehouseNum.setSpusers(set);
                 warehouseNum.setFhr(fhrstemp.replace(" ", ""));
+            }
+            warehouseNumService.insert(warehouseNum);
+
+            if (!StringUtil.isEmpty(warehouseNum.getFhr())) {
+                String fhrstemp = warehouseNum.getFhr().trim();
+                String[] fhrs = fhrstemp.replace(" ", "").split(",");
+                List<User> spuserList = userService.selectBatchIds(Arrays.asList(fhrs));
+                for (User user : spuserList) {
+                    WarehouseNumUser warehouseNumUser = new WarehouseNumUser();
+                    warehouseNumUser.setId(getUUID());
+                    warehouseNumUser.setUserid(user.getId());
+                    warehouseNumUser.setWarehouseid(warehouseNum.getId());
+                    warehouseNumUserService.insert(warehouseNumUser);
+                }
+
             }
 
             //写入日志表

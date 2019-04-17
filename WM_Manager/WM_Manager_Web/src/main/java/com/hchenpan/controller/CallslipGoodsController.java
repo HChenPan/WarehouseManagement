@@ -10,6 +10,7 @@ import com.hchenpan.pojo.User;
 import com.hchenpan.pojo.Warehousinglist;
 import com.hchenpan.service.*;
 import com.hchenpan.util.StringUtil;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,7 +51,6 @@ public class CallslipGoodsController extends BaseController {
     }
 
 
-
     /**
      * 功能:采购入库维护-查询模块提供查询的分页数据
      */
@@ -69,7 +68,7 @@ public class CallslipGoodsController extends BaseController {
         ew.gt("sysum", "0");
         ew.in("callslipcode", callslipcodes);
         ew.orderBy("updatetime");
-        return GetGsonString(callslipGoodsService.selectList(ew));
+        return ListToGson(callslipGoodsService.selectList(ew));
     }
 
     /**
@@ -78,7 +77,7 @@ public class CallslipGoodsController extends BaseController {
     @ResponseBody
     @PostMapping("/callslipgoods/getwzlist")
     public String getwzlist(CallslipGoods callslipGoods) {
-        return GetGsonString(callslipGoodsService.selectList(new EntityWrapper<CallslipGoods>()
+        return ListToGson(callslipGoodsService.selectList(new EntityWrapper<CallslipGoods>()
                 .eq("flag", "E")
                 .eq("callslipcode", callslipGoods.getCallslipcode())
         ));
@@ -105,11 +104,14 @@ public class CallslipGoodsController extends BaseController {
 
             String arrayList = request.getParameter("arrayList");
             String callslipcode = request.getParameter("callslipcode");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
 
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
 
-            List<CallslipGoods> list = new ArrayList<>(10);
+            List<CallslipGoods> list = (List<CallslipGoods>) JSONArray.toCollection(json, CallslipGoods.class);
+
             String spcode = callslipService.getstatus(callslipcode);
             if (spcode.equals("00")) {
                 /*通用字段赋值*/
@@ -183,11 +185,14 @@ public class CallslipGoodsController extends BaseController {
             String arrayList = request.getParameter("arrayList");
             String callslipcode = request.getParameter("callslipcode");
             String stockcode = request.getParameter("stockcode");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
 
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
 
-            List<CallslipGoods> list = new ArrayList<>(10);
+            List<CallslipGoods> list = (List<CallslipGoods>) JSONArray.toCollection(json, CallslipGoods.class);
+
 
             String spcode = callslipService.getstatus(callslipcode);
             if (spcode.equals("00")) {
@@ -278,11 +283,12 @@ public class CallslipGoodsController extends BaseController {
 
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
 
-
-            List<CallslipGoods> list = new ArrayList<>(10);
+            List<CallslipGoods> list = (List<CallslipGoods>) JSONArray.toCollection(json, CallslipGoods.class);
             String spcode = callslipService.getstatus(list.get(0).getCallslipcode());
             if ("00".equals(spcode)) {
 

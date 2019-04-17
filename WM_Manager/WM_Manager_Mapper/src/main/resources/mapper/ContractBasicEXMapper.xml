@@ -2,27 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hchenpan.mapper.ContractBasicMapper">
     <select id="selectallList" resultType="map">
-        SELECT
-	a.id id,
-	a.serialsnumber serialsnumber,
-	b.name contracttype,
-	a.startdate startdate,
-	a.enddate enddate,
-	c.suppliername vendiorname
-FROM
-	wm_contractbasic a,
-	wm_dictionaryschild b,
-	wm_supplier c
-WHERE
-	a.spcode = '99'
-	AND a.flag = 'E'
-	AND a.contracttype = b.id
-	AND b.flag = 'E'
-	AND a.venditorid = c.id
-	AND c.flag = 'E'
-	AND a.contractstatus = '执行'
-ORDER BY
-	backtime DESC
+        SELECT a.id            id,
+               a.serialsnumber serialsnumber,
+               b.name          contracttype,
+               a.startdate     startdate,
+               a.enddate       enddate,
+               c.suppliername  vendiorname
+        FROM wm_contractbasic a,
+             wm_dictionaryschild b,
+             wm_supplier c
+        WHERE a.spcode = '99'
+          AND a.flag = 'E'
+          AND a.contracttype = b.id
+          AND b.flag = 'E'
+          AND a.venditorid = c.id
+          AND c.flag = 'E'
+          AND a.contractstatus = '执行'
+        ORDER BY backtime DESC
 
     </select>
 

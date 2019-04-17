@@ -24,7 +24,7 @@
         AND C.DICTIONARYS_ID = P.ID
         <where>
             <if test="1==1">
-                a.flag = 'E'
+                c.flag = 'E'
             </if>
             <if test="name != null and name != ''">
                 <bind name="pattern" value="'%' + name + '%'"/>

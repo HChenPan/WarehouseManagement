@@ -11,7 +11,6 @@
 <head>
     <title>用户管理</title>
     <%@ include file="../common/head.jsp" %>
-    <link href="${ctx}/css/main.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${ctx}/statics/jqueryeasyui/plugins/datagrid-cellediting.js"></script>
     <script type="text/javascript" src="${ctx}/statics/jqueryeasyui/plugins/datagrid-filter.js"></script>
     <script src="${ctx}/JavaScript/employee.js" type="text/javascript"></script>

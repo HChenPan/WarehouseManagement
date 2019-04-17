@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.Dictionarys;
+import com.hchenpan.pojo.Dictionaryschild;
 import com.hchenpan.pojo.Logs;
 import com.hchenpan.pojo.User;
 import com.hchenpan.service.DictionarysService;
+import com.hchenpan.service.DictionaryschildService;
 import com.hchenpan.service.LogsService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DictionarysController extends BaseController {
     private final DictionarysService dictionarysService;
+    private final DictionaryschildService dictionaryschildService;
     private final LogsService logsService;
 
 
     @Autowired
-    public DictionarysController(DictionarysService dictionarysService, LogsService logsService) {
+    public DictionarysController(DictionarysService dictionarysService, DictionaryschildService dictionaryschildService, LogsService logsService) {
         this.dictionarysService = dictionarysService;
+        this.dictionaryschildService = dictionaryschildService;
         this.logsService = logsService;
     }
 
@@ -177,6 +181,7 @@ public class DictionarysController extends BaseController {
             deleteDictionarys.setUpdaterid(loginUser.getId());
             deleteDictionarys.setUpdatetime(timeString);
             deleteDictionarys.setUpdater(loginUser.getUsername());
+            dictionaryschildService.delete(new EntityWrapper<Dictionaryschild>().eq("dictionarys_Id", deleteDictionarys.getId()));
             dictionarysService.deleteById(deleteDictionarys);
 
 

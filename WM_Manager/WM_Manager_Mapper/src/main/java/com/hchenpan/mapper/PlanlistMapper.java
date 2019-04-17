@@ -12,7 +12,7 @@ public interface PlanlistMapper extends BaseMapper<Planlist> {
     List<Map<String, Object>> selectWZList();
 
 
-    List<Map<String, Object>> selectWZ(String wzcode, String halfYearStartTime);
+    List<Map<String, Object>> selectWZ(Map<String, Object> map);
 
     List<Map<String, Object>> selectSum(String wzcode);
 }

@@ -10,6 +10,7 @@ import com.hchenpan.pojo.Logs;
 import com.hchenpan.pojo.Returntreasurylist;
 import com.hchenpan.pojo.User;
 import com.hchenpan.service.*;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,10 +107,13 @@ public class ReturntreasurylistController extends BaseController {
             String timeString = GetCurrentTime();
             String tkcode = request.getParameter("tkcode").trim();
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+                //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Returntreasurylist> list = (List<Returntreasurylist>) JSONArray.toCollection(json, Returntreasurylist.class);
 
-            List<Returntreasurylist> list = new ArrayList<>(10);
+            
 
             String tkstatus = returntreasuryService.gettkstatus(tkcode);
             if ("已退货".equals(tkstatus)) {
@@ -203,10 +206,12 @@ public class ReturntreasurylistController extends BaseController {
 
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-
-            List<Returntreasurylist> list = new ArrayList<>(10);
+              //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Returntreasurylist> list = (List<Returntreasurylist>) JSONArray.toCollection(json, Returntreasurylist.class);
+            
             String tkstatus = returntreasuryService.gettkstatus(list.get(0).getTkcode().trim());
             if ("已退货".equals(tkstatus)) {
                 return "已退货";

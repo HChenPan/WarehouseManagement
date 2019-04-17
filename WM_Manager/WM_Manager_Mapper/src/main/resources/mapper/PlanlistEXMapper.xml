@@ -3,52 +3,42 @@
 <mapper namespace="com.hchenpan.mapper.PlanlistMapper">
 
     <select id="selectWZList" resultType="map">
-		SELECT
-			A.ID AS ID,
-			A.PLANCODE AS PLANCODE,
-			A.WZCODE AS WZCODE,
-			A.MODELSPCIFICATION AS MODELSPCIFICATION,
-			A.WZNAME AS WZNAME,
-			A.SPNUM AS SPNUM,
-			A.SPPRICE AS SPPRICE,
-			A.UNIT AS UNIT,
-			A.SYNUM AS SYNUM
-		FROM
-			WMDB.WM_PLANLIST A
-			INNER JOIN WMDB.WM_PLAN B ON A.PLANCODEID = B.ID
-		WHERE
-			A.SYNUM != '0'
-			AND B.FLAG = 'E'
-			AND A.FLAG = 'E'
-			AND B.SPCODE = '99'
+        SELECT A.ID                AS ID,
+               A.PLANCODE          AS PLANCODE,
+               A.WZCODE            AS WZCODE,
+               A.MODELSPCIFICATION AS MODELSPCIFICATION,
+               A.WZNAME            AS WZNAME,
+               A.SPNUM             AS SPNUM,
+               A.SPPRICE           AS SPPRICE,
+               A.UNIT              AS UNIT,
+               A.SYNUM             AS SYNUM
+        FROM WMDB.WM_PLANLIST A
+                 INNER JOIN WMDB.WM_PLAN B ON A.PLANCODEID = B.ID
+        WHERE A.SYNUM != '0'
+          AND B.FLAG = 'E'
+          AND A.FLAG = 'E'
+          AND B.SPCODE = '99'
     </select>
 
-    <select id="selectWZ" resultType="map" parameterType="java.lang.String">
-		SELECT
-			A.BUYPRICE
-		FROM
-			WMDB.WM_BUYLIST A
-			INNER JOIN WMDB.WM_BUY B ON A.BUYCODEID = B.ID
-		WHERE
-			B.SPCODE = '99'
-			AND B.SPJSDATE IS NOT NULL
-			AND A.WZCODE = #{wzcode,jdbcType=VARCHAR}
-			AND B.SPJSDATE >= #{halfYearStartTime,jdbcType=VARCHAR}
-			AND B.FLAG = 'E'
-			AND A.FLAG = 'E'
-		ORDER BY
-			B.SPJSDATE DESC,
-			A.PLANCODE DESC
+    <select id="selectWZ" resultType="map" parameterType="map">
+        SELECT A.BUYPRICE
+        FROM WMDB.WM_BUYLIST A
+                 INNER JOIN WMDB.WM_BUY B ON B.ID = A.BUYCODEID
+        WHERE B.SPCODE = '99'
+          AND B.SPJSDATE IS NOT NULL
+          AND A.WZCODE = #{wzcode}
+          AND B.SPJSDATE &gt;= #{halfYearStartTime}
+          AND B.FLAG = 'E'
+          AND A.FLAG = 'E'
+        ORDER BY B.SPJSDATE DESC,
+                 A.PLANCODE DESC
     </select>
     <select id="selectSum" resultType="map" parameterType="java.lang.String">
-		SELECT
-			Sum( cast ) AS BQEND,
-			Sum( cast ) AS BQENDMONEY
-		FROM
-			WMDB.WM_STOCK
-		WHERE
-			WMDB.WM_STOCK.TRANFLAG IS NULL
-			AND WMDB.WM_STOCK.STOCKYEARMON IS NULL
-			AND WMDB.WM_STOCK.WZCODE = #{wzcode,jdbcType=VARCHAR}
+        SELECT Sum(cast) AS BQEND,
+               Sum(cast) AS BQENDMONEY
+        FROM WMDB.WM_STOCK
+        WHERE WMDB.WM_STOCK.TRANFLAG IS NULL
+          AND WMDB.WM_STOCK.STOCKYEARMON IS NULL
+          AND WMDB.WM_STOCK.WZCODE = #{wzcode,jdbcType=VARCHAR}
     </select>
 </mapper>

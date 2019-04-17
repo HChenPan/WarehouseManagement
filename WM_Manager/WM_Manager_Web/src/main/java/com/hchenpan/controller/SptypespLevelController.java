@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Project : WarehouseManagement
@@ -54,7 +51,7 @@ public class SptypespLevelController extends BaseController {
     }
 
     /**
-     * 功能:提供查询的分页数据
+     * 功能:根据id获取审批级别配置
      */
     @ResponseBody
     @PostMapping("/sptypesplevel/search")
@@ -64,11 +61,29 @@ public class SptypespLevelController extends BaseController {
     }
 
     /**
+     * 功能:提供查询的分页数据
+     */
+    @ResponseBody
+    @GetMapping("/sptypesplevel/getsptypesplevellistbyid")
+    public String getsptypesplevellistbyid(SptypespLevel sptypeSplevel) {
+        return GetGsonString(sptypespLevelService.selectById(sptypeSplevel.getId()));
+    }
+
+    /**
+     * 功能:提供查询的分页数据
+     */
+    @ResponseBody
+    @PostMapping("/sptypesplevel/getspjblistbysptypecode")
+    public String getspjblistbysptypecode(SptypespLevel sptypeSplevel) {
+        return GetGsonString(sptypespLevelService.selectSPJBList(sptypeSplevel.getSptypecode()));
+    }
+
+    /**
      * 新建、保存 审批 配置
      ***/
     @ResponseBody
     @PostMapping(value = "/sptypesplevel/create")
-    public String create(SptypespLevel sptypespLevel) {
+    public String create(SptypespLevel sptypespLevel, String spusersId) {
         if (checkuser()) {
             /*通用字段赋值*/
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
@@ -81,6 +96,7 @@ public class SptypespLevelController extends BaseController {
             sptypespLevel.setUpdaterid(loginUser.getId());
             sptypespLevel.setUpdater(loginUser.getUsername());
             sptypespLevel.setUpdatetime(timeString);
+            sptypespLevel.setSpusersid(spusersId);
             if (StringUtil.isEmpty(sptypespLevel.getSpusersid())) {
                 sptypespLevel.setSpusers(null);
                 sptypespLevel.setSpuserszw("");
@@ -93,11 +109,6 @@ public class SptypespLevelController extends BaseController {
                 StringBuilder fhrzw = new StringBuilder();
                 for (User user : spuserList) {
                     fhrzw.append(user.getDepartment()).append("--").append(user.getRealname()).append(",");
-                    SptypespLevelUser sptypespLevelUser = new SptypespLevelUser();
-                    sptypespLevelUser.setId(getUUID());
-                    sptypespLevelUser.setSptypesplevelid(sptypespLevel.getId());
-                    sptypespLevelUser.setUserid(user.getId());
-                    sptypespLevelUserService.insert(sptypespLevelUser);
                 }
                 String fhrzwzh = fhrzw.substring(0, fhrzw.length() - 1);
                 sptypespLevel.setSpuserszw(fhrzwzh);
@@ -105,6 +116,13 @@ public class SptypespLevelController extends BaseController {
                 sptypespLevel.setSpusers(set);
                 sptypespLevel.setSpusersid(spusersIdstemp.replace(" ", ""));
                 sptypespLevelService.insert(sptypespLevel);
+                for (User user : spuserList) {
+                    SptypespLevelUser sptypespLevelUser = new SptypespLevelUser();
+                    sptypespLevelUser.setId(getUUID());
+                    sptypespLevelUser.setSptypesplevelid(sptypespLevel.getId());
+                    sptypespLevelUser.setUserid(user.getId());
+                    sptypespLevelUserService.insert(sptypespLevelUser);
+                }
             }
             return SUCCESS;
         }
@@ -116,7 +134,7 @@ public class SptypespLevelController extends BaseController {
      */
     @ResponseBody
     @PostMapping(value = "/sptypesplevel/update")
-    public String update(SptypespLevel sptypespLevel) {
+    public String update(SptypespLevel sptypespLevel, String spusersId) {
         if (checkuser()) {
             /*通用字段赋值*/
             User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
@@ -125,6 +143,7 @@ public class SptypespLevelController extends BaseController {
             sptypespLevel.setUpdaterid(loginUser.getId());
             sptypespLevel.setUpdater(loginUser.getUsername());
             sptypespLevel.setUpdatetime(timeString);
+            sptypespLevel.setSpusersid(spusersId);
             sptypespLevelUserService.delete(new EntityWrapper<SptypespLevelUser>().eq("sptypesplevelid", sptypespLevel.getId()));
             if (StringUtil.isEmpty(sptypespLevel.getSpusersid())) {
                 sptypespLevel.setSpusers(null);

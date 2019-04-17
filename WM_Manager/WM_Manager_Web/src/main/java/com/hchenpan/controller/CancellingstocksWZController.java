@@ -7,6 +7,7 @@ import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
 import com.hchenpan.util.StringUtil;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -98,10 +98,12 @@ public class CancellingstocksWZController extends BaseController {
 
             String TKcode = request.getParameter("TKcode").trim();
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
 
-            List<CallslipGoods> list = new ArrayList<>(10);
+            List<CallslipGoods> list = (List<CallslipGoods>) JSONArray.toCollection(json, CallslipGoods.class);
 
             CancellingstocksSQ CS = cancellingstocksSQService.getbycode(TKcode);
             if ("已退库".equals(CS.getTkstatus())) {
@@ -196,10 +198,12 @@ public class CancellingstocksWZController extends BaseController {
 
             String TKcode = request.getParameter("TKcode").trim();
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
 
-            List<CancellingstocksWZ> list = new ArrayList<>(10);
+            List<CancellingstocksWZ> list = (List<CancellingstocksWZ>) JSONArray.toCollection(json, CancellingstocksWZ.class);
 
 
             for (Iterator<CancellingstocksWZ> iterator = list.iterator(); iterator.hasNext(); ) {

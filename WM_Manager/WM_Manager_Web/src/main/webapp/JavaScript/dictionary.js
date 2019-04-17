@@ -23,9 +23,12 @@ $(function () {
             $('#dname').textbox('setValue', dname);
             $('#dictionarysid').textbox('setValue', dictionarysid);
             getdictionaryschild(dcode);
-        }
+
+        },
     });
+
 });
+
 var url1;
 var url2;
 /*定义数据表格的按钮及事件*/
@@ -35,12 +38,17 @@ var toolbar1 = [{
     handler: function () {
         url1 = 'dictionarys/create';
         $('#w').window('setTitle', '新增数据字典节点').window('open');
+
     }
 }, '-', {
     text: '修改',
     iconCls: 'icon-edit',
     handler: function () {
         getSelectedDictionary();
+        /*setTimeout(function() {
+            $('#u').window('setTitle','修改数据字典节点').window('open');
+        }, 500);*/
+
     }
 }, '-', {
     text: '删除',
@@ -57,11 +65,13 @@ var toolbar2 = [{
         url2 = 'dictionaryschild/create';
         $("#zname").textbox('textbox').attr('readonly', false);
         $('#c').window('setTitle', '新增数据字典内容').window('open');
+
     }
 }, '-', {
     text: '修改',
     iconCls: 'icon-edit',
     handler: function () {
+        //url2 = 'dictionaryschild/update';
         getSelectedDictionaryChild();
     }
 }, '-', {
@@ -72,11 +82,12 @@ var toolbar2 = [{
     }
 }];
 
+
 /*新增及修改数据字典大类表单提交*/
 function submitdictionaryform() {
     //移除disable属性,后台取值
     $("[disabled]").each(function () {
-        if (parseInt($(this).val()) != -1) {
+        if (parseInt($(this).val()) !== -1) {
             $(this).attr("disabled", false);
         }
     });
@@ -86,7 +97,7 @@ function submitdictionaryform() {
             return $('#dictionary').form('validate');
         },
         success: function (data) {
-            if (data == "success") {
+            if (data === "success") {
                 if (url1.indexOf('update') > 0) {
                     $('#dictionary').form('clear');
                     //清空表单后给大类赋值
@@ -273,7 +284,7 @@ function deleteSelectedDictionaryChild() {
                     url: 'dictionaryschild/delete',
                     data: 'id=' + row.id,
                     success: function (data) {
-                        if (data == "success") {
+                        if (data === "success") {
                             $('#dictionaryschildlist').datagrid('reload');
                             $.messager.alert('提示信息', '成功删除所选的字典子类', 'info');
                         } else {

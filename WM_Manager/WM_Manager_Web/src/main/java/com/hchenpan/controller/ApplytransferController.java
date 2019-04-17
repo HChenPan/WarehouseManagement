@@ -128,7 +128,7 @@ public class ApplytransferController extends BaseController {
     @ResponseBody
     @PostMapping("/applytransfer/getallbyid")
     public String getallbyid(Applytransfer applytransfer) {
-        return GetGsonString(applytransferService.selectById(applytransfer.getId()));
+        return ListToGson(applytransferService.selectById(applytransfer.getId()));
     }
 
 

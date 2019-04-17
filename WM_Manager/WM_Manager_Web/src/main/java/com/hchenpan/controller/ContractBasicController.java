@@ -379,7 +379,7 @@ public class ContractBasicController extends BaseController {
         System.out.println(sql);
         ew.where("flag = {0}" + sql.toString(), "'E'");
 
-        return GetGsonString(contractBasicService.selectPage(page, ew));
+        return jsonPage(contractBasicService.selectPage(page, ew));
 
     }
 
@@ -451,7 +451,7 @@ public class ContractBasicController extends BaseController {
     @ResponseBody
     @PostMapping("/contractbasic/getcontractbasiclist")
     public String getcontractbasiclist() {
-        return GetGsonString(contractBasicService.selectallList());
+        return ListToGson(contractBasicService.selectallList());
     }
 
 }

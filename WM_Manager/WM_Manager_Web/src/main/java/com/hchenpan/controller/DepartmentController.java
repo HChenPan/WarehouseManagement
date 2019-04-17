@@ -89,7 +89,7 @@ public class DepartmentController extends BaseController {
     @ResponseBody
     @PostMapping("/department/getDepart")
     public String getDepart(Department department) {
-        return GetGsonString(departmentService.selectList(new EntityWrapper<Department>().eq("name", department.getName())));
+        return ListToGson(departmentService.selectList(new EntityWrapper<Department>().eq("name", department.getName())));
     }
 
 

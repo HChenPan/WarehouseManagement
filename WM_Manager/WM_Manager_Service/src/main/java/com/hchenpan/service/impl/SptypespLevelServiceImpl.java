@@ -66,7 +66,7 @@ public class SptypespLevelServiceImpl extends BaseServiceImpl<SptypespLevelMappe
 
     @Override
     public List<CommboxList> getusersplevelnode(String sptypecodes, String id) {
-        Map<String, Object> params=new HashMap<>(10);
+        Map<String, Object> params = new HashMap<>(10);
         params.put("sptypecodes", sptypecodes);
         params.put("id", id);
         List<CommboxList> getusersplevelnode = sptypespLevelMapper.getusersplevelnode(params);
@@ -83,5 +83,12 @@ public class SptypespLevelServiceImpl extends BaseServiceImpl<SptypespLevelMappe
     public int gettyspnum(String sptypecode, String spnodecode, String spid) {
         List<ApprovalRecord> approvalRecords = approvalRecordMapper.selectList(new EntityWrapper<ApprovalRecord>().setSqlSelect("DISTINCT spuserid ").eq("sptypecode", sptypecode).eq("spnodecode", spnodecode).eq("spresult", "同意").eq("spid", spid).groupBy("spuserid"));
         return approvalRecords.size();
+    }
+
+    @Override
+    public List<Map<String, Object>> selectSPJBList(String sptypecode) {
+        Map<String, Object> params = new HashMap<>(10);
+        params.put("sptypecode", sptypecode);
+        return transformUpperCase(sptypespLevelMapper.selectSPJBList(params));
     }
 }

@@ -79,8 +79,7 @@ public class SparepartCodeController extends BaseController {
     @ResponseBody
     @PostMapping(value = "/sparepartcode/getallwz")
     public String getallwz() {
-        List<SparepartCode> slist = sparepartCodeService.getallsparepart();
-        return GetGsonString(slist);
+        return GetGsonString(sparepartCodeService.getallsparepart());
     }
 
     /**
@@ -91,8 +90,8 @@ public class SparepartCodeController extends BaseController {
     public String getsonlist(SparepartCode sparepartCode) throws Exception {
         Spart spart = new Spart();
         spart.setId(sparepartCode.getId());
-        List<Spart> slist = sparepartCodeService.getsons(spart);
-        return GetGsonString(slist);
+
+        return ListToGson(sparepartCodeService.getsons(spart));
     }
 
 
@@ -103,7 +102,8 @@ public class SparepartCodeController extends BaseController {
     @PostMapping(value = "/sparepartcode/create")
     public String create(SparepartCode sparepartCode) {
         if (checkuser()) {
-            sparepartCode.setParentid(sparepartCode.get_parentid());
+            Object parentid = request.getParameter("_parentId");
+            sparepartCode.setParentid(parentid.toString());
             sparepartCode.setName(sparepartCode.getName().trim());
             if ("物资".equals(sparepartCode.getDescription())) {
                 String temp = sparepartCode.getParentcode() + sparepartCode.getDevicecode();

@@ -63,7 +63,7 @@ public class ContractTempNameController extends BaseController {
     @ResponseBody
     @PostMapping("/contracttempname/getall")
     public String getall() {
-        return GetGsonString(contractTempNameService.selectList(new EntityWrapper<ContractTempName>().eq("flag", "E").orderBy("updatetime")));
+        return ListToGson(contractTempNameService.selectList(new EntityWrapper<ContractTempName>().eq("flag", "E").orderBy("updatetime")));
     }
 
     /**

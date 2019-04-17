@@ -327,7 +327,7 @@ public class WarehousingController extends BaseController {
     @ResponseBody
     @PostMapping("/warehousing/getalllist")
     public String getalllist(Warehousing warehousing) {
-        return GetGsonString(warehousingService.selectList(new EntityWrapper<Warehousing>()
+        return ListToGson(warehousingService.selectList(new EntityWrapper<Warehousing>()
                 .eq("flag", "E")
                 .eq("storehousecode", warehousing.getStorehousecode())
 
@@ -339,7 +339,7 @@ public class WarehousingController extends BaseController {
     @PostMapping("/warehousing/getwarehousinglist")
     public String getwarehousinglist() {
         User loginUser = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
-        return GetGsonString(warehousingService.selectUserList(loginUser.getId()));
+        return ListToGson(warehousingService.selectUserList(loginUser.getId()));
     }
 
     /**

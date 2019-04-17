@@ -46,8 +46,8 @@
                 <ul class="navlist">
                     <shiro:hasRole name="admin">
                     <li><div><a href="#" onclick="addPanel('${ctx}/user.do','用户管理')">用户管理*</a></div></li>
-                    <li><div><a href="#" onclick="addPanel('${ctx}/role.do','角色管理')">角色管理*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/permission.do','权限管理')">权限管理*</a></div></li>
+                    <li><div><a href="#" onclick="addPanel('${ctx}/role.do','角色管理')">角色管理*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/department.do','部门设置')">部门设置*</a></div></li>
                     <li><div><a href="#" onclick="addPanel('${ctx}/employee.do','员工维护')">员工维护*</a></div></li>
                     </shiro:hasRole>

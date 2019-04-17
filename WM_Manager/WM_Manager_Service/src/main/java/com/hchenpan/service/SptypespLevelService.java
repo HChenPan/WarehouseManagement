@@ -7,6 +7,7 @@ import com.hchenpan.model.PageContainer;
 import com.hchenpan.pojo.SptypespLevel;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Project : WarehouseManagement
@@ -27,4 +28,6 @@ public interface SptypespLevelService extends BaseService<SptypespLevel> {
     int getspusernum(String sptypecode, String spnodecode);
 
     int gettyspnum(String sptypecode, String spnodecode, String spid);
+
+    List<Map<String, Object>> selectSPJBList(String sptypecode);
 }

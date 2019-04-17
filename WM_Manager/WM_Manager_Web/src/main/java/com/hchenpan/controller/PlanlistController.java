@@ -7,6 +7,7 @@ import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
 import com.hchenpan.util.StringUtil;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,10 +83,12 @@ public class PlanlistController extends BaseController {
             String plancodeid = request.getParameter("plancodeid");
             String plantype = request.getParameter("plantype");
             String planname = request.getParameter("planname");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(arrayList.substring(0, arrayList.length() - 1));
+            List<Planlist> list = (List<Planlist>) JSONArray.toCollection(json, Planlist.class);
 
-            List<Planlist> list = new ArrayList<>();
 
             String spcode = planService.selectOne(new EntityWrapper<Plan>().eq("id", plancodeid)).getSpcode();
             if (!"00".equals(spcode)) {
@@ -166,9 +168,12 @@ public class PlanlistController extends BaseController {
     public String update() {
         if (checkuser()) {
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-            List<Planlist> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+            List<Planlist> list = (List<Planlist>) JSONArray.toCollection(json, Planlist.class);
+
             String spcode = planService.selectOne(new EntityWrapper<Plan>().eq("id", list.get(0).getPlancodeid())).getSpcode();
             if (!"00".equals(spcode)) {
                 return "审批中";
@@ -367,14 +372,14 @@ public class PlanlistController extends BaseController {
     @ResponseBody
     @GetMapping("/planlist/getallwzmx")
     public String getallwzmx(Planlist planlist) {
-        return GetGsonString(planlistService.selectWZList());
+        return ListToGson(planlistService.selectWZList());
     }
 
     /**
      * 功能:获取所有物资
      */
     @ResponseBody
-    @GetMapping("/planlist/getallwz")
+    @PostMapping("/planlist/getallwz")
     public String getallwz(Planlist planlist) {
         List<Dictionaryschild> list = dictionaryschildService.getdchildlistbydecode("BZ");
         String zjcode = list.get(0).getCode();

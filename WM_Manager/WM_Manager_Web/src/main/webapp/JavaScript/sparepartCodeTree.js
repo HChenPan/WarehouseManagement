@@ -16,7 +16,7 @@ $(function () {
             {field: 'parentcode', width: 100, hidden: true},
             {field: '_parentId', width: 100, hidden: true}
         ]],
-        loadFilter: myLoadFilter
+        loadFilter: myLoadFilter,
     });
     comboevent();
 });
@@ -50,7 +50,7 @@ function myLoadFilter(data, parentId) {
             row.children1 = undefined;
             tg.treegrid('expand', row[opts.idField]);
         }
-        return row.children1 === undefined;
+        return row.children1 == undefined;
     };
     return data;
 }
@@ -93,12 +93,18 @@ function getselectnode() {
         $('#departadd').form('clear');
         $("#description").combobox({disabled: false});
         $('#parentid').val(row.id);
-        if (row.parentcode === undefined) {
+        if (row.parentcode == undefined) {
             row.parentcode = "";
         }
         $('#parentcode').val(row.parentcode + row.code);
         $('#w').window('open');
         comboEvent();
+        /*$("#description").combobox(
+                {
+                    onChange : function(rec) {
+                        comboEvent();
+                    }
+                });*/
     } else {
         $.messager.alert('提示信息', '请首先选择欲添加编码的上级');
     }
@@ -108,7 +114,7 @@ function getselectnode() {
 function submitdepartForm() {
     //移除disable属性,后台取值
     $("[disabled]").each(function () {
-        if (parseInt($(this).val()) !== -1) {
+        if (parseInt($(this).val()) != -1) {
             $(this).attr("disabled", false);
         }
     });
@@ -120,8 +126,8 @@ function submitdepartForm() {
                 return $('#departadd').form('validate');
             },
             success: function (data) {
-                if (data !== "error" && data !== "备件已经存在") {
-                    data = eval('(' + data + ')');
+                if (data != "error" && data != "备件已经存在") {
+                    var data = eval('(' + data + ')');
                     if (url.indexOf('update') > 0) {
                         $.messager.alert('提示信息', '成功修改备件编码');
                         $('#departadd').form('clear');
@@ -140,7 +146,7 @@ function submitdepartForm() {
                             $('#departlist').treegrid('expandTo', data.id).treegrid('select', data._parentId);
                         }, 500);
                     }
-                } else if (data === "备件已经存在") {
+                } else if (data == "备件已经存在") {
                     $.messager.alert('提示信息', '该备件已经存在请重新输入', 'info');
                 } else {
                     $.messager.alert('提示信息', '登录超时保存失败,请重新登录', 'info');
@@ -160,7 +166,7 @@ function deleteSelecteddepart() {
                     url: 'sparepartcode/delete',
                     data: 'id=' + row.id,
                     success: function (data) {
-                        if (data !== "error") {
+                        if (data != "error") {
                             $.messager.alert('提示信息', '成功删除备件编码');
                             $('#departlist').treegrid('reload');
                             setTimeout(function () {
@@ -198,7 +204,7 @@ function getSelecteddepart() {
                 $('#parentcode').val(row.parentcode);
                 $('#w').window('setTitle', '修改物资').window('open');
 
-                if ($("#description").combobox('getValue') !== "物资") {
+                if ($("#description").combobox('getValue') != "物资") {
                     $("#code").textbox({disabled: true});
                 }
 
@@ -247,7 +253,7 @@ function descriptionEvent() {
         $("#code").textbox({disabled: true, readonly: true});
         $("#modelSpecification").textbox({disabled: false});
         $("#devicecode").textbox({disabled: false});
-        $(".purchasetime").textbox({disabled: false});
+        $("#purchasetime").textbox({disabled: false});
         $("#planprice").textbox({disabled: false});
         $("#planprice").textbox({required: true});
         $("#remark").textbox({disabled: false});
@@ -260,12 +266,14 @@ function descriptionEvent() {
         $("#stockmin").textbox({disabled: false});
         $("#currencyunit").textbox({disabled: false});
         $("#currencytype").textbox({disabled: false});
+
     } else {
+
         $("#code").textbox({disabled: false});
         $("#code").textbox({required: true});
         $("#modelSpecification").textbox({disabled: true});
         $("#devicecode").textbox({disabled: true});
-        $(".purchasetime").textbox({disabled: true});
+        $("#purchasetime").textbox({disabled: true});
         $("#planprice").textbox({disabled: true});
         $("#remark").textbox({disabled: true});
         $("#unit").textbox({disabled: true});

@@ -7,7 +7,7 @@ import com.hchenpan.common.BasePojo;
  * @author hchenpan
  * @version 1.0
  */
-@TableName("WM_USERROLES")
+@TableName("WM_USER_ROLES")
 public class UserRoles extends BasePojo {
 
     private String roleid;

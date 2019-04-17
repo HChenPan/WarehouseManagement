@@ -90,7 +90,7 @@ public class StockController extends BaseController {
     @ResponseBody
     @PostMapping("/stock/getall")
     public String getall() {
-        return GetGsonString(stockService.selectList(new EntityWrapper<Stock>().orderBy("stockname")));
+        return ListToGson(stockService.selectList(new EntityWrapper<Stock>().orderBy("stockname")));
     }
 
     /**
@@ -99,7 +99,7 @@ public class StockController extends BaseController {
     @ResponseBody
     @PostMapping("/stock/ getallOrderByWzbm")
     public String getallOrderByWzbm(Stock stock) {
-        return GetGsonString(stockService.selectList(new EntityWrapper<Stock>()
+        return ListToGson(stockService.selectList(new EntityWrapper<Stock>()
                 .orderBy("wzcode")
                 .ge("bqend", "0.00")
                 .ge("bqend", "0")
@@ -126,7 +126,7 @@ public class StockController extends BaseController {
     @ResponseBody
     @GetMapping("/stock/getgoodslist")
     public String getgoodslist(Stock stock) {
-        return GetGsonString(stockService.selectList(new EntityWrapper<Stock>().eq("stockcode", stock.getStockcode()).isNull("stockyearmon").isNull("tranflag")));
+        return ListToGson(stockService.selectList(new EntityWrapper<Stock>().eq("stockcode", stock.getStockcode()).isNull("stockyearmon").isNull("tranflag")));
     }
 
     /**
@@ -135,7 +135,7 @@ public class StockController extends BaseController {
     @ResponseBody
     @GetMapping("/stock/getgoods")
     public String getgoods(Stock stock) {
-        return GetGsonString(stockService.selectList(new EntityWrapper<Stock>()
+        return ListToGson(stockService.selectList(new EntityWrapper<Stock>()
                 .ge("bqend", "0.00")
                 .ge("bqend", "0")
                 .ne("bqend", "0")
@@ -152,7 +152,7 @@ public class StockController extends BaseController {
     @ResponseBody
     @GetMapping("/stock/jzlist")
     public String jzlist(Stock stock) {
-        return GetGsonString(stockService.selectList(new EntityWrapper<Stock>().isNull("stockyearmon").isNull("tranflag")));
+        return ListToGson(stockService.selectList(new EntityWrapper<Stock>().isNull("stockyearmon").isNull("tranflag")));
     }
 
     /**

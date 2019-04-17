@@ -1,5 +1,6 @@
 package com.hchenpan.controller;
 
+
 import com.baomidou.mybatisplus.enums.SqlLike;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -7,6 +8,7 @@ import com.hchenpan.common.BaseController;
 import com.hchenpan.pojo.*;
 import com.hchenpan.service.*;
 import com.hchenpan.util.StringUtil;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,7 +81,7 @@ public class BuylistController extends BaseController {
     @ResponseBody
     @PostMapping("/buylist/getwzforbuycode")
     public String getwzforbuycode(Buylist buylist) {
-        return GetGsonString(buylistService.selectList(new EntityWrapper<Buylist>().eq("flag", "E").eq("buycode", buylist.getBuycode()).orderBy("updatetime")));
+        return ListToGson(buylistService.selectList(new EntityWrapper<Buylist>().eq("flag", "E").eq("buycode", buylist.getBuycode()).orderBy("updatetime")));
     }
 
     /**
@@ -142,11 +143,13 @@ public class BuylistController extends BaseController {
             String buyname = request.getParameter("buyname").trim();
 
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-//            JSONArray json = JSONArray.fromObject(arrayList);
-//            List<Buylist> list= (List<Buylist>)JSONArray.toCollection(json, Buylist.class);
-            List<Buylist> list = new ArrayList<>();
+
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+
+            List<Buylist> list = (List<Buylist>) JSONArray.toCollection(json, Buylist.class);
 
             String spcode = buyService.selectOne(new EntityWrapper<Buy>().eq("buycode", buycode)).getSpcode();
             if (!"00".equals(spcode)) {
@@ -265,9 +268,12 @@ public class BuylistController extends BaseController {
     public String update() {
         if (checkuser()) {
             String arrayList = request.getParameter("arrayList");
-            //将 arrayList 字符串转换成 json 对象
-            //将 json 对象转换成 stock 集合
-            List<Buylist> list = new ArrayList<>();
+            //替换字符串中的'/'
+            String str = arrayList.replaceAll("\\\\", "\"");
+            //转为json对象
+            JSONArray json = JSONArray.fromObject(str);
+
+            List<Buylist> list = (List<Buylist>) JSONArray.toCollection(json, Buylist.class);
             String spcode = buyService.selectOne(new EntityWrapper<Buy>().eq("buycode", list.get(0).getBuycode())).getSpcode();
             if (!"00".equals(spcode)) {
                 return "审批中";

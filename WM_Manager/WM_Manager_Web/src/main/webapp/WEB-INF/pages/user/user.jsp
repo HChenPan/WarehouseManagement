@@ -12,19 +12,14 @@
 <head>
     <title>用户管理</title>
     <%@ include file="../common/head.jsp" %>
-    <link href="${ctx}/css/main.css" rel="stylesheet" type="text/css"/>
+
     <script type="text/javascript" src="${ctx}/statics/jqueryeasyui/plugins/datagrid-cellediting.js"></script>
     <script type="text/javascript" src="${ctx}/statics/jqueryeasyui/plugins/datagrid-filter.js"></script>
     <script src="${ctx}/JavaScript/user.js" type="text/javascript"></script>
 </head>
-<script type="text/javascript">
-    $(function () {
-        if ("<%=session.getAttribute("user")%>" === "null") {
-            alert("对不起，您尚未登录或者登录超时。");
-            window.location = "${ctx}/login.do";
-        }
-    });
-</script>
+
+
+
 <body class="easyui-layout">
 <div data-options="region:'center',border:false">
     <div class="easyui-layout" data-options="fit:true">
@@ -44,7 +39,7 @@
                     </td>
                     <td>拥有角色</td>
                     <td>
-                        <input class="easyui-combobox" id="password2" style="width: 180px;" panelHeight="auto" data-options="valueField:'rid', textField:'name',url:'role/getall.do'"/>
+                        <input class="easyui-combobox" id="password2" style="width: 180px;" panelHeight="auto" data-options="valueField:'id', textField:'name',url:'role/getall.do'"/>
                     </td>
                     <td>
                         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="usersearch()">查询用户</a>
@@ -78,7 +73,7 @@
                 <tr>
                     <td>所属部门</td>
                     <td colspan="3">
-                        <input class="easyui-combotree" name="department.id" style="width: 300px;" panelHeight="auto" data-options="required:true, valueField:'id', textField:'name',url:'department/gettreedepart.do'"/>
+                        <input class="easyui-combotree" name="departmentid" style="width: 300px;" panelHeight="auto" data-options="required:true, valueField:'id', textField:'name',url:'department/gettreedepart.do'"/>
                     </td>
                 </tr>
                 <tr>
@@ -127,7 +122,7 @@
                 <tr>
                     <td>所属部门</td>
                     <td colspan="3">
-                        <input class="easyui-combotree" name="department.id" id="deptid" style="width: 300px;" panelHeight="auto" data-options="required:true, valueField:'id', textField:'name',url:'department/gettreedepart.do'"/>
+                        <input class="easyui-combotree" name="departmentid" id="deptid" style="width: 300px;" panelHeight="auto" data-options="required:true, valueField:'id', textField:'name',url:'department/gettreedepart.do'"/>
                     </td>
                 </tr>
                 <tr>

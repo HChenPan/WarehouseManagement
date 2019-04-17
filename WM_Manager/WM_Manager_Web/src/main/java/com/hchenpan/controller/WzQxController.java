@@ -79,7 +79,7 @@ public class WzQxController extends BaseController {
     @ResponseBody
     @PostMapping("/wzqx/getall")
     public String getall() {
-        return GetGsonString(wzQxService.selectList(new EntityWrapper<WzQx>().eq("flag", "E").orderBy("wzqxname")));
+        return ListToGson(wzQxService.selectList(new EntityWrapper<WzQx>().eq("flag", "E").orderBy("wzqxname")));
     }
 
     /**
